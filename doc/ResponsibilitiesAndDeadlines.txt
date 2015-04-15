@@ -1,0 +1,16 @@
+Responsibilities and Deadlines
+
+Andrew: Planning/Coordinator/Recorder
+Todd: Lead Dev
+Sean: Lead QA
+
+4/15: First Team meeting @ 3PM- UML, model classes, GUI sketches, this document
+4/16: Initial UML class diagram and sequence diagram of inner loop due in class. Javadoc submitted to github repository
+4/20: Have a working program so changes/bugfixes can be made before the meeting of the 24th. 
+4/23: Day before team meeting. Comments in all code that needs them. Model demonstrates the deliverables decided on in first meeting.
+4/24: Second Team meeting- Working model based on deliverables, javadoc draft
+5/6: Project due @ 11:59PM- Complete, working system; Fully generated javadoc; 3-5 page design doc brief
+5/7-8: Review meetings
+
+UML: PDFs, names of team members, name of project,
+Design Doc: List team members, discuss design choices made, patterns used, extra features and how to use them, bugs, problems.
