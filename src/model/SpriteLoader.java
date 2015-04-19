@@ -73,6 +73,7 @@ public class SpriteLoader {
   public SpriteLoader() {
     try {
       BufferedImage sheet = ImageIO.read(new File("./resources/tilesheet.png"));
+      
       this.ramp_E_1 = sheet.getSubimage(0, 0, 16, 16);
       this.ramp_E_2 = sheet.getSubimage(0, 16, 16, 16);
       this.ramp_W_1 = sheet.getSubimage(16, 0, 16, 16);

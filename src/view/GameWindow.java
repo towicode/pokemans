@@ -1,27 +1,32 @@
 package view;
 
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
 import javax.swing.JButton;
 
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.Observer;
 
-public class GameWindow extends JPanel {
+public class GameWindow extends JFrame {
+
+  public JPanel gamePanel;
 
   /**
    * Create the panel.
    */
   public GameWindow() {
     setLayout(null);
+    setPreferredSize(new Dimension(350 ,500));
+    setMinimumSize(new Dimension(350,500));
 
-    JPanel gamePanel = new JPanel();
-    gamePanel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null,
-        null, null));
-    gamePanel.setBounds(10, 11, 320, 288);
+    this.gamePanel = new JPanel();
+    this.gamePanel.setBounds(10, 11, 320, 288);
     add(gamePanel);
 
     JButton up = new JButton("^");
