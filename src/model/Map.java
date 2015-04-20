@@ -32,7 +32,7 @@ public class Map {
 
     for (Tile[] r : tiles) {
       for (Tile k : r) {
-        k.x = k.x + 1;
+        k.x = k.x + 4;
       }
     }
   }
@@ -41,7 +41,7 @@ public class Map {
 
     for (Tile[] r : tiles) {
       for (Tile k : r) {
-        k.x = k.x - 1;
+        k.x = k.x - 4;
       }
     }
   }
@@ -50,7 +50,7 @@ public class Map {
 
     for (Tile[] r : tiles) {
       for (Tile k : r) {
-        k.x = k.y - 1;
+        k.y = k.y - 4;
       }
     }
   }
@@ -59,7 +59,7 @@ public class Map {
 
     for (Tile[] r : tiles) {
       for (Tile k : r) {
-        k.x = k.y + 1;
+        k.y = k.y + 4;
       }
     }
   }

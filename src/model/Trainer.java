@@ -30,13 +30,17 @@ public class Trainer {
     this.loader = loader;
   }
 
-  public void update(Keyboard keyboard) {
+  public void update(Keyboard keyboard, Map map) {
+
     if (appearanceUpdateFlag) {
       appearanceUpdateFlag = false;
       updateAppearance();
     }
     handleMovementRequest(keyboard);
-    animate();
+
+    if (appearanceUpdateFlag) {
+      animate(map);
+    }
   }
 
   public void draw(Graphics graphics) {
@@ -46,19 +50,13 @@ public class Trainer {
     if (mySprite != null) {
 
       graphics.drawImage(mySprite, tileX, tileY, null);
-      /*
-       * graphics.setColor(Color.RED); graphics.drawRect(tileX, tileY, 16, 16);
-       */
     }
   }
 
   public void handleMovementRequest(Keyboard keyboard) {
-    if (tileX != destX || tileY != destY) {
-      return; // we're already moving, wait.
-    }
+
     boolean positionUpdateFlag = false;
-    int nextX = tileX;
-    int nextY = tileY;
+
     int keyCode = -1;
     if (keyboard.isKeyPressed(KeyEvent.VK_UP)
         || keyboard.isKeyPressed(KeyEvent.VK_W)) {
@@ -81,70 +79,48 @@ public class Trainer {
       positionUpdateFlag = true;
     }
     if (positionUpdateFlag) {
+      appearanceUpdateFlag = true;
       switch (keyCode) {
       case KeyEvent.VK_UP:
         direction = Direction.NORTH;
-        nextY -= 16;
         break;
       case KeyEvent.VK_DOWN:
         direction = Direction.SOUTH;
-        nextY += 16;
         break;
       case KeyEvent.VK_LEFT:
         direction = Direction.EAST;
-        nextX -= 16;
         break;
       case KeyEvent.VK_RIGHT:
         direction = Direction.WEST;
-        nextX += 16;
         break;
-      }
-      if (engine.isInBounds(16, nextX, nextY)) {
-        if (lastStepTaken <= System.currentTimeMillis() - 600) {
-          lastStepTaken = System.currentTimeMillis();
-          destX = nextX;
-          destY = nextY;
-        }
       }
     }
   }
 
-  private void animate() {
-    if (tileX != destX || tileY != destY) {
-      if (lastAnimationSequence <= System.currentTimeMillis() - 150) {
-        lastAnimationSequence = System.currentTimeMillis();
-        animationFrame++;
-        if (animationFrame > 3) {
-          animationFrame = 0;
-          appearanceUpdateFlag = true;
-        }
-        switch (direction) {
-        case NORTH:
-          if (engine.isInBounds(4, tileX, tileY - 4)) {
-            tileY -= 4;
-          }
-          break;
-        case SOUTH:
-          if (engine.isInBounds(4, tileX, tileY + 4)) {
-            tileY += 4;
-          }
-          break;
-        case EAST:
-          if (engine.isInBounds(4, tileX - 4, tileY)) {
-            tileX -= 4;
-          }
-          break;
-        case WEST:
-          if (engine.isInBounds(4, tileX + 4, tileY)) {
-            tileX += 4;
-          }
-          break;
-        }
-        updateAppearance();
+  private void animate(Map map) {
+    if (lastAnimationSequence <= System.currentTimeMillis() - 150) {
+      lastAnimationSequence = System.currentTimeMillis();
+      animationFrame++;
+      if (animationFrame > 2) {
+        animationFrame = 0;
+        appearanceUpdateFlag = true;
       }
-    }
-    if (destX == tileX && destY == tileY) {
-      animationFrame = 0;
+      switch (direction) {
+      case NORTH:
+        map.adjustDown();
+        System.out.println("Moving North");
+        break;
+      case SOUTH:
+         map.adjustUp();
+        break;
+      case EAST:
+         map.adjustRight();
+        break;
+      case WEST:
+         map.adjustLeft();
+        break;
+      }
+       updateAppearance();
     }
   }
 
@@ -155,9 +131,7 @@ public class Trainer {
 
   private void updateAppearance() {
     try {
-      int animationSequence = (direction.getId() * 4) + animationFrame;
-      // System.out.println("anim sequence: " + animationSequence + " (frame: "
-      // + animationFrame + ")");
+      int animationSequence = (direction.getId() * 3) + animationFrame;
       mySprite = loader.getPlayer(animationSequence, ridingBicycle);
     } catch (Exception e) {
       System.err.println("Requested sprite is null!");

@@ -70,19 +70,15 @@ public class Engine extends Canvas implements Runnable {
   @Override
   public void run() {
     map.draw(graphics);
-
     trainer.draw(graphics);
-    graphics.setColor(Color.red);
+    trainer.update(keyboard, map);
     graphics.setFont(new Font("Helvetica", Font.BOLD, 12));
     graphics.setColor(Color.BLACK);
     graphics.drawString("TESTING", 13, 21);
 
   }
 
-  public boolean isInBounds(int i, int nextX, int nextY) {
-    // TODO Auto-generated method stub
-    return false;
-  }
+
 
   public void handleKeyboardInput(KeyEvent e) {
     // TODO Auto-generated method stub

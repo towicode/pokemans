@@ -142,7 +142,7 @@ public class SpriteLoader {
 
       trainerW[0] = Psheet.getSubimage(0, 48, 16, 16);
       trainerW[1] = Psheet.getSubimage(16, 48, 16, 16);
-      trainerW[2] = Psheet.getSubimage(32, 38, 16, 16);
+      trainerW[2] = Psheet.getSubimage(32, 48, 16, 16);
 
       this.loaded = true;
     } catch (Exception e) {
@@ -253,8 +253,33 @@ public class SpriteLoader {
   }
 
   public BufferedImage getPlayer(int animationSequence, boolean ridingBicycle) {
-    // TODO Auto-generated method stub
-    return trainerN[0];
+    switch (animationSequence) {
+    case 0:
+      return trainerS[0];
+    case 1:
+      return trainerS[1];
+    case 2:
+      return trainerS[2];
+    case 3:
+      return trainerW[0];
+    case 4:
+      return trainerW[1];
+    case 5:
+      return trainerW[2];
+    case 6:
+      return trainerN[0];
+    case 7:
+      return trainerN[1];
+    case 8:
+      return trainerN[2];
+    case 9:
+      return trainerE[0];
+    case 10:
+      return trainerE[1];
+    case 11:
+      return trainerE[2];
+    default:
+      return trainerS[1];
+    }
   }
-
 }
