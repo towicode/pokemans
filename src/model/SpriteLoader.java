@@ -58,11 +58,10 @@ public class SpriteLoader {
   private BufferedImage fenceS;
   private BufferedImage fenceW;
 
-/*  // player gfx
-  private BufferedImage player[];
-  private BufferedImage playerY[];
-  private BufferedImage playerBicycle[];
-*/
+  /*
+   * // player gfx private BufferedImage player[]; private BufferedImage
+   * playerY[]; private BufferedImage playerBicycle[];
+   */
   // misc
   private BufferedImage shrub;
   private BufferedImage pokeGrass;
@@ -70,10 +69,17 @@ public class SpriteLoader {
   private BufferedImage rock;
   private BufferedImage pokeball;
 
+  // main-guy sheet
+
+  private BufferedImage trainerN[] = new BufferedImage[3];
+  private BufferedImage trainerS[] = new BufferedImage[3];
+  private BufferedImage trainerE[] = new BufferedImage[3];
+  private BufferedImage trainerW[] = new BufferedImage[3];
+
   public SpriteLoader() {
     try {
       BufferedImage sheet = ImageIO.read(new File("./resources/tilesheet.png"));
-      
+
       this.ramp_E_1 = sheet.getSubimage(0, 0, 16, 16);
       this.ramp_E_2 = sheet.getSubimage(0, 16, 16, 16);
       this.ramp_W_1 = sheet.getSubimage(16, 0, 16, 16);
@@ -95,7 +101,7 @@ public class SpriteLoader {
       this.dirtW = sheet.getSubimage(96, 16, 16, 16);
       this.dirtE = sheet.getSubimage(64, 16, 16, 16);
 
-      //To be done, can't be fucked to do all this right now.
+      // To be done, can't be fucked to do all this right now.
       /*
        * this.mountainNE = sheet.getSubimage(x, 0, 16, 16); this.mountainNW =
        * sheet.getSubimage(x, 0, 16, 16); this.mountainSW = sheet.getSubimage(x,
@@ -119,6 +125,25 @@ public class SpriteLoader {
        * 16, 16, 16); this.fenceE = sheet.getSubimage(x, 16, 16, 16);
        */
 
+      BufferedImage Psheet = ImageIO.read(new File(
+          "./resources/trainerSheet.png"));
+
+      trainerN[0] = Psheet.getSubimage(0, 0, 16, 16);
+      trainerN[1] = Psheet.getSubimage(16, 0, 16, 16);
+      trainerN[2] = Psheet.getSubimage(32, 0, 16, 16);
+
+      trainerE[0] = Psheet.getSubimage(0, 16, 16, 16);
+      trainerE[1] = Psheet.getSubimage(16, 16, 16, 16);
+      trainerE[2] = Psheet.getSubimage(32, 16, 16, 16);
+
+      trainerS[0] = Psheet.getSubimage(0, 32, 16, 16);
+      trainerS[1] = Psheet.getSubimage(16, 32, 16, 16);
+      trainerS[2] = Psheet.getSubimage(32, 32, 16, 16);
+
+      trainerW[0] = Psheet.getSubimage(0, 48, 16, 16);
+      trainerW[1] = Psheet.getSubimage(16, 48, 16, 16);
+      trainerW[2] = Psheet.getSubimage(32, 38, 16, 16);
+
       this.loaded = true;
     } catch (Exception e) {
       System.err
@@ -126,15 +151,15 @@ public class SpriteLoader {
       System.exit(0);
     }
   }
-  
+
   public BufferedImage getTile(char type) {
     switch (type) {
     case '0':
-        return dirt;
+      return dirt;
     case '1':
-        return mountain;
+      return mountain;
     case '2':
-        return water;
+      return water;
     case '3':
       return nothing;
     case '4':
@@ -210,7 +235,7 @@ public class SpriteLoader {
     case '/':
       return fenceS;
     case ',':
-      return fenceW;    
+      return fenceW;
     case '.':
       return fenceN;
     case '!':
@@ -220,16 +245,16 @@ public class SpriteLoader {
     case '#':
       return stump;
     case '$':
-      return rock;    
+      return rock;
     case '%':
       return pokeball;
     }
     return null;
-}
+  }
 
   public BufferedImage getPlayer(int animationSequence, boolean ridingBicycle) {
     // TODO Auto-generated method stub
-    return null;
+    return trainerN[0];
   }
 
 }

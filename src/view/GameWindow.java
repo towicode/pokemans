@@ -22,11 +22,11 @@ public class GameWindow extends JFrame {
    */
   public GameWindow() {
     setLayout(null);
-    setPreferredSize(new Dimension(350 ,500));
-    setMinimumSize(new Dimension(350,500));
+    setPreferredSize(new Dimension(270 ,500));
+    setMinimumSize(new Dimension(260,500));
 
     this.gamePanel = new JPanel();
-    this.gamePanel.setBounds(10, 11, 320, 288);
+    this.gamePanel.setBounds(10, 11, 240, 160);
     add(gamePanel);
 
     JButton up = new JButton("^");

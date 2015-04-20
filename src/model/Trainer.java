@@ -15,8 +15,8 @@ public class Trainer {
   // player
   private BufferedImage mySprite;
   private boolean ridingBicycle = false;
-  private int tileX = 160 - 16;
-  private int tileY = 160 - 16;
+  private int tileX = 112;
+  private int tileY = 80;
   private Direction direction = Direction.SOUTH;
   private boolean appearanceUpdateFlag = false;
   private long lastStepTaken = 0L;

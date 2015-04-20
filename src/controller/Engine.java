@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -69,12 +70,12 @@ public class Engine extends Canvas implements Runnable {
   @Override
   public void run() {
     map.draw(graphics);
+
     trainer.draw(graphics);
-    
+    graphics.setColor(Color.red);
     graphics.setFont(new Font("Helvetica", Font.BOLD, 12));
     graphics.setColor(Color.BLACK);
     graphics.drawString("TESTING", 13, 21);
-    System.out.println("HI TESTING");
 
   }
 
@@ -85,6 +86,10 @@ public class Engine extends Canvas implements Runnable {
 
   public void handleKeyboardInput(KeyEvent e) {
     // TODO Auto-generated method stub
+
+    if (e.isAltDown()) {
+      map.adjustRight();
+    }
 
   }
 
