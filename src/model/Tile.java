@@ -2,16 +2,16 @@ package model;
 
 public class Tile {
 
-  public Tile(int x, int y, char texture, boolean walkable) {
+  public Tile(int x, int y, int i, boolean walkable) {
     this.x = x;
     this.y = y;
-    this.texture = texture;
+    this.texture = i;
     this.walkable = walkable;
   }
 
   public int x;
   public int y;
-  public char texture;
+  public int texture;
   public boolean walkable;
 
 }

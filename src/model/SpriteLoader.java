@@ -11,8 +11,6 @@ public class SpriteLoader {
 
   // tiles
   private BufferedImage dirt;
-  private BufferedImage mountain;
-  private BufferedImage water;
   private BufferedImage nothing;
 
   private BufferedImage dirtNE;
@@ -31,6 +29,7 @@ public class SpriteLoader {
   private BufferedImage ramp_N_1;
   private BufferedImage ramp_N_2;
 
+  private BufferedImage grass;
   private BufferedImage mountainNE;
   private BufferedImage mountainNW;
   private BufferedImage mountainSW;
@@ -40,6 +39,7 @@ public class SpriteLoader {
   private BufferedImage mountainS;
   private BufferedImage mountainW;
 
+  private BufferedImage water;
   private BufferedImage waterNE;
   private BufferedImage waterNW;
   private BufferedImage waterSW;
@@ -98,32 +98,40 @@ public class SpriteLoader {
       this.dirtSE = sheet.getSubimage(96, 32, 16, 16);
       this.dirtN = sheet.getSubimage(80, 0, 16, 16);
       this.dirtS = sheet.getSubimage(80, 32, 16, 16);
-      this.dirtW = sheet.getSubimage(96, 16, 16, 16);
-      this.dirtE = sheet.getSubimage(64, 16, 16, 16);
+      this.dirtW = sheet.getSubimage(64, 16, 16, 16);
+      this.dirtE = sheet.getSubimage(96, 16, 16, 16);
 
       // To be done, can't be fucked to do all this right now.
-      /*
-       * this.mountainNE = sheet.getSubimage(x, 0, 16, 16); this.mountainNW =
-       * sheet.getSubimage(x, 0, 16, 16); this.mountainSW = sheet.getSubimage(x,
-       * 32, 16, 16); this.mountainSE = sheet.getSubimage(x, 32, 16, 16);
-       * this.mountainN = sheet.getSubimage(x, 0, 16, 16); this.mountainS =
-       * sheet.getSubimage(x, 32, 16, 16); this.mountainW = sheet.getSubimage(x,
-       * 16, 16, 16); this.mountainE = sheet.getSubimage(x, 16, 16, 16);
-       * 
-       * this.waterNE = sheet.getSubimage(x, 0, 16, 16); this.waterNW =
-       * sheet.getSubimage(x, 0, 16, 16); this.waterSW = sheet.getSubimage(x,
-       * 32, 16, 16); this.waterSE = sheet.getSubimage(x, 32, 16, 16);
-       * this.waterN = sheet.getSubimage(x, 0, 16, 16); this.waterS =
-       * sheet.getSubimage(x, 32, 16, 16); this.waterW = sheet.getSubimage(x,
-       * 16, 16, 16); this.waterE = sheet.getSubimage(x, 16, 16, 16);
-       * 
-       * this.fenceNE = sheet.getSubimage(x, 0, 16, 16); this.fenceNW =
-       * sheet.getSubimage(x, 0, 16, 16); this.fenceSW = sheet.getSubimage(x,
-       * 32, 16, 16); this.fenceSE = sheet.getSubimage(x, 32, 16, 16);
-       * this.fenceN = sheet.getSubimage(x, 0, 16, 16); this.fenceS =
-       * sheet.getSubimage(x, 32, 16, 16); this.fenceW = sheet.getSubimage(x,
-       * 16, 16, 16); this.fenceE = sheet.getSubimage(x, 16, 16, 16);
-       */
+
+      this.grass = sheet.getSubimage(128, 16, 16, 16);
+      this.mountainNE = sheet.getSubimage(144, 0, 16, 16);
+      this.mountainNW = sheet.getSubimage(112, 0, 16, 16);
+      this.mountainSW = sheet.getSubimage(112, 32, 16, 16);
+      this.mountainSE = sheet.getSubimage(144, 32, 16, 16);
+      this.mountainN = sheet.getSubimage(128, 0, 16, 16);
+      this.mountainS = sheet.getSubimage(128, 32, 16, 16);
+      this.mountainW = sheet.getSubimage(112, 16, 16, 16);
+      this.mountainE = sheet.getSubimage(144, 16, 16, 16);
+
+      this.water = sheet.getSubimage(176, 16, 16, 16);
+      this.waterNE = sheet.getSubimage(192, 0, 16, 16);
+      this.waterNW = sheet.getSubimage(160, 0, 16, 16);
+      this.waterSW = sheet.getSubimage(160, 32, 16, 16);
+      this.waterSE = sheet.getSubimage(192, 32, 16, 16);
+      this.waterN = sheet.getSubimage(176, 0, 16, 16);
+      this.waterS = sheet.getSubimage(176, 32, 16, 16);
+      this.waterW = sheet.getSubimage(160, 16, 16, 16);
+      this.waterE = sheet.getSubimage(192, 16, 16, 16);
+
+      this.nothing = sheet.getSubimage(224, 16, 16, 16);
+      this.fenceNE = sheet.getSubimage(240, 0, 16, 16);
+      this.fenceNW = sheet.getSubimage(208, 0, 16, 16);
+      this.fenceSW = sheet.getSubimage(208, 32, 16, 16);
+      this.fenceSE = sheet.getSubimage(240, 32, 16, 16);
+      this.fenceN = sheet.getSubimage(224, 0, 16, 16);
+      this.fenceS = sheet.getSubimage(224, 32, 16, 16);
+      this.fenceW = sheet.getSubimage(208, 16, 16, 16);
+      this.fenceE = sheet.getSubimage(240, 16, 16, 16);
 
       BufferedImage Psheet = ImageIO.read(new File(
           "./resources/trainerSheet.png"));
@@ -152,102 +160,106 @@ public class SpriteLoader {
     }
   }
 
-  public BufferedImage getTile(char type) {
-    switch (type) {
-    case '0':
-      return dirt;
-    case '1':
-      return mountain;
-    case '2':
-      return water;
-    case '3':
-      return nothing;
-    case '4':
-      return dirtNE;
-    case '5':
-      return dirtNW;
-    case '6':
-      return dirtSW;
-    case '7':
-      return dirtSE;
-    case '8':
-      return dirtN;
-    case '9':
-      return dirtE;
-    case 'a':
-      return dirtS;
-    case 'b':
-      return dirtW;
-    case 'c':
+  public BufferedImage getTile(int type) {
+    switch (type - 1) { // -1 because I screwed up the alignment.
+    case 0:
       return ramp_E_1;
-    case 'd':
-      return ramp_E_2;
-    case 'e':
+    case 1:
       return ramp_W_1;
-    case 'f':
-      return ramp_W_2;
-    case 'g':
-      return ramp_N_1;
-    case 'h':
-      return ramp_N_2;
-    case 'i':
-      return mountainNE;
-    case 'j':
-      return mountainNW;
-    case 'k':
-      return mountainSW;
-    case 'l':
-      return mountainSE;
-    case 'm':
-      return mountainN;
-    case 'n':
-      return mountainE;
-    case 'o':
-      return mountainS;
-    case 'p':
-      return mountainW;
-    case 'q':
-      return waterNE;
-    case 'r':
-      return waterNW;
-    case 's':
-      return waterSW;
-    case 't':
-      return waterSE;
-    case 'u':
-      return waterN;
-    case 'v':
-      return waterE;
-    case 'w':
-      return waterS;
-    case 'x':
-      return waterW;
-    case 'y':
-      return fenceNE;
-    case 'z':
-      return fenceNW;
-    case '[':
-      return fenceSW;
-    case ']':
-      return fenceSE;
-    case ';':
-      return fenceE;
-    case '/':
-      return fenceS;
-    case ',':
-      return fenceW;
-    case '.':
-      return fenceN;
-    case '!':
+    case 2:
       return shrub;
-    case '@':
+    case 3:
+      return nothing;
+    case 4:
+      return dirtNW;
+    case 5:
+      return dirtN;
+    case 6:
+      return dirtNE;
+    case 7:
+      return mountainNW;
+    case 8:
+      return mountainN;
+    case 9:
+      return mountainNE;
+    case 10:
+      return waterNW;
+    case 11:
+      return waterN;
+    case 12:
+      return waterNE;
+    case 13:
+      return fenceNW;
+    case 14:
+      return fenceN;
+    case 15:
+      return fenceNE;
+    case 16:
+      return ramp_E_2;
+    case 17:
+      return ramp_W_2;
+    case 18:
       return pokeGrass;
-    case '#':
-      return stump;
-    case '$':
-      return rock;
-    case '%':
+    case 19:
       return pokeball;
+    case 20:
+      return dirtW;
+    case 21:
+      return dirt;
+    case 22:
+      return dirtE;
+    case 23:
+      return mountainW;
+    case 24:
+      return grass;
+    case 25:
+      return mountainE;
+    case 26:
+      return waterW;
+    case 27:
+      return water;
+    case 28:
+      return waterE;
+    case 29:
+      return fenceW;
+    case 30:
+      return nothing;
+    case 31:
+      return fenceE;
+    case 32:
+      return ramp_N_1;
+    case 33:
+      return ramp_N_2;
+    case 34:
+      return rock;
+    case 35:
+      return stump;
+    case 36:
+      return dirtSW;
+    case 37:
+      return dirtS;
+    case 38:
+      return dirtSE;
+    case 39:
+      return mountainSW;
+    case 40:
+      return mountainS;
+    case 41:
+      return mountainSE;
+    case 42:
+      return waterSW;
+    case 43:
+      return waterS;
+    case 44:
+      return waterSE;
+
+    case 45:
+      return fenceSW;
+    case 46:
+      return fenceS;
+    case 47:
+      return fenceSE;
+
     }
     return null;
   }
