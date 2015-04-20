@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -11,19 +10,16 @@ public class Trainer {
 
   private final Engine engine;
   private final SpriteLoader loader;
+  private final int tileX = 112;
+  private final int tileY = 80;
 
   // player
   private BufferedImage mySprite;
   private boolean ridingBicycle = false;
-  private int tileX = 112;
-  private int tileY = 80;
   private Direction direction = Direction.SOUTH;
   private boolean appearanceUpdateFlag = false;
-  private long lastStepTaken = 0L;
   private int animationFrame = -1;
   private long lastAnimationSequence = 0L;
-  private int destX = tileX;
-  private int destY = tileY;
 
   public Trainer(Engine engine, SpriteLoader loader) {
     this.engine = engine;
@@ -124,10 +120,6 @@ public class Trainer {
     }
   }
 
-  public void teleport(int x, int y) {
-    destX = tileX = x;
-    destY = tileY = y;
-  }
 
   private void updateAppearance() {
     try {
@@ -143,20 +135,6 @@ public class Trainer {
     appearanceUpdateFlag = true;
   }
 
-  public int getX() {
-    return tileX;
-  }
 
-  public int getY() {
-    return tileY;
-  }
-
-  public int getDX() {
-    return destX;
-  }
-
-  public int getDY() {
-    return destY;
-  }
 
 }

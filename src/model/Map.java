@@ -68,7 +68,7 @@ public class Map {
 
     for (Tile[] r : tiles) {
       for (Tile k : r) {
-        if ((k.x >= 0 && k.x <= 240) && (k.y >= 0 && k.y <= 160)) {
+        if ((k.x >= -16 && k.x <= 270) && (k.y >= -6 && k.y <= 180)) {
           graphics.drawImage(sprites.getTile(k.texture), k.x, k.y, null);
         }
       }

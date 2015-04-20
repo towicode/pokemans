@@ -4,7 +4,6 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -33,8 +32,6 @@ public class Engine extends Canvas implements Runnable {
   private final Trainer trainer;
   private final Map map;
 
-  private int frameCount = 0;
-  private int previousFrame = 0;
 
   public static void main(String args[]) {
     new Engine();
@@ -58,11 +55,8 @@ public class Engine extends Canvas implements Runnable {
     parentframe.toFront();
 
     this.graphics = (Graphics2D) frame.getGraphics();
-
     addKeyListener(this.keyboard = new Keyboard(this));
-
     requestFocus();
-
     this.executor.scheduleAtFixedRate(this, 0, 35, TimeUnit.MILLISECONDS);
 
   }
@@ -82,10 +76,6 @@ public class Engine extends Canvas implements Runnable {
 
   public void handleKeyboardInput(KeyEvent e) {
     // TODO Auto-generated method stub
-
-    if (e.isAltDown()) {
-      map.adjustRight();
-    }
 
   }
 
