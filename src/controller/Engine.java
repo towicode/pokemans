@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -57,18 +58,25 @@ public class Engine extends Canvas implements Runnable {
     this.graphics = (Graphics2D) frame.getGraphics();
     addKeyListener(this.keyboard = new Keyboard(this));
     requestFocus();
+
     this.executor.scheduleAtFixedRate(this, 0, 35, TimeUnit.MILLISECONDS);
+    
+
 
   }
 
   @Override
   public void run() {
+  	
+  	//TODO this isn't really needed after the first keyboard input,
+  	//I'm not sure if it really kills the CPU to have it run anyways
     map.draw(graphics);
     trainer.draw(graphics);
-    trainer.update(keyboard, map);
-    graphics.setFont(new Font("Helvetica", Font.BOLD, 12));
-    graphics.setColor(Color.BLACK);
-    graphics.drawString("TESTING", 13, 21);
+
+    //Trainer.update calls trainer.draw and map.draw on keyboard update.
+    trainer.update(keyboard, map, graphics);
+    //sync the framerate to reduce stutter
+    Toolkit.getDefaultToolkit().sync();
 
   }
 

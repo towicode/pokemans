@@ -11,6 +11,9 @@ public class Map {
   private final SpriteLoader sprites;
   private Tile backGroundTiles[][] = new Tile[50][30];
   private Tile tiles[][] = new Tile[50][30];
+  
+  private int tileX;
+  private int tileY;
 
   public Map(SpriteLoader sprites) {
 
@@ -34,7 +37,19 @@ public class Map {
 
       }
     }
-    // TODO Auto-generated method stub
+    //TODO make this less ghetto:
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    
+    //starting location
+    tileX = 7;
+    tileY = 7;
 
   }
 
@@ -86,5 +101,29 @@ public class Map {
       }
     }
   }
+
+	public int getTileX() {
+		return tileX;
+	}
+
+	public void setTileX(int tileX) {
+		this.tileX = tileX;
+	}
+
+	public int getTileY() {
+		return tileY;
+	}
+
+	public void setTileY(int tileY) {
+		this.tileY = tileY;
+	}
+
+	public Tile[][] getTiles() {
+		return tiles;
+	}
+
+	public void setTiles(Tile[][] tiles) {
+		this.tiles = tiles;
+	}
 
 }
