@@ -9,6 +9,9 @@ public class Map {
   private Tile backGroundTiles[][] = new Tile[50][30]; // TODO instead of the
                                                        // green square
   private Tile tiles[][] = new Tile[50][30];
+  
+  private int tileX;
+  private int tileY;
 
   public Map(SpriteLoader sprites) {
 
@@ -28,6 +31,23 @@ public class Map {
         counter++;
       }
     }
+<<<<<<< HEAD
+=======
+    //TODO make this less ghetto:
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    adjustUp();
+    
+    //starting location
+    tileX = 7;
+    tileY = 7;
+
+>>>>>>> 8c0bab9d405d1419f2d8fb574e29d613b8a64791
   }
 
   public void adjustRight() {
@@ -78,5 +98,29 @@ public class Map {
       }
     }
   }
+
+	public int getTileX() {
+		return tileX;
+	}
+
+	public void setTileX(int tileX) {
+		this.tileX = tileX;
+	}
+
+	public int getTileY() {
+		return tileY;
+	}
+
+	public void setTileY(int tileY) {
+		this.tileY = tileY;
+	}
+
+	public Tile[][] getTiles() {
+		return tiles;
+	}
+
+	public void setTiles(Tile[][] tiles) {
+		this.tiles = tiles;
+	}
 
 }
