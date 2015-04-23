@@ -40,7 +40,7 @@ public class Engine extends Canvas implements Runnable {
   public Engine() {
 
     this.sprites = new SpriteLoader();
-    this.trainer = new Trainer(this, sprites);
+    this.trainer = new Trainer(sprites);
     this.map = new Map(sprites);
     map.loadStartingMap();
 
@@ -66,13 +66,12 @@ public class Engine extends Canvas implements Runnable {
   @Override
   public void run() {
 
-  	//TODO this isn't really needed after the first keyboard input,
-  	//I'm not sure if it really kills the CPU to have it run anyways
+    graphics.fillRect(0, 0, frame.getWidth(), frame.getHeight());
     map.draw(graphics);
     trainer.draw(graphics);
 
-    //Trainer.update calls trainer.draw and map.draw on keyboard update.
-    trainer.update(keyboard, map, graphics);
+    trainer.update(keyboard, map);
+    
     //sync the framerate to reduce stutter
     Toolkit.getDefaultToolkit().sync();
 

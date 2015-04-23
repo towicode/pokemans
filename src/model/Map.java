@@ -31,8 +31,7 @@ public class Map {
         counter++;
       }
     }
-<<<<<<< HEAD
-=======
+
     //TODO make this less ghetto:
     adjustUp();
     adjustUp();
@@ -47,7 +46,6 @@ public class Map {
     tileX = 7;
     tileY = 7;
 
->>>>>>> 8c0bab9d405d1419f2d8fb574e29d613b8a64791
   }
 
   public void adjustRight() {
@@ -99,21 +97,7 @@ public class Map {
     }
   }
 
-	public int getTileX() {
-		return tileX;
-	}
 
-	public void setTileX(int tileX) {
-		this.tileX = tileX;
-	}
-
-	public int getTileY() {
-		return tileY;
-	}
-
-	public void setTileY(int tileY) {
-		this.tileY = tileY;
-	}
 
 	public Tile[][] getTiles() {
 		return tiles;
