@@ -127,9 +127,9 @@ public class Trainer {
         for (int bad_text : Constants.NOT_WALKABLE_TEXTURES) {
           if (xN.texture == bad_text)
             return false;
-          destX = tileX;
-          destY = tileY - 1;
         }
+        destX = tileX;
+        destY = tileY - 1;
         break;
       case KeyEvent.VK_DOWN:
         direction = Direction.SOUTH;
