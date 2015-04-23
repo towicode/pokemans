@@ -31,6 +31,14 @@ public class Trainer {
     if (appearanceUpdateFlag) {
       appearanceUpdateFlag = false;
       updateAppearance();
+      //TODO this call needs to include the map variable, It needs to check and see if the direction that the player
+      //wants to go is a valid direction
+      
+      //The best way to do this is probably to keep track of the players "Position" by creating new variables and updating it everytime
+      // the animate calls are made below
+      
+      //the you could cross check that position to an array of (walls) to see if it's allowed or not.
+      
     }
     handleMovementRequest(keyboard);
 

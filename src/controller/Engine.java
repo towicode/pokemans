@@ -4,6 +4,7 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -32,7 +33,6 @@ public class Engine extends Canvas implements Runnable {
   private final Trainer trainer;
   private final Map map;
 
-
   public static void main(String args[]) {
     new Engine();
   }
@@ -57,22 +57,26 @@ public class Engine extends Canvas implements Runnable {
     this.graphics = (Graphics2D) frame.getGraphics();
     addKeyListener(this.keyboard = new Keyboard(this));
     requestFocus();
-    this.executor.scheduleAtFixedRate(this, 0, 35, TimeUnit.MILLISECONDS);
+    this.executor.scheduleAtFixedRate(this, 0, 34, TimeUnit.MILLISECONDS);
 
   }
 
   @Override
   public void run() {
+
+    graphics.setColor(Color.GREEN); // TODO instead of green square
+    graphics.fillRect(0, 0, frame.getWidth(), frame.getHeight());
     map.draw(graphics);
     trainer.draw(graphics);
     trainer.update(keyboard, map);
     graphics.setFont(new Font("Helvetica", Font.BOLD, 12));
     graphics.setColor(Color.BLACK);
     graphics.drawString("TESTING", 13, 21);
+    
+    //graphics.dispose(); // TODO this NEEDS to be in here, but it kills the display, figure out why.
+    Toolkit.getDefaultToolkit().sync(); // Synchronize with the display refresh rate.
 
   }
-
-
 
   public void handleKeyboardInput(KeyEvent e) {
     // TODO Auto-generated method stub

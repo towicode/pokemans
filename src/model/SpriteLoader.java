@@ -162,6 +162,8 @@ public class SpriteLoader {
 
   public BufferedImage getTile(int type) {
     switch (type - 1) { // -1 because I screwed up the alignment.
+    case -1:
+      return nothing;
     case 0:
       return ramp_E_1;
     case 1:
