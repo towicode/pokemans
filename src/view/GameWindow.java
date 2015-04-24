@@ -7,7 +7,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+/**
+ * Defines the game window. The window has a screen for viewing the game, and start, a, b, up, down, left, and right buttons 
+ * for controlling the game if the user doesn't want to use the keyboard.
+ * @author Andrew Rickus
+ * @author Todd Wickizer
+ * @author Sean Gemberling
+ * 
+ *
+ */
 public class GameWindow extends JFrame {
 
   /**

@@ -2,7 +2,14 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-
+/**
+ * Defines a map. The map is made up of Tiles. These can be background tiles, object tiles, or grass tiles.
+ * @author Andrew Rickus
+ * @author Todd Wickizer
+ * @author Sean Gemberling
+ * 
+ *
+ */
 public class Map {
 
   private final SpriteLoader sprites;

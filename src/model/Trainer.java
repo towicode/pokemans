@@ -7,6 +7,17 @@ import java.awt.image.BufferedImage;
 import model.pokemons.Pikachu;
 import controller.Engine;
 
+/**
+ * Defines a pokeman trainer. The trainer has a sprite, a step counter, a ball counter, a direction he or she is facing, 
+ * a location, and animations. The trainer can change their tile by moving, and check if they are currently in pokeman grass
+ * to see if a pokeman can be encountered.
+ * @author Andrew Rickus
+ * @author Todd Wickizer
+ * @author Sean Gemberling
+ * 
+ *
+ */
+
 public class Trainer {
 
   private final SpriteLoader loader;
@@ -26,6 +37,7 @@ public class Trainer {
   private int animationFrame = -1;
   private long lastAnimationSequence = 0L;
   private int step_ensure = 0;
+  public int ballCount = 30;
 
   public Trainer(SpriteLoader loader) {
     this.loader = loader;
@@ -75,13 +87,15 @@ public class Trainer {
     step_counter++;
 
     if (isInPokeGrass(this)) {
-
       int r = (int) (Math.random() * (100 - 0)) + 0;
 
       if (r < 10) {
         r = (int) (Math.random() * (100 - 0)) + 0; // level
-
         Pokeman x = new Pikachu("Pikachu", r);
+        	
+     
+        
+        
         // Notify engine.
         System.out.println("We encountered a level " + x.getLevel() + " "
             + x.getName());
