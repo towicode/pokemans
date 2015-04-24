@@ -8,7 +8,16 @@ package model;
  *
  */
 public class Tile {
-
+	  /**
+	   * Tile(int x, int y, int i, boolean walkable)
+	   * 
+	   * Constructor for the Tile class. 
+	   * 
+	   * @param x The x coordinate for the tile in the map.
+	   * @param y The y coordinate for the tile in the map.
+	   * @param i The number of the texture for the tile.
+	   * @param walkable Wether or not the tile can be walkedo n by a trainer.
+	   */
   public Tile(int x, int y, int i, boolean walkable) {
     this.x = x;
     this.y = y;

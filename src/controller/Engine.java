@@ -69,6 +69,14 @@ public class Engine extends Canvas implements Runnable {
     
   }
 
+  /**
+   * run()
+   * 
+   * Fills the game screen with map and trainer graphics, and updates them.
+   * 
+   * 
+   */
+  
   @Override
   public void run() {
 
@@ -81,6 +89,14 @@ public class Engine extends Canvas implements Runnable {
     Toolkit.getDefaultToolkit().sync();
   }
 
+  /**
+   * handleKeyboardInput(Keyevent e)
+   * 
+   * @param e
+   * 
+   * 
+   */
+  
   public void handleKeyboardInput(KeyEvent e) {
     // TODO Auto-generated method stub
 
