@@ -6,12 +6,11 @@ import java.awt.Graphics2D;
 public class Map {
 
   private final SpriteLoader sprites;
+  
   private Tile backGroundTiles[][] = new Tile[50][30];
   private Tile tiles[][] = new Tile[50][30];
   private Tile grassTiles[][] = new Tile[50][30];
 
-  private int tileX;
-  private int tileY;
 
   public Map(SpriteLoader sprites) {
 
@@ -45,10 +44,7 @@ public class Map {
     adjustUp();
     adjustUp();
     adjustUp();
-
     // starting location
-    tileX = 7;
-    tileY = 7;
 
   }
 
@@ -137,10 +133,10 @@ public class Map {
   }
 
   public void draw(Graphics2D graphics) {
-    
-    
-    //TODO this is only for the demo, there is absolutely no reason to have three for loops here. Figure out a way to do this better.
-    
+
+    // TODO this is only for the demo, there is absolutely no reason to have
+    // three for loops here. Figure out a way to do this better.
+
     for (Tile[] o : backGroundTiles) {
       if ((o[0].x <= -16 || o[0].x >= 270)) // This should help reduce CPU a
                                             // little
@@ -165,7 +161,7 @@ public class Map {
     }
 
     for (Tile[] o : grassTiles) {
-      if ((o[0].x <= -16 || o[0].x >= 270)) 
+      if ((o[0].x <= -16 || o[0].x >= 270))
         continue;
       for (Tile k : o) {
         if ((k.x >= -16 && k.x <= 270) && (k.y >= -16 && k.y <= 180)) {
