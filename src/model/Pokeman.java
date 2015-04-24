@@ -1,7 +1,14 @@
 package model;
 
 import java.util.Random;
-
+/**
+ * Defines a pokeman. The pokeman has a name, level, catch rate, and run rate. 
+ * @author Andrew Rickus
+ * @author Todd Wickizer
+ * @author Sean Gemberling
+ * 
+ *
+ */
 public abstract class Pokeman {
 
   private final Double A4 = 0.000001826265179475945;

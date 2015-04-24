@@ -1,5 +1,12 @@
 package model;
-
+/**
+ * Defines a number of constants, including the textures that are not walkable and arrays that represent maps.
+ * @author Andrew Rickus
+ * @author Todd Wickizer
+ * @author Sean Gemberling
+ * 
+ *
+ */
 public class Constants {
 
   public static final int NOT_WALKABLE_TEXTURES[] = { 35, 15, 36, 3, 8, 9, 10,

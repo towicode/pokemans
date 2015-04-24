@@ -18,7 +18,14 @@ import model.Map;
 import model.SpriteLoader;
 import model.Trainer;
 import view.GameWindow;
-
+/**
+ * Defines the game engine.
+ * @author Andrew Rickus
+ * @author Todd Wickizer
+ * @author Sean Gemberling
+ * 
+ *
+ */
 public class Engine extends Canvas implements Runnable {
 
   private static final long serialVersionUID = 1L;
