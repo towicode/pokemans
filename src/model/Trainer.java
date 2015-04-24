@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import model.pokemons.Pikachu;
 import controller.Engine;
 
 public class Trainer {
@@ -72,10 +73,31 @@ public class Trainer {
       break;
     }
     step_counter++;
+
+    if (isInPokeGrass(this)) {
+
+      int r = (int) (Math.random() * (100 - 0)) + 0;
+
+      if (r < 10) {
+        r = (int) (Math.random() * (100 - 0)) + 0; // level
+
+        Pokeman x = new Pikachu("Pikachu", r);
+        // Notify engine.
+        System.out.println("We encountered a level " + x.getLevel() + " "
+            + x.getName());
+      }
+
+    }
+
     System.out.println("Location is " + getTileX() + " " + getTileY()
         + "  Steps Taken: " + step_counter);
     step_ensure = 0;
 
+  }
+
+  private boolean isInPokeGrass(Trainer trainer) {
+    // TODO Auto-generated method stub
+    return true;
   }
 
   public void draw(Graphics graphics) {

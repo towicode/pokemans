@@ -60,7 +60,6 @@ public class Engine extends Canvas implements Runnable {
 
     this.executor.scheduleAtFixedRate(this, 0, 35, TimeUnit.MILLISECONDS);
     
-
   }
 
   @Override
@@ -69,12 +68,10 @@ public class Engine extends Canvas implements Runnable {
     graphics.fillRect(0, 0, frame.getWidth(), frame.getHeight());
     map.draw(graphics);
     trainer.draw(graphics);
-
     trainer.update(keyboard, map);
     
     //sync the framerate to reduce stutter
     Toolkit.getDefaultToolkit().sync();
-
   }
 
   public void handleKeyboardInput(KeyEvent e) {
