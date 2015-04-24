@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 /**
+ * GameWindow extends JFrame
+ * 
  * Defines the game window. The window has a screen for viewing the game, and start, a, b, up, down, left, and right buttons 
  * for controlling the game if the user doesn't want to use the keyboard.
  * @author Andrew Rickus
@@ -18,13 +20,12 @@ import javax.swing.JPanel;
  */
 public class GameWindow extends JFrame {
 
-  /**
-   * 
-   */
-  private static final long serialVersionUID = 1L;
+static final long serialVersionUID = 1L;
   public JPanel gamePanel;
 
   /**
+   * GameWindow()
+   * Constructor for GameWindow class.
    * Create the panel.
    */
   public GameWindow() {
