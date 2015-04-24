@@ -26,6 +26,7 @@ public class Trainer {
   private int animationFrame = -1;
   private long lastAnimationSequence = 0L;
   private int step_ensure = 0;
+  public int ballCount = 30;
 
   public Trainer(SpriteLoader loader) {
     this.loader = loader;
@@ -75,13 +76,15 @@ public class Trainer {
     step_counter++;
 
     if (isInPokeGrass(this)) {
-
       int r = (int) (Math.random() * (100 - 0)) + 0;
 
       if (r < 10) {
         r = (int) (Math.random() * (100 - 0)) + 0; // level
-
         Pokeman x = new Pikachu("Pikachu", r);
+        	
+     
+        
+        
         // Notify engine.
         System.out.println("We encountered a level " + x.getLevel() + " "
             + x.getName());
