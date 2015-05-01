@@ -110,10 +110,8 @@ public class Trainer {
       if (r < 10) {
         r = (int) (Math.random() * (100 - 0)) + 0; // level
         Pokeman x = new Pikachu("Pikachu", r);
-        	
-     
-        
-        
+        Battle encounter = new Battle(x, this);
+
         // Notify engine.
         System.out.println("We encountered a level " + x.getLevel() + " "
             + x.getName());

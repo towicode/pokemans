@@ -38,7 +38,7 @@ static final long serialVersionUID = 1L;
     add(gamePanel);
 
     JButton up = new JButton("^");
-    up.setBounds(55, 230, 40, 40);
+    up.setBounds(53, 228, 42, 42);
     add(up);
 
     JButton down = new JButton("v");
@@ -46,11 +46,11 @@ static final long serialVersionUID = 1L;
       public void actionPerformed(ActionEvent e) {
       }
     });
-    down.setBounds(55, 310, 40, 40);
+    down.setBounds(53, 312, 42, 42);
     add(down);
 
     JButton right = new JButton(">");
-    right.setBounds(95, 270, 40, 40);
+    right.setBounds(95, 270, 42, 42);
     add(right);
 
     JButton left = new JButton("<");
@@ -58,7 +58,7 @@ static final long serialVersionUID = 1L;
       public void actionPerformed(ActionEvent arg0) {
       }
     });
-    left.setBounds(15, 270, 40, 40);
+    left.setBounds(11, 270, 42, 42);
     add(left);
 
     JButton btnA = new JButton("A");
