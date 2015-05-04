@@ -2,8 +2,11 @@ package model;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+
 /**
- * Defines a map. The map is made up of Tiles. These can be background tiles, object tiles, or grass tiles.
+ * Defines a map. The map is made up of Tiles. These can be background tiles,
+ * object tiles, or grass tiles.
+ * 
  * @author Andrew Rickus
  * @author Todd Wickizer
  * @author Sean Gemberling
@@ -13,20 +16,24 @@ import java.awt.Graphics2D;
 public class Map {
 
   private final SpriteLoader sprites;
-  
+
   private Tile backGroundTiles[][] = new Tile[50][30];
   private Tile tiles[][] = new Tile[50][30];
   private Tile grassTiles[][] = new Tile[50][30];
-
+  private int grassTileRaw[]; //used for IsInGrass
 
   public Map(SpriteLoader sprites) {
 
-    // TODO this is is just a temp map solution
     this.sprites = sprites;
-    /*
-     * for (int i = 0; i < 30; i++) { for (int j = 0; j < 30; j++) { tiles[i][j]
-     * = new Tile(i * 16, j * 16, 21, true); } }
-     */
+
+  }
+
+  public void LoadThirdMap() {
+
+  }
+
+  public void LoadSecondMap() {
+
   }
 
   public void loadStartingMap() {
@@ -51,132 +58,74 @@ public class Map {
     adjustUp();
     adjustUp();
     adjustUp();
-    // starting location
-
+    this.setGrassTileRaw(Constants.testMap_grass); //used for IsInGrass
   }
 
   public void adjustRight() {
 
-    for (Tile[] r : tiles) {
-      for (Tile k : r) {
-        k.x = k.x + 4;
+    for (int y = 0; y < 30; y++)
+      for (int x = 0; x < 50; x++) {
+        tiles[x][y].x = tiles[x][y].x + 4;
+        backGroundTiles[x][y].x = backGroundTiles[x][y].x + 4;
+        grassTiles[x][y].x = grassTiles[x][y].x + 4;
       }
-    }
 
-    for (Tile[] r : backGroundTiles) {
-      for (Tile k : r) {
-        k.x = k.x + 4;
-      }
-    }
-
-    for (Tile[] r : grassTiles) {
-      for (Tile k : r) {
-        k.x = k.x + 4;
-      }
-    }
   }
 
   public void adjustLeft() {
 
-    for (Tile[] r : tiles) {
-      for (Tile k : r) {
-        k.x = k.x - 4;
+    for (int y = 0; y < 30; y++)
+      for (int x = 0; x < 50; x++) {
+        tiles[x][y].x = tiles[x][y].x - 4;
+        backGroundTiles[x][y].x = backGroundTiles[x][y].x - 4;
+        grassTiles[x][y].x = grassTiles[x][y].x - 4;
       }
-    }
-
-    for (Tile[] r : backGroundTiles) {
-      for (Tile k : r) {
-        k.x = k.x - 4;
-      }
-    }
-
-    for (Tile[] r : grassTiles) {
-      for (Tile k : r) {
-        k.x = k.x - 4;
-      }
-    }
   }
 
   public void adjustUp() {
 
-    for (Tile[] r : tiles) {
-      for (Tile k : r) {
-        k.y = k.y - 4;
+    for (int y = 0; y < 30; y++)
+      for (int x = 0; x < 50; x++) {
+        tiles[x][y].y = tiles[x][y].y - 4;
+        backGroundTiles[x][y].y = backGroundTiles[x][y].y - 4;
+        grassTiles[x][y].y = grassTiles[x][y].y - 4;
       }
-    }
-
-    for (Tile[] r : backGroundTiles) {
-      for (Tile k : r) {
-        k.y = k.y - 4;
-      }
-    }
-
-    for (Tile[] r : grassTiles) {
-      for (Tile k : r) {
-        k.y = k.y - 4;
-      }
-    }
   }
 
   public void adjustDown() {
 
-    for (Tile[] r : tiles) {
-      for (Tile k : r) {
-        k.y = k.y + 4;
+    for (int y = 0; y < 30; y++)
+      for (int x = 0; x < 50; x++) {
+        tiles[x][y].y = tiles[x][y].y + 4;
+        backGroundTiles[x][y].y = backGroundTiles[x][y].y + 4;
+        grassTiles[x][y].y = grassTiles[x][y].y + 4;
       }
-    }
-
-    for (Tile[] r : backGroundTiles) {
-      for (Tile k : r) {
-        k.y = k.y + 4;
-      }
-    }
-
-    for (Tile[] r : grassTiles) {
-      for (Tile k : r) {
-        k.y = k.y + 4;
-      }
-    }
   }
 
   public void draw(Graphics2D graphics) {
 
-    // TODO this is only for the demo, there is absolutely no reason to have
-    // three for loops here. Figure out a way to do this better.
+    for (int y = 0; y < 30; y++)
+      for (int x = 0; x < 50; x++) {
+        Tile temp = tiles[x][y];
+        Tile bgtemp = backGroundTiles[x][y];
+        Tile grasstemp = grassTiles[x][y];
+        if ((temp.x >= -16 && temp.x <= 270)
+            && (temp.y >= -16 && temp.y <= 180)) {
 
-    for (Tile[] o : backGroundTiles) {
-      if ((o[0].x <= -16 || o[0].x >= 270)) // This should help reduce CPU a
-                                            // little
-        continue;
-      for (Tile k : o) {
-        if ((k.x >= -16 && k.x <= 270) && (k.y >= -16 && k.y <= 180)) {
-          if (k.texture != 0)
-            graphics.drawImage(sprites.getTile(k.texture), k.x, k.y, null);
+          if (bgtemp.texture != 0) {
+            graphics.drawImage(sprites.getTile(bgtemp.texture), bgtemp.x,
+                bgtemp.y, null);
+          }
+          if (temp.texture != 0) {
+            graphics.drawImage(sprites.getTile(temp.texture), temp.x, temp.y,
+                null);
+          }
+          if (grasstemp.texture != 0) {
+            graphics.drawImage(sprites.getTile(grasstemp.texture), grasstemp.x,
+                grasstemp.y, null);
+          }
         }
       }
-    }
-
-    for (Tile[] r : tiles) {
-      if ((r[0].x <= -16 || r[0].x >= 270))
-        continue;
-      for (Tile k : r) {
-        if ((k.x >= -16 && k.x <= 270) && (k.y >= -16 && k.y <= 180)) {
-          if (k.texture != 0)
-            graphics.drawImage(sprites.getTile(k.texture), k.x, k.y, null);
-        }
-      }
-    }
-
-    for (Tile[] o : grassTiles) {
-      if ((o[0].x <= -16 || o[0].x >= 270))
-        continue;
-      for (Tile k : o) {
-        if ((k.x >= -16 && k.x <= 270) && (k.y >= -16 && k.y <= 180)) {
-          if (k.texture != 0)
-            graphics.drawImage(sprites.getTile(k.texture), k.x, k.y, null);
-        }
-      }
-    }
   }
 
   public Tile[][] getTiles() {
@@ -185,6 +134,14 @@ public class Map {
 
   public void setTiles(Tile[][] tiles) {
     this.tiles = tiles;
+  }
+
+  public int[] getGrassTileRaw() {
+    return grassTileRaw;
+  }
+
+  public void setGrassTileRaw(int grassTileRaw[]) {
+    this.grassTileRaw = grassTileRaw;
   }
 
 }

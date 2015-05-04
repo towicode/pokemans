@@ -10,9 +10,11 @@ import model.pokemons.Pikachu;
 import controller.Engine;
 
 /**
- * Defines a pokeman trainer. The trainer has a sprite, a step counter, a ball counter, a direction he or she is facing, 
- * a location, and animations. The trainer can change their tile by moving, and check if they are currently in pokeman grass
- * to see if a pokeman can be encountered.
+ * Defines a pokeman trainer. The trainer has a sprite, a step counter, a ball
+ * counter, a direction he or she is facing, a location, and animations. The
+ * trainer can change their tile by moving, and check if they are currently in
+ * pokeman grass to see if a pokeman can be encountered.
+ * 
  * @author Andrew Rickus
  * @author Todd Wickizer
  * @author Sean Gemberling
@@ -41,7 +43,6 @@ public class Trainer {
   private int step_ensure = 0;
   public int ballCount = 30;
 
-  
   /**
    * Trainer()
    * 
@@ -49,7 +50,7 @@ public class Trainer {
    * 
    * 
    */
-  
+
   public Trainer(SpriteLoader loader) {
     this.loader = loader;
     this.tileX = 7;
@@ -57,18 +58,21 @@ public class Trainer {
     this.destX = 7;
     this.destY = 7;
   }
+
   /**
    * update(Keyboard keyboard, Map map)
    * 
-   * Updates the player's position on the map based on the keys input. Prints the steps taken and the current location.
+   * Updates the player's position on the map based on the keys input. Prints
+   * the steps taken and the current location.
    * 
-   * @param keyboard		The key input from the user
-   * @param map				The map the player is currently in
+   * @param keyboard
+   *          The key input from the user
+   * @param map
+   *          The map the player is currently in
    * 
    * 
    */
   public void update(Keyboard keyboard, Map map) {
-    // System.out.println("We hit the keyboard update");
 
     if (appearanceUpdateFlag) {
       appearanceUpdateFlag = false;
@@ -118,7 +122,6 @@ public class Trainer {
         System.out.println("We encountered a level " + x.getLevel() + " "
             + x.getName());
 
-        
       }
 
     }
@@ -128,26 +131,40 @@ public class Trainer {
     step_ensure = 0;
 
   }
+
   /**
    * isInPokeGrass()
    * 
-   * Checks if the tile the player is in is a grass tile. Currently always returns true, so pokemans can be found anywhere
-   * on the map.
+   * Checks if the tile the player is in is a grass tile. Currently always
+   * returns true, so pokemans can be found anywhere on the map.
    * 
-   * @param trainer		The player
+   * @param trainer
+   *          The player
    * 
-   * @return boolean	True always for now. In the future, will return true if the player is in grass, false otherwise.
+   * @return boolean True always for now. In the future, will return true if the
+   *         player is in grass, false otherwise.
    */
   private boolean isInPokeGrass(Trainer trainer) {
-    // TODO Auto-generated method stub
-    return true;
+
+    // first convert players location to an int
+    int location = trainer.getTileY() * 50 + trainer.getTileX();
+
+    // then return if we're in grass.
+    if (Engine.getMap().getGrassTileRaw()[location] == 19) {
+      return true;
+    }
+
+    return false;
+
   }
+
   /**
    * draw(Graphics graphics)
    * 
    * Draws the trainer onto the graphics screen.
    * 
-   * @param graphics The screen for the game.
+   * @param graphics
+   *          The screen for the game.
    * 
    */
   public void draw(Graphics graphics) {
@@ -159,16 +176,21 @@ public class Trainer {
       graphics.drawImage(mySprite, mapX, mapY, null);
     }
   }
+
   /**
    * handleMovementRequest(Keyboard keyboard, Map map)
    * 
-   * Tells the engine that the player has attempted to move, and handles if the square they are attempting to move into is
-   * a solid object or ground they can walk on.
+   * Tells the engine that the player has attempted to move, and handles if the
+   * square they are attempting to move into is a solid object or ground they
+   * can walk on.
    * 
-   * @param keyboard The inputs from the user into the keyboard.
-   * @param map The map the trainer is currently in.
+   * @param keyboard
+   *          The inputs from the user into the keyboard.
+   * @param map
+   *          The map the trainer is currently in.
    * 
-   * @return boolean True if the player is already moving, false if not and the engine needs to make the trainer move.
+   * @return boolean True if the player is already moving, false if not and the
+   *         engine needs to make the trainer move.
    */
   public boolean handleMovementRequest(Keyboard keyboard, Map map) {
 
@@ -181,8 +203,7 @@ public class Trainer {
 
     int keyCode = -1;
     if (keyboard.isKeyPressed(KeyEvent.VK_UP)
-        || keyboard.isKeyPressed(KeyEvent.VK_W) 
-        ) {
+        || keyboard.isKeyPressed(KeyEvent.VK_W)) {
       keyCode = KeyEvent.VK_UP;
       positionUpdateFlag = true;
     }
@@ -249,13 +270,17 @@ public class Trainer {
     }
     return false;
   }
+
   /**
    * animate(Map map, int step_ensure)
    * 
    * Animates the trainer and map when moving.
    * 
-   * @param map The map the player is currently in.
-   * @param step_ensure The step count, this will be returned, incrememnted by 1, by the method.
+   * @param map
+   *          The map the player is currently in.
+   * @param step_ensure
+   *          The step count, this will be returned, incrememnted by 1, by the
+   *          method.
    * 
    * @return int The step counter incremented by 1.
    */
@@ -290,11 +315,11 @@ public class Trainer {
     return step_ensure;
   }
 
-  
   /**
    * updateAppearance()
    * 
-   * Updates the players sprie when moving or getting on a bicycle. (Bicycle has not been added)
+   * Updates the players sprie when moving or getting on a bicycle. (Bicycle has
+   * not been added)
    * 
    * 
    */
@@ -306,10 +331,12 @@ public class Trainer {
       System.err.println("Requested sprite is null!");
     }
   }
+
   /**
    * toggleBicycle()
    * 
-   * Toggles the trainer getting on or off a bicycle. (Bicycle has not been added)
+   * Toggles the trainer getting on or off a bicycle. (Bicycle has not been
+   * added)
    * 
    * 
    */
@@ -317,6 +344,7 @@ public class Trainer {
     ridingBicycle = !ridingBicycle;
     appearanceUpdateFlag = true;
   }
+
   /**
    * getTileX()
    * 
@@ -327,18 +355,20 @@ public class Trainer {
   public int getTileX() {
     return tileX;
   }
-  
+
   /**
    * setTileX(int tileX)
    * 
    * Setter for the trainer's current tile X value.
    * 
-   * @param tileX The trainer's new X tile.
+   * @param tileX
+   *          The trainer's new X tile.
    */
-  
+
   public void setTileX(int tileX) {
     this.tileX = tileX;
   }
+
   /**
    * getTileY()
    * 
@@ -349,15 +379,16 @@ public class Trainer {
   public int getTileY() {
     return tileY;
   }
-  
+
   /**
    * setTileY(int tileY)
    * 
    * Setter for the trainer's current tile Y value.
    * 
-   * @param tileY The trainer's new Y tile.
+   * @param tileY
+   *          The trainer's new Y tile.
    */
-  
+
   public void setTileY(int tileY) {
     this.tileY = tileY;
   }

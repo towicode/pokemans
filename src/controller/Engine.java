@@ -38,7 +38,7 @@ public class Engine extends Canvas implements Runnable {
   private final Keyboard keyboard;
   private final SpriteLoader sprites;
   private final Trainer trainer;
-  private final Map map;
+  private static Map map;
 
   public static void main(String args[]) {
     new Engine();
@@ -100,6 +100,14 @@ public class Engine extends Canvas implements Runnable {
   public void handleKeyboardInput(KeyEvent e) {
     // TODO Auto-generated method stub
 
+  }
+
+  public static Map getMap() {
+    return map;
+  }
+
+  public static void setMap(Map map) {
+    Engine.map = map;
   }
 
 }
