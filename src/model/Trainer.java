@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import view.BattlePanel;
+import view.GameWindow;
 import model.pokemons.Pikachu;
 import controller.Engine;
 
@@ -115,6 +117,9 @@ public class Trainer {
         // Notify engine.
         System.out.println("We encountered a level " + x.getLevel() + " "
             + x.getName());
+        // Try to create a battle
+        BattlePanel fight = new BattlePanel(encounter);
+        
       }
 
     }
@@ -177,7 +182,8 @@ public class Trainer {
 
     int keyCode = -1;
     if (keyboard.isKeyPressed(KeyEvent.VK_UP)
-        || keyboard.isKeyPressed(KeyEvent.VK_W)) {
+        || keyboard.isKeyPressed(KeyEvent.VK_W) 
+        ) {
       keyCode = KeyEvent.VK_UP;
       positionUpdateFlag = true;
     }

@@ -29,7 +29,7 @@ import view.GameWindow;
 public class Engine extends Canvas implements Runnable {
 
   private static final long serialVersionUID = 1L;
-  private final GameWindow parentframe;
+  public final GameWindow parentframe;
   private final JPanel frame;
   private final ScheduledExecutorService executor = Executors
       .newScheduledThreadPool(1);

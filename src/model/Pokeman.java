@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.image.BufferedImage;
 import java.util.Random;
 /**
  * Defines a pokeman. The pokeman has a name, level, catch rate, and run rate. 
@@ -10,13 +11,15 @@ import java.util.Random;
  *
  */
 public abstract class Pokeman {
-
+  
+  public final SpriteLoader loader = new SpriteLoader();;
   private final Double A4 = 0.000001826265179475945;
   private final Double A3 = -0.0003948867186873706;
   private final Double A2 = 0.030013899160742596;
   private final Double A1 = -1.3674011425582648;
   private final double A0 = 51.00964742917333;
 
+  
   private String name;
   private int level;
   public int toRun;
@@ -83,5 +86,7 @@ public abstract class Pokeman {
   public void setLevel(int level) {
     this.level = level;
   }
-
+  public BufferedImage getSprite(String name) {
+	  return loader.GetPokeman(name);
+  }
 }

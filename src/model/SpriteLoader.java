@@ -68,6 +68,8 @@ public class SpriteLoader {
   private BufferedImage stump;
   private BufferedImage rock;
   private BufferedImage pokeball;
+  
+  private BufferedImage pikachuSprite;
 
   // main-guy sheet
 
@@ -79,6 +81,7 @@ public class SpriteLoader {
   public SpriteLoader() {
     try {
       BufferedImage sheet = ImageIO.read(new File("./resources/tilesheet.png"));
+      pikachuSprite = ImageIO.read(new File("./resources/sprites/pikachu80x80.png ") );
 
       this.ramp_E_1 = sheet.getSubimage(0, 0, 16, 16);
       this.ramp_E_2 = sheet.getSubimage(0, 16, 16, 16);
@@ -295,5 +298,14 @@ public class SpriteLoader {
     default:
       return trainerS[1];
     }
+  }
+  
+  public BufferedImage GetPokeman(String name) {
+	  switch(name) {
+	  case "Pikachu":
+		  return pikachuSprite;
+	  default: 
+		  return pikachuSprite;
+	  }
   }
 }
