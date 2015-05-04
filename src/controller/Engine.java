@@ -29,7 +29,7 @@ import view.GameWindow;
 public class Engine extends Canvas implements Runnable {
 
   private static final long serialVersionUID = 1L;
-  private final GameWindow parentframe;
+  public final GameWindow parentframe;
   private final JPanel frame;
   private final ScheduledExecutorService executor = Executors
       .newScheduledThreadPool(1);
@@ -69,6 +69,14 @@ public class Engine extends Canvas implements Runnable {
     
   }
 
+  /**
+   * run()
+   * 
+   * Fills the game screen with map and trainer graphics, and updates them.
+   * 
+   * 
+   */
+  
   @Override
   public void run() {
 
@@ -81,6 +89,14 @@ public class Engine extends Canvas implements Runnable {
     Toolkit.getDefaultToolkit().sync();
   }
 
+  /**
+   * handleKeyboardInput(Keyevent e)
+   * 
+   * @param e
+   * 
+   * 
+   */
+  
   public void handleKeyboardInput(KeyEvent e) {
     // TODO Auto-generated method stub
 
