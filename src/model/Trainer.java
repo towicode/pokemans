@@ -117,8 +117,7 @@ public class Trainer {
         // Notify engine.
         System.out.println("We encountered a level " + x.getLevel() + " "
             + x.getName());
-        // Try to create a battle
-        BattlePanel fight = new BattlePanel(encounter);
+
         
       }
 
