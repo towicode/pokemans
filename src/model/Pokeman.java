@@ -2,6 +2,8 @@ package model;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;
+
+import controller.Engine;
 /**
  * Defines a pokeman. The pokeman has a name, level, catch rate, and run rate. 
  * @author Andrew Rickus
@@ -50,6 +52,7 @@ public abstract class Pokeman {
     int rand = r.nextInt(High - Low) + Low;
 
     if (rand < toCatch) {
+      Engine.getTrainer().addPokemon(this);
       return true;
     }
 
@@ -86,7 +89,11 @@ public abstract class Pokeman {
   public void setLevel(int level) {
     this.level = level;
   }
-  public BufferedImage getSprite(String name) {
-	  return loader.GetPokeman(name);
+  public BufferedImage getSprite() {
+	  return loader.GetPokeman(this.getName());
+  }
+
+  public boolean tryToRun(int battleLength) {
+    return checkRun() || battleLength > 10;
   }
 }

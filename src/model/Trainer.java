@@ -113,10 +113,11 @@ public class Trainer {
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;
 
-      if (r < 10) {
+      if (r < 100) { //TODO
         r = (int) (Math.random() * (100 - 0)) + 0; // level
         Pokeman x = new Pikachu("Pikachu", r);
         Battle encounter = new Battle(x, this);
+        Engine.setBattle(encounter);
 
         // Notify engine.
         System.out.println("We encountered a level " + x.getLevel() + " "
@@ -391,6 +392,11 @@ public class Trainer {
 
   public void setTileY(int tileY) {
     this.tileY = tileY;
+  }
+
+  public void addPokemon(Pokeman pokeman) {
+    // TODO Auto-generated method stub
+    
   }
 
 }

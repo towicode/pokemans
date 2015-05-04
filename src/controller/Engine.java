@@ -13,13 +13,17 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import model.Battle;
 import model.Keyboard;
 import model.Map;
+import model.Menu;
 import model.SpriteLoader;
 import model.Trainer;
 import view.GameWindow;
+
 /**
  * Defines the game engine.
+ * 
  * @author Andrew Rickus
  * @author Todd Wickizer
  * @author Sean Gemberling
@@ -37,8 +41,13 @@ public class Engine extends Canvas implements Runnable {
   private final Runtime runtime = Runtime.getRuntime();
   private final Keyboard keyboard;
   private final SpriteLoader sprites;
-  private final Trainer trainer;
+  private static Trainer trainer;
   private static Map map;
+  private static Battle battle;
+  private static Menu menu;
+
+  private static boolean isInBattle;
+  private static boolean isInMenu;
 
   public static void main(String args[]) {
     new Engine();
@@ -66,7 +75,7 @@ public class Engine extends Canvas implements Runnable {
     requestFocus();
 
     this.executor.scheduleAtFixedRate(this, 0, 35, TimeUnit.MILLISECONDS);
-    
+
   }
 
   /**
@@ -76,16 +85,36 @@ public class Engine extends Canvas implements Runnable {
    * 
    * 
    */
-  
+
   @Override
   public void run() {
+    graphics.setColor(Color.BLACK);
 
     graphics.fillRect(0, 0, frame.getWidth(), frame.getHeight());
-    map.draw(graphics);
-    trainer.draw(graphics);
-    trainer.update(keyboard, map);
-    
-    //sync the framerate to reduce stutter
+
+    if (battle != null)
+      isInBattle = true;
+    else
+      isInBattle = false;
+    if (isInBattle) {
+      battle.draw(graphics);
+      battle.update(keyboard);
+
+    }
+    if (!isInBattle) {
+
+      if (isInMenu) {
+
+        menu.draw(graphics);
+        menu.update(keyboard);
+
+      } else {
+        map.draw(graphics);
+        trainer.draw(graphics);
+        trainer.update(keyboard, map);
+      }
+    }
+    // sync the framerate to reduce stutter
     Toolkit.getDefaultToolkit().sync();
   }
 
@@ -96,7 +125,7 @@ public class Engine extends Canvas implements Runnable {
    * 
    * 
    */
-  
+
   public void handleKeyboardInput(KeyEvent e) {
     // TODO Auto-generated method stub
 
@@ -108,6 +137,30 @@ public class Engine extends Canvas implements Runnable {
 
   public static void setMap(Map map) {
     Engine.map = map;
+  }
+
+  public static boolean isInBattle() {
+    return isInBattle;
+  }
+
+  public static void setInBattle(boolean isInBattle) {
+    Engine.isInBattle = isInBattle;
+  }
+
+  public static Battle getBattle() {
+    return battle;
+  }
+
+  public static void setBattle(Battle battle) {
+    Engine.battle = battle;
+  }
+
+  public static Trainer getTrainer() {
+    return trainer;
+  }
+
+  public static void setTrainer(Trainer trainer) {
+    Engine.trainer = trainer;
   }
 
 }
