@@ -127,7 +127,7 @@ public class Trainer {
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;
 
-      if (r < 100) { // TODO
+      if (r < 10) { // TODO
         r = (int) (Math.random() * (100 - 0)) + 0; // level
         Pokeman x = new Pikachu("Pikachu", r);
         Battle encounter = new Battle(x, this);
