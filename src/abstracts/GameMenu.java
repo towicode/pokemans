@@ -1,4 +1,4 @@
-package interfaces;
+package abstracts;
 
 import java.awt.Graphics2D;
 

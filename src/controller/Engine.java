@@ -1,7 +1,5 @@
 package controller;
 
-import interfaces.GameMenu;
-
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
@@ -15,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import abstracts.GameMenu;
 import menus.Menu;
 import model.Battle;
 import model.Keyboard;

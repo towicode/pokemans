@@ -1,4 +1,4 @@
-package model;
+package abstracts;
 
 /**
  * Defines an item. Most items can be used. Items are stored in the Inventory of

@@ -7,6 +7,8 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import abstracts.Item;
+import abstracts.Pokeman;
 import model.pokemons.Pikachu;
 import controller.Engine;
 
@@ -62,6 +64,7 @@ public class Trainer {
     this.pokeman = new ArrayList<Pokeman>();
     
     Item pokeballs = new Pokeball("PokeBall", "A pokeball!", 30);
+    this.items.add(pokeballs);
 
     this.loader = loader;
     this.tileX = 7;

@@ -2,10 +2,10 @@ package menus;
 
 import java.awt.Graphics2D;
 
+import abstracts.GameMenu;
 import controller.Engine;
 import model.Keyboard;
 import model.Trainer;
-import interfaces.GameMenu;
 
 public class StatusMenu extends GameMenu {
 

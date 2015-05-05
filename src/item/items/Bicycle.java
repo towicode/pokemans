@@ -1,6 +1,6 @@
 package item.items;
 
-import model.Item;
+import abstracts.Item;
 
 public class Bicycle extends Item{
 

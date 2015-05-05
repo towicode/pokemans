@@ -1,8 +1,9 @@
-package model;
+package abstracts;
 
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
+import model.SpriteLoader;
 import controller.Engine;
 /**
  * Defines a pokeman. The pokeman has a name, level, catch rate, and run rate. 

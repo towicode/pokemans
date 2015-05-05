@@ -2,8 +2,8 @@ package menus;
 
 import java.awt.Graphics2D;
 
+import abstracts.GameMenu;
 import model.Keyboard;
-import interfaces.GameMenu;
 
 public class AchievmentsMenu extends GameMenu{
 

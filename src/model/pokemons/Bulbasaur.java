@@ -1,6 +1,6 @@
 package model.pokemons;
 
-import model.Pokeman;
+import abstracts.Pokeman;
 
 /**
  * Defines the Bulbasaur pokeman.

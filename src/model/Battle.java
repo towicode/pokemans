@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import abstracts.Pokeman;
 import controller.Engine;
 
 /**

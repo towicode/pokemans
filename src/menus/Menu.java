@@ -1,11 +1,10 @@
 package menus;
 
-import interfaces.GameMenu;
-
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import abstracts.GameMenu;
 import controller.Engine;
 import model.Keyboard;
 
@@ -14,12 +13,10 @@ public class Menu extends GameMenu {
   private int currentlySelected = 0;
   private long lastAnimationSequence = 0;
 
-  
   public void draw(Graphics2D graphics) {
 
     // 240 x 180
     graphics.setColor(Color.WHITE);
-
     graphics.drawRect(0, 0, 240, 36);
     graphics.drawRect(0, 36, 240, 36);
     graphics.drawRect(0, 72, 240, 36);
@@ -51,7 +48,6 @@ public class Menu extends GameMenu {
       break;
 
     }
-
   }
 
   public void update(Keyboard keyboard) {
@@ -82,13 +78,12 @@ public class Menu extends GameMenu {
           return;
         currentlySelected++;
       }
-      
-      if (keyCode ==  KeyEvent.VK_C){
+
+      if (keyCode == KeyEvent.VK_C) {
         switch (currentlySelected) {
         case 0:
           GameMenu items = new ItemMenu();
           Engine.setMenu(items);
-          System.out.println("We opened the item menu");
           break;
         case 1:
           GameMenu pokemon = new PokemonMenu();
@@ -106,7 +101,5 @@ public class Menu extends GameMenu {
         }
       }
     }
-
   }
-
 }

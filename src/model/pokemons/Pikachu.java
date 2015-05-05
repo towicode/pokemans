@@ -3,7 +3,7 @@ package model.pokemons;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 
-import model.Pokeman;
+import abstracts.Pokeman;
 import model.SpriteLoader;
 /**
  * Defines the Pikachu pokeman. This is the only pokeman we currently have. More will be added soon.

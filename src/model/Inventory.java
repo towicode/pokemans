@@ -1,6 +1,8 @@
 package model;
 
 import java.util.ArrayList;
+
+import abstracts.Item;
 /**
  * Defines an inventory. An inventory belongs to a Trainer. It is an ArrayList of items. 
  * @author Andrew Rickus
