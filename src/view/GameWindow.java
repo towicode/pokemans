@@ -26,7 +26,7 @@ public class GameWindow extends JFrame {
   /**
    * GameWindow() Constructor for GameWindow class. Create the panel.
    */
-  public GameWindow() {
+  public GameWindow () {
     setLayout(null);
     setPreferredSize(new Dimension(250, 250));
     setMinimumSize(new Dimension(250, 250));

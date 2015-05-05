@@ -61,7 +61,7 @@ public class Engine extends Canvas implements Runnable {
     Engine.trainer = new Trainer(sprites);
     Engine.map = new Map(sprites);
     Engine.menu = new Menu();
-    map.loadStartingMap(2,0,0,0);
+    map.loadStartingMap(2, 0, 0, 0);
 
     parentframe = new GameWindow();
     frame = parentframe.gamePanel;
@@ -174,12 +174,16 @@ public class Engine extends Canvas implements Runnable {
    */
 
   public void handleKeyboardInput(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-      GameMenu menu = new Menu();
-      Engine.setMenu(menu);
-      Engine.setInMenu(true);
 
-    }
+    // For spawning the menu
+
+    if (!isInBattle())
+      if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+        GameMenu menu = new Menu();
+        Engine.setMenu(menu);
+        Engine.setInMenu(true);
+
+      }
   }
 
   public static Map getMap() {
