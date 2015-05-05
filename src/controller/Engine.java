@@ -49,6 +49,7 @@ public class Engine extends Canvas implements Runnable {
 
   private static boolean isInBattle;
   private static boolean isInMenu;
+  public static boolean setEncounterFlag = false;
 
   public static void main(String args[]) {
     new Engine();
@@ -60,7 +61,7 @@ public class Engine extends Canvas implements Runnable {
     Engine.trainer = new Trainer(sprites);
     Engine.map = new Map(sprites);
     Engine.menu = new Menu();
-    map.loadStartingMap();
+    map.loadStartingMap(2,0,0,0);
 
     parentframe = new GameWindow();
     frame = parentframe.gamePanel;
@@ -93,6 +94,29 @@ public class Engine extends Canvas implements Runnable {
     graphics.setColor(Color.BLACK);
 
     graphics.fillRect(0, 0, frame.getWidth(), frame.getHeight());
+
+    if (setEncounterFlag) {
+
+      for (int i = 0; i < 5; i++) {
+
+        if (i % 2 == 0) {
+          graphics.setColor(Color.cyan);
+          graphics.fillRect(0, 0, 240, 180);
+        } else {
+          graphics.setColor(Color.blue);
+          graphics.fillRect(0, 0, 240, 180);
+        }
+        try {
+          Thread.sleep(200);
+        } catch (InterruptedException e) {
+          e.printStackTrace();
+        }
+      }
+      setEncounterFlag = false;
+
+    }
+
+    graphics.setColor(Color.BLACK);
 
     if (battle != null)
       isInBattle = true;

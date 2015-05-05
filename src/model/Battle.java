@@ -25,7 +25,6 @@ import controller.Engine;
 
 public class Battle {
 
-  private long lastAnimationSequence = 0;
   public Pokeman enemy;
   public int battleLength;
   public Trainer player;

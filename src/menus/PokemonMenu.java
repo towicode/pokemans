@@ -32,7 +32,7 @@ public class PokemonMenu extends GameMenu {
 
       graphics.drawString("Name: " + i.getName(), 15, 15);
       graphics.drawString("Level: " + i.getLevel(), 15, 45);
-      graphics.drawImage(i.getSprite(), 70, 100, null);
+      graphics.drawImage(i.getSprite(), 80, 100, null);
 
       if (index != 0) {
         graphics.fillPolygon(new int[] { 15, 30, 30 }, new int[] { 145, 130,

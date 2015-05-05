@@ -36,6 +36,7 @@ import controller.Engine;
 
 public class Trainer {
 
+  private static final int MOVEMENT_SPEED_LIMITER = 30;
   private static final int MAP_3_MAX_LEVEL = 70;
   private static final int MAP_2_MAX_LEVEL = 50;
   private static final int MAP_1_MAX_LEVEL = 40;
@@ -143,13 +144,13 @@ public class Trainer {
       int r = (int) (Math.random() * (100 - 0)) + 0;
       if (r < ENCOUNTER_RATE) { // TODO
         r = (int) (Math.random() * (100 - 0)) + 0; // level
-        int poke_roll = (int) (Math.random() * (100 - 0)) + 0; // level
+        int poke_roll = (int) (Math.random() * (MAP_1_MAX_LEVEL - 0)) + 0;
         Pokeman x = new Pikachu("Pikachu", r);
 
         if (map.getId() == 1) {
-          
-          r = (int) (Math.random() * (MAP_1_MAX_LEVEL - 0)) + 0; // map 1 level 40
 
+          r = (int) (Math.random() * (MAP_1_MAX_LEVEL - 0)) + 0; // map 1 level
+                                                                 // 40
 
           if (poke_roll < 70)
             x = new Sandslash("Sandslash", r);
@@ -166,9 +167,9 @@ public class Trainer {
           }
 
         } else if (map.getId() == 2) {
-          
-          r = (int) (Math.random() * (MAP_2_MAX_LEVEL - 0)) + 0; // map 2 level 50
 
+          r = (int) (Math.random() * (MAP_2_MAX_LEVEL - 0)) + 0; // map 2 level
+                                                                 // 50
 
           x = new Bulbasaur("Bulbasaur", r);
           if (poke_roll < 70)
@@ -186,9 +187,9 @@ public class Trainer {
           }
 
         } else {
-          
-          r = (int) (Math.random() * (MAP_3_MAX_LEVEL - 0)) + 0; // map 3 level 70
 
+          r = (int) (Math.random() * (MAP_3_MAX_LEVEL - 0)) + 0; // map 3 level
+                                                                 // 70
 
           x = new Eevee("Eevee", r);
           if (poke_roll < 70)
@@ -207,6 +208,7 @@ public class Trainer {
 
         }
         Battle encounter = new Battle(x, this);
+        Engine.setEncounterFlag = true;
         Engine.setBattle(encounter);
 
         // Notify engine.
@@ -214,6 +216,51 @@ public class Trainer {
             + x.getName());
       }
     }
+
+    // HERE IS TELEPORTATION LOGIC.
+
+    if (map.getId() == 1)
+      if ((getTileX() == 43 && getTileY() == 20)
+          || (getTileX() == 43 && getTileY() == 21)) {
+        // teleport to map 2
+        map.LoadSecondMap(2, 0, 0, 0);
+        this.setTileX(7);
+        this.setTileY(7);
+        this.destX = 7;
+        this.destY = 7;
+      }
+
+    if (map.getId() == 2)
+      if ((getTileX() == 45 && getTileY() == 23)
+          || (getTileX() == 45 && getTileY() == 22)) {
+        // teleport to map 3
+        map.LoadThirdMap(2, 0, 0, 0);
+        this.setTileX(7);
+        this.setTileY(7);
+        this.destX = 7;
+        this.destY = 7;
+      }
+
+      else if ((getTileX() == 5 && getTileY() == 7)
+          || (getTileX() == 5 && getTileY() == 8)) {
+        // teleport to map 3
+        map.loadStartingMap(15, 0, 35, 0);
+        this.setTileX(42);
+        this.setTileY(20);
+        this.destX = 42;
+        this.destY = 20;
+      }
+
+    if (map.getId() == 3)
+      if ((getTileX() == 6 && getTileY() == 6)
+          || (getTileX() == 6 && getTileY() == 7)) {
+        // teleport map 3 -> 2
+        map.LoadSecondMap(18, 0, 37, 0);
+        this.setTileX(44);
+        this.setTileY(23);
+        this.destX = 44;
+        this.destY = 23;
+      }
 
     System.out.println("Location is " + getTileX() + " " + getTileY()
         + "  Steps Taken: " + step_counter);
@@ -377,7 +424,8 @@ public class Trainer {
     if (tileX == destX && tileY == destY)
       return step_ensure; // We're at our destination.
 
-    if (lastAnimationSequence <= System.currentTimeMillis() - 150) {
+    if (lastAnimationSequence <= System.currentTimeMillis()
+        - MOVEMENT_SPEED_LIMITER) {
       lastAnimationSequence = System.currentTimeMillis();
       animationFrame++;
       if (animationFrame > 2) {

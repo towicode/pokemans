@@ -29,7 +29,8 @@ public class Map {
 
   }
 
-  public void LoadThirdMap() {
+  public void LoadThirdMap(int up_offset, int down_offset, int left_offset,
+      int right_offset) {
     int counter = 0;
     for (int y = 0; y < 30; y++) {
       for (int x = 0; x < 50; x++) {
@@ -41,12 +42,34 @@ public class Map {
         counter++;
       }
     }
+    for (int i = 0; i < up_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustUp();
+      }
+    }
+    for (int i = 0; i < down_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustDown();
+      }
+    }
+    for (int i = 0; i < left_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustLeft();
+      }
+    }
+    for (int i = 0; i < right_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustRight();
+      }
+    }
+
     this.setGrassTileRaw(Constants.flatMap_grass); // used for IsInGrass
     this.id = 3;
 
   }
 
-  public void LoadSecondMap() {
+  public void LoadSecondMap(int up_offset, int down_offset, int left_offset,
+      int right_offset) {
     int counter = 0;
     for (int y = 0; y < 30; y++) {
       for (int x = 0; x < 50; x++) {
@@ -59,12 +82,35 @@ public class Map {
         counter++;
       }
     }
+
+    for (int i = 0; i < up_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustUp();
+      }
+    }
+    for (int i = 0; i < down_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustDown();
+      }
+    }
+    for (int i = 0; i < left_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustLeft();
+      }
+    }
+    for (int i = 0; i < right_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustRight();
+      }
+    }
+
     this.setGrassTileRaw(Constants.waterMap_grass); // used for IsInGrass
     this.id = 2;
 
   }
 
-  public void loadStartingMap() {
+  public void loadStartingMap(int up_offset, int down_offset, int left_offset,
+      int right_offset) {
     int counter = 0;
     for (int y = 0; y < 30; y++) {
       for (int x = 0; x < 50; x++) {
@@ -77,15 +123,27 @@ public class Map {
       }
     }
 
-    // TODO make this less ghetto:
-    adjustUp();
-    adjustUp();
-    adjustUp();
-    adjustUp();
-    adjustUp();
-    adjustUp();
-    adjustUp();
-    adjustUp();
+    for (int i = 0; i < up_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustUp();
+      }
+    }
+    for (int i = 0; i < down_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustDown();
+      }
+    }
+    for (int i = 0; i < left_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustLeft();
+      }
+    }
+    for (int i = 0; i < right_offset; i++) {
+      for (int j = 0; j < 4; j++) {
+        adjustRight();
+      }
+    }
+
     this.setGrassTileRaw(Constants.testMap_grass); // used for IsInGrass
     this.id = 1;
   }
