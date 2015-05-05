@@ -201,30 +201,33 @@ public class Battle {
         }
       };
       t.start();
-    }
-    battleLength++;
-    if (enemy.tryToRun(battleLength)) {
-      statusText = "The Pokeman Ran Away...";
-      Thread t = new Thread() {
-        public void run() {
-          Battle.allowInput = false;
-          try {
-            Thread.sleep(1000);
-          } catch (InterruptedException e1) {
-            e1.printStackTrace();
-          }
-          while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
+    } else {
+      battleLength++;
+      if (enemy.tryToRun(battleLength)) {
+        statusText = "The Pokeman Ran Away...";
+        Thread t = new Thread() {
+          public void run() {
+            Battle.allowInput = false;
             try {
-              Thread.sleep(200);
-            } catch (InterruptedException e) {
-              e.printStackTrace();
+              Thread.sleep(1000);
+            } catch (InterruptedException e1) {
+              e1.printStackTrace();
             }
+            while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
+              try {
+                Thread.sleep(200);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
+              }
+            }
+            Engine.setBattle(null);
+            Battle.allowInput = true;
           }
-          Engine.setBattle(null);
-          Battle.allowInput = true;
-        }
-      };
-      t.start();
+        };
+        t.start();
+      } else {
+        statusText = "Aww man. It didn't catch!";
+      }
     }
   }
 

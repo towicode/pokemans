@@ -9,7 +9,16 @@ import java.util.ArrayList;
 
 import abstracts.Item;
 import abstracts.Pokeman;
+import model.pokemons.Arbok;
+import model.pokemons.Bulbasaur;
+import model.pokemons.Butterfree;
+import model.pokemons.Eevee;
+import model.pokemons.Fearow;
+import model.pokemons.Kadabra;
+import model.pokemons.Mew;
+import model.pokemons.Nidorino;
 import model.pokemons.Pikachu;
+import model.pokemons.Sandslash;
 import controller.Engine;
 
 /**
@@ -27,6 +36,10 @@ import controller.Engine;
 
 public class Trainer {
 
+  private static final int MAP_3_MAX_LEVEL = 70;
+  private static final int MAP_2_MAX_LEVEL = 50;
+  private static final int MAP_1_MAX_LEVEL = 40;
+  private static final int ENCOUNTER_RATE = 18;
   private static final int MAP_Y = 80;
   private static final int MAP_X = 112;
   private final SpriteLoader loader;
@@ -65,7 +78,7 @@ public class Trainer {
     this.items = new ArrayList<Item>();
     this.pokeman = new ArrayList<Pokeman>();
 
-    Item pokeballs = new Pokeball("PokeBall", "A pokeball!", 30);
+    Item pokeballs = new Pokeball("PokeBall", "For catching wild pokeman.", 30);
     this.items.add(pokeballs);
 
     this.loader = loader;
@@ -128,21 +141,78 @@ public class Trainer {
 
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;
-
-      if (r < 10) { // TODO
+      if (r < ENCOUNTER_RATE) { // TODO
         r = (int) (Math.random() * (100 - 0)) + 0; // level
-        
-        //use map.id here 
+        int poke_roll = (int) (Math.random() * (100 - 0)) + 0; // level
         Pokeman x = new Pikachu("Pikachu", r);
+
+        if (map.getId() == 1) {
+          
+          r = (int) (Math.random() * (MAP_1_MAX_LEVEL - 0)) + 0; // map 1 level 40
+
+
+          if (poke_roll < 70)
+            x = new Sandslash("Sandslash", r);
+          if (poke_roll < 50)
+            x = new Nidorino("Nidorino", r);
+          if (poke_roll < 40)
+            x = new Kadabra("Kadabra", r);
+          if (poke_roll < 30)
+            x = new Fearow("Fearow", r);
+          if (poke_roll < 20)
+            x = new Eevee("Eevee", r);
+          if (poke_roll < 10) {
+            x = new Arbok("Arbok", r);
+          }
+
+        } else if (map.getId() == 2) {
+          
+          r = (int) (Math.random() * (MAP_2_MAX_LEVEL - 0)) + 0; // map 2 level 50
+
+
+          x = new Bulbasaur("Bulbasaur", r);
+          if (poke_roll < 70)
+            x = new Sandslash("Sandslash", r);
+          if (poke_roll < 50)
+            x = new Nidorino("Nidorino", r);
+          if (poke_roll < 40)
+            x = new Kadabra("Kadabra", r);
+          if (poke_roll < 30)
+            x = new Fearow("Fearow", r);
+          if (poke_roll < 20)
+            x = new Eevee("Eevee", r);
+          if (poke_roll < 10) {
+            x = new Butterfree("Butterfree", r);
+          }
+
+        } else {
+          
+          r = (int) (Math.random() * (MAP_3_MAX_LEVEL - 0)) + 0; // map 3 level 70
+
+
+          x = new Eevee("Eevee", r);
+          if (poke_roll < 70)
+            x = new Sandslash("Sandslash", r);
+          if (poke_roll < 50)
+            x = new Nidorino("Nidorino", r);
+          if (poke_roll < 40)
+            x = new Kadabra("Kadabra", r);
+          if (poke_roll < 30)
+            x = new Fearow("Fearow", r);
+          if (poke_roll < 20)
+            x = new Pikachu("Pikachu", r);
+          if (poke_roll < 5) {
+            x = new Mew("Mew", r);
+          }
+
+        }
         Battle encounter = new Battle(x, this);
         Engine.setBattle(encounter);
 
         // Notify engine.
         System.out.println("We encountered a level " + x.getLevel() + " "
             + x.getName());
-
       }
-
     }
 
     System.out.println("Location is " + getTileX() + " " + getTileY()

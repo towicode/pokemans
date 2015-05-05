@@ -173,4 +173,8 @@ public class Map {
     this.grassTileRaw = grassTileRaw;
   }
 
+  public int getId() {
+    return id;
+  }
+
 }
