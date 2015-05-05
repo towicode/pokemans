@@ -10,6 +10,8 @@ import model.Keyboard;
 
 public class Menu extends GameMenu {
 
+  private static final int BOX_HEIGHT = 36;
+  private static final int BOX_WIDTH = 240;
   private int currentlySelected = 0;
   private long lastAnimationSequence = 0;
 
@@ -17,11 +19,11 @@ public class Menu extends GameMenu {
 
     // 240 x 180
     graphics.setColor(Color.WHITE);
-    graphics.drawRect(0, 0, 240, 36);
-    graphics.drawRect(0, 36, 240, 36);
-    graphics.drawRect(0, 72, 240, 36);
-    graphics.drawRect(0, 108, 240, 36);
-    graphics.drawRect(0, 144, 240, 36);
+    graphics.drawRect(0, 0, Menu.BOX_WIDTH, BOX_HEIGHT);
+    graphics.drawRect(0, BOX_HEIGHT, Menu.BOX_WIDTH, BOX_HEIGHT);
+    graphics.drawRect(0, 72, Menu.BOX_WIDTH, BOX_HEIGHT);
+    graphics.drawRect(0, 108, Menu.BOX_WIDTH, BOX_HEIGHT);
+    graphics.drawRect(0, 144, Menu.BOX_WIDTH, BOX_HEIGHT);
 
     graphics.drawString("Items", 15, 18);
     graphics.drawString("Caught Pokemon", 15, 54);
@@ -32,19 +34,19 @@ public class Menu extends GameMenu {
     graphics.setColor(Color.RED);
     switch (currentlySelected) {
     case 0:
-      graphics.drawRect(0, 0, 240, 36);
+      graphics.drawRect(0, 0, Menu.BOX_WIDTH, BOX_HEIGHT);
       break;
     case 1:
-      graphics.drawRect(0, 36, 240, 36);
+      graphics.drawRect(0, BOX_HEIGHT, Menu.BOX_WIDTH, BOX_HEIGHT);
       break;
     case 2:
-      graphics.drawRect(0, 72, 240, 36);
+      graphics.drawRect(0, 72, Menu.BOX_WIDTH, BOX_HEIGHT);
       break;
     case 3:
-      graphics.drawRect(0, 108, 240, 36);
+      graphics.drawRect(0, 108, Menu.BOX_WIDTH, BOX_HEIGHT);
       break;
     case 4:
-      graphics.drawRect(0, 144, 240, 36);
+      graphics.drawRect(0, 144, Menu.BOX_WIDTH, BOX_HEIGHT);
       break;
 
     }
@@ -92,9 +94,11 @@ public class Menu extends GameMenu {
         case 2:
           GameMenu status = new StatusMenu();
           Engine.setMenu(status);
+          break;
         case 3:
           GameMenu achievements = new AchievmentsMenu();
           Engine.setMenu(achievements);
+          break;
         case 4:
           Engine.setInMenu(false);
 

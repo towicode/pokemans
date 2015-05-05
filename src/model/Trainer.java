@@ -27,9 +27,11 @@ import controller.Engine;
 
 public class Trainer {
 
+  private static final int MAP_Y = 80;
+  private static final int MAP_X = 112;
   private final SpriteLoader loader;
-  private final int mapX = 112;
-  private final int mapY = 80;
+  private final int mapX = MAP_X;
+  private final int mapY = MAP_Y;
   private int tileX;
   private int tileY;
   private int destX;
@@ -62,7 +64,7 @@ public class Trainer {
 
     this.items = new ArrayList<Item>();
     this.pokeman = new ArrayList<Pokeman>();
-    
+
     Item pokeballs = new Pokeball("PokeBall", "A pokeball!", 30);
     this.items.add(pokeballs);
 
@@ -129,6 +131,8 @@ public class Trainer {
 
       if (r < 10) { // TODO
         r = (int) (Math.random() * (100 - 0)) + 0; // level
+        
+        //use map.id here 
         Pokeman x = new Pikachu("Pikachu", r);
         Battle encounter = new Battle(x, this);
         Engine.setBattle(encounter);

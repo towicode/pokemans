@@ -20,7 +20,8 @@ public class Map {
   private Tile backGroundTiles[][] = new Tile[50][30];
   private Tile tiles[][] = new Tile[50][30];
   private Tile grassTiles[][] = new Tile[50][30];
-  private int grassTileRaw[]; //used for IsInGrass
+  private int grassTileRaw[]; // used for IsInGrass
+  private int id;
 
   public Map(SpriteLoader sprites) {
 
@@ -29,10 +30,37 @@ public class Map {
   }
 
   public void LoadThirdMap() {
+    int counter = 0;
+    for (int y = 0; y < 30; y++) {
+      for (int x = 0; x < 50; x++) {
+        tiles[x][y] = new Tile(x * 16, y * 16, Constants.flatMap[counter], true);
+        backGroundTiles[x][y] = new Tile(x * 16, y * 16,
+            Constants.flatMap_base[counter], true);
+        grassTiles[x][y] = new Tile(x * 16, y * 16,
+            Constants.flatMap_grass[counter], true);
+        counter++;
+      }
+    }
+    this.setGrassTileRaw(Constants.flatMap_grass); // used for IsInGrass
+    this.id = 3;
 
   }
 
   public void LoadSecondMap() {
+    int counter = 0;
+    for (int y = 0; y < 30; y++) {
+      for (int x = 0; x < 50; x++) {
+        tiles[x][y] = new Tile(x * 16, y * 16, Constants.waterMap[counter],
+            true);
+        backGroundTiles[x][y] = new Tile(x * 16, y * 16,
+            Constants.waterMap_base[counter], true);
+        grassTiles[x][y] = new Tile(x * 16, y * 16,
+            Constants.waterMap_grass[counter], true);
+        counter++;
+      }
+    }
+    this.setGrassTileRaw(Constants.waterMap_grass); // used for IsInGrass
+    this.id = 2;
 
   }
 
@@ -58,7 +86,8 @@ public class Map {
     adjustUp();
     adjustUp();
     adjustUp();
-    this.setGrassTileRaw(Constants.testMap_grass); //used for IsInGrass
+    this.setGrassTileRaw(Constants.testMap_grass); // used for IsInGrass
+    this.id = 1;
   }
 
   public void adjustRight() {

@@ -68,8 +68,19 @@ public class SpriteLoader {
   private BufferedImage stump;
   private BufferedImage rock;
   private BufferedImage pokeball;
-  
+
+  private BufferedImage arbokSprite;
   private BufferedImage pikachuSprite;
+  private BufferedImage bulbasaurSprite;
+  private BufferedImage butterfreeSprite;
+  private BufferedImage eeveeSprite;
+  private BufferedImage fearowSprite;
+  private BufferedImage kadabraSprite;
+  private BufferedImage mewSprite;
+  private BufferedImage nidorinoSprite;
+  private BufferedImage sandslashSprite;
+
+  private static BufferedImage groundSprite;
 
   // main-guy sheet
 
@@ -81,7 +92,30 @@ public class SpriteLoader {
   public SpriteLoader() {
     try {
       BufferedImage sheet = ImageIO.read(new File("./resources/tilesheet.png"));
-      pikachuSprite = ImageIO.read(new File("./resources/PokemonSprites/pikachu80x80.png ") );
+
+      arbokSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/arbok80x80.png "));
+      pikachuSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/pikachu80x80.png "));
+      bulbasaurSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/bulbasaur80x80.png "));
+      butterfreeSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/butterfree80x80.png "));
+      eeveeSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/eevee80x80.png "));
+      fearowSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/fearow80x80.png "));
+      kadabraSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/kadabra80x80.png "));
+      mewSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/mew80x80.png "));
+      nidorinoSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/nidorino80x80.png "));
+      sandslashSprite = ImageIO.read(new File(
+          "./resources/PokemonSprites/sandslash80x80.png "));
+
+      setGroundSprite(ImageIO.read(new File(
+          "./resources/OtherSprites/groundSprite.png ")));
 
       this.ramp_E_1 = sheet.getSubimage(0, 0, 16, 16);
       this.ramp_E_2 = sheet.getSubimage(0, 16, 16, 16);
@@ -299,13 +333,39 @@ public class SpriteLoader {
       return trainerS[1];
     }
   }
-  
+
   public BufferedImage GetPokeman(String name) {
-	  switch(name) {
-	  case "Pikachu":
-		  return pikachuSprite;
-	  default: 
-		  return pikachuSprite;
-	  }
+    switch (name) {
+    case "Pikachu":
+      return pikachuSprite;
+    case "Bulbasaur":
+      return bulbasaurSprite;
+    case "Butterfree":
+      return butterfreeSprite;
+    case "Eevee":
+      return eeveeSprite;
+    case "Fearow":
+      return fearowSprite;
+    case "Kadabra":
+      return kadabraSprite;
+    case "Mew":
+      return mewSprite;
+    case "Nidorino":
+      return nidorinoSprite;
+    case "Sandslash":
+      return sandslashSprite;
+    case "Arbok":
+      return arbokSprite;
+    default:
+      return pikachuSprite;
+    }
+  }
+
+  public static BufferedImage getGroundSprite() {
+    return groundSprite;
+  }
+
+  public void setGroundSprite(BufferedImage groundSprite) {
+    this.groundSprite = groundSprite;
   }
 }

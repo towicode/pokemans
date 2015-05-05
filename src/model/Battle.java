@@ -229,6 +229,7 @@ public class Battle {
   }
 
   public void draw(Graphics2D graphics) {
+    graphics.drawImage(SpriteLoader.getGroundSprite(), 100, 45, null);
     graphics.drawImage(enemy.getSprite(), 130, 0, null);
     graphics.setColor(Color.WHITE);
     graphics.drawString(enemy.getName(), 15, 45);
