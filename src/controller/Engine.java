@@ -111,8 +111,10 @@ public class Engine extends Canvas implements Runnable {
     if (!isInBattle) {
 
       if (isInMenu) {
+        graphics.setColor(Color.white);
         menu.draw(graphics);
         menu.update(keyboard);
+        graphics.setColor(Color.BLACK);
 
       } else {
         map.draw(graphics);
@@ -149,11 +151,11 @@ public class Engine extends Canvas implements Runnable {
    */
 
   public void handleKeyboardInput(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_ENTER){
+    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
       GameMenu menu = new Menu();
       Engine.setMenu(menu);
       Engine.setInMenu(true);
-      
+
     }
   }
 

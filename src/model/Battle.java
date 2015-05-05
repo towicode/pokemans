@@ -75,7 +75,7 @@ public class Battle {
           } catch (InterruptedException e1) {
             e1.printStackTrace();
           }
-          while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+          while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
               Thread.sleep(200);
             } catch (InterruptedException e) {
@@ -115,7 +115,7 @@ public class Battle {
           } catch (InterruptedException e1) {
             e1.printStackTrace();
           }
-          while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+          while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
               Thread.sleep(200);
             } catch (InterruptedException e) {
@@ -151,7 +151,7 @@ public class Battle {
         } catch (InterruptedException e1) {
           e1.printStackTrace();
         }
-        while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+        while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
           try {
             Thread.sleep(200);
           } catch (InterruptedException e) {
@@ -188,7 +188,7 @@ public class Battle {
           } catch (InterruptedException e1) {
             e1.printStackTrace();
           }
-          while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+          while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
               Thread.sleep(200);
             } catch (InterruptedException e) {
@@ -212,7 +212,7 @@ public class Battle {
           } catch (InterruptedException e1) {
             e1.printStackTrace();
           }
-          while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+          while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
               Thread.sleep(200);
             } catch (InterruptedException e) {
@@ -288,10 +288,9 @@ public class Battle {
         || keyboard.isKeyPressed(KeyEvent.VK_D)) {
       keyCode = KeyEvent.VK_RIGHT;
     }
-    if (keyboard.isKeyPressed(KeyEvent.VK_A)) {
-      keyCode = KeyEvent.VK_A;
+    if (keyboard.isKeyPressed(KeyEvent.VK_C)) {
+      keyCode = KeyEvent.VK_C;
     }
-
 
     // determines what selection we currently are at.
 
@@ -325,7 +324,7 @@ public class Battle {
       currentlySelected = 1;
     }
 
-    else if (keyCode == 65) {
+    else if (keyCode == KeyEvent.VK_C) {
       switch (currentlySelected) {
       case 0:
         this.throwBait(keyboard);

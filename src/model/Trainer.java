@@ -1,10 +1,12 @@
 package model;
 
+import item.items.Pokeball;
+
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
-import view.GameWindow;
 import model.pokemons.Pikachu;
 import controller.Engine;
 
@@ -42,6 +44,10 @@ public class Trainer {
   private int step_ensure = 0;
   public int ballCount = 30;
 
+  // inventory stuff
+  private ArrayList<Item> items;
+  private ArrayList<Pokeman> pokeman;
+
   /**
    * Trainer()
    * 
@@ -51,6 +57,12 @@ public class Trainer {
    */
 
   public Trainer(SpriteLoader loader) {
+
+    this.items = new ArrayList<Item>();
+    this.pokeman = new ArrayList<Pokeman>();
+    
+    Item pokeballs = new Pokeball("PokeBall", "A pokeball!", 30);
+
     this.loader = loader;
     this.tileX = 7;
     this.tileY = 7;
@@ -112,7 +124,7 @@ public class Trainer {
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;
 
-      if (r < 100) { //TODO
+      if (r < 100) { // TODO
         r = (int) (Math.random() * (100 - 0)) + 0; // level
         Pokeman x = new Pikachu("Pikachu", r);
         Battle encounter = new Battle(x, this);
@@ -394,8 +406,48 @@ public class Trainer {
   }
 
   public void addPokemon(Pokeman pokeman) {
-    // TODO Auto-generated method stub
-    
+    this.pokeman.add(pokeman);
+
+  }
+
+  public ArrayList<Item> getItems() {
+    return items;
+  }
+
+  public void setItems(ArrayList<Item> items) {
+    this.items = items;
+  }
+
+  public ArrayList<Pokeman> getPokeman() {
+    return pokeman;
+  }
+
+  public void setPokeman(ArrayList<Pokeman> pokeman) {
+    this.pokeman = pokeman;
+  }
+
+  public int getStep_counter() {
+    return step_counter;
+  }
+
+  public void setStep_counter(int step_counter) {
+    this.step_counter = step_counter;
+  }
+
+  public Direction getDirection() {
+    return direction;
+  }
+
+  public void setDirection(Direction direction) {
+    this.direction = direction;
+  }
+
+  public int getBallCount() {
+    return ballCount;
+  }
+
+  public void setBallCount(int ballCount) {
+    this.ballCount = ballCount;
   }
 
 }

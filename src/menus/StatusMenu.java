@@ -2,14 +2,20 @@ package menus;
 
 import java.awt.Graphics2D;
 
+import controller.Engine;
 import model.Keyboard;
+import model.Trainer;
 import interfaces.GameMenu;
 
 public class StatusMenu extends GameMenu {
 
   
   public void draw(Graphics2D graphics) {
-    // TODO Auto-generated method stub
+    Trainer x = Engine.getTrainer();
+    graphics.drawString("Balls Left: " + x.getBallCount(), 15, 15);
+    graphics.drawString("Steps Taken: " + x.getBallCount(), 15, 45);
+    graphics.drawString("Direction Facing: " + x.getDirection(), 15, 90);
+
 
   }
 

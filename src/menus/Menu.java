@@ -88,6 +88,7 @@ public class Menu extends GameMenu {
         case 0:
           GameMenu items = new ItemMenu();
           Engine.setMenu(items);
+          System.out.println("We opened the item menu");
           break;
         case 1:
           GameMenu pokemon = new PokemonMenu();
