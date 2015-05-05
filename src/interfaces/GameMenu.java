@@ -1,8 +1,10 @@
-package model;
+package interfaces;
 
 import java.awt.Graphics2D;
 
-public class Menu {
+import model.Keyboard;
+
+public abstract class GameMenu {
 
   public void draw(Graphics2D graphics) {
     // TODO Auto-generated method stub
@@ -13,5 +15,8 @@ public class Menu {
     // TODO Auto-generated method stub
     
   }
+
+
+  
 
 }

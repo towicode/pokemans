@@ -1,5 +1,7 @@
 package controller;
 
+import interfaces.GameMenu;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Font;
@@ -13,10 +15,10 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import menus.Menu;
 import model.Battle;
 import model.Keyboard;
 import model.Map;
-import model.Menu;
 import model.SpriteLoader;
 import model.Trainer;
 import view.GameWindow;
@@ -44,7 +46,7 @@ public class Engine extends Canvas implements Runnable {
   private static Trainer trainer;
   private static Map map;
   private static Battle battle;
-  private static Menu menu;
+  private static GameMenu menu;
 
   private static boolean isInBattle;
   private static boolean isInMenu;
@@ -56,8 +58,9 @@ public class Engine extends Canvas implements Runnable {
   public Engine() {
 
     this.sprites = new SpriteLoader();
-    this.trainer = new Trainer(sprites);
-    this.map = new Map(sprites);
+    Engine.trainer = new Trainer(sprites);
+    Engine.map = new Map(sprites);
+    Engine.menu = new Menu();
     map.loadStartingMap();
 
     parentframe = new GameWindow();
@@ -98,13 +101,16 @@ public class Engine extends Canvas implements Runnable {
       isInBattle = false;
     if (isInBattle) {
       battle.draw(graphics);
-      battle.update(keyboard);
+      try {
+        battle.update(keyboard);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
 
     }
     if (!isInBattle) {
 
       if (isInMenu) {
-
         menu.draw(graphics);
         menu.update(keyboard);
 
@@ -118,6 +124,22 @@ public class Engine extends Canvas implements Runnable {
     Toolkit.getDefaultToolkit().sync();
   }
 
+  public static GameMenu getMenu() {
+    return menu;
+  }
+
+  public static void setMenu(GameMenu menu) {
+    Engine.menu = menu;
+  }
+
+  public static boolean isInMenu() {
+    return isInMenu;
+  }
+
+  public static void setInMenu(boolean isInMenu) {
+    Engine.isInMenu = isInMenu;
+  }
+
   /**
    * handleKeyboardInput(Keyevent e)
    * 
@@ -127,8 +149,12 @@ public class Engine extends Canvas implements Runnable {
    */
 
   public void handleKeyboardInput(KeyEvent e) {
-    // TODO Auto-generated method stub
-
+    if (e.getKeyCode() == KeyEvent.VK_ENTER){
+      GameMenu menu = new Menu();
+      Engine.setMenu(menu);
+      Engine.setInMenu(true);
+      
+    }
   }
 
   public static Map getMap() {

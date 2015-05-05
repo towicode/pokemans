@@ -29,7 +29,8 @@ public class Battle {
   public int angry = 0;
   public int eating = 0;
   public int currentlySelected = 0; // 0 or 1 or 2 or 3
-  private String statusText;
+  private String statusText = "";
+  public static boolean allowInput = true;
 
   /**
    * Battle(Pokeman enemy, Trainer player)
@@ -55,16 +56,37 @@ public class Battle {
    * Throws a rock, resetting the enemy's eat counter, and adding to their angry
    * counter.
    * 
+   * @param keyboard
+   * 
    * 
    */
-  public void throwRock() {
+  public void throwRock(Keyboard keyboard) {
     eating = 0;
     angry += ((int) Math.random() * 5);
     statusText = "You throw a rock at the pokemon.";
     battleLength++;
     if (enemy.tryToRun(battleLength)) {
       statusText = "The Pokeman Ran Away";
-      Engine.setBattle(null);
+      Thread t = new Thread() {
+        public void run() {
+          Battle.allowInput = false;
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e1) {
+            e1.printStackTrace();
+          }
+          while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+            try {
+              Thread.sleep(200);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          }
+          Engine.setBattle(null);
+          Battle.allowInput = true;
+        }
+      };
+      t.start();
     }
   }
 
@@ -74,16 +96,37 @@ public class Battle {
    * Throws a piece of bait, resetting the enemy's angry counter, and adding to
    * their eat counter.
    * 
+   * @param keyboard
+   * 
    * 
    */
-  public void throwBait() {
+  public void throwBait(Keyboard keyboard) {
     angry = 0;
     eating += ((int) Math.random() * 5);
     statusText = "You throw some food at the pokemon.";
     battleLength++;
     if (enemy.tryToRun(battleLength)) {
       statusText = "The Pokeman Ran Away";
-      Engine.setBattle(null);
+      Thread t = new Thread() {
+        public void run() {
+          Battle.allowInput = false;
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e1) {
+            e1.printStackTrace();
+          }
+          while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+            try {
+              Thread.sleep(200);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          }
+          Engine.setBattle(null);
+          Battle.allowInput = true;
+        }
+      };
+      t.start();
     }
 
   }
@@ -94,11 +137,33 @@ public class Battle {
    * The pokeman runs away, ending the battle. This occurs based on the
    * pokeman's settings, and the angry counter of the current battle.
    * 
+   * @param keyboard
+   * 
    * 
    */
-  public void runAway() {
-    statusText = "You run away!.";
-    Engine.setBattle(null);
+  public void runAway(Keyboard keyboard) {
+    statusText = "You ran away!...";
+    Thread t = new Thread() {
+      public void run() {
+        Battle.allowInput = false;
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e1) {
+          e1.printStackTrace();
+        }
+        while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+          try {
+            Thread.sleep(200);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
+        }
+        Engine.setBattle(null);
+        Battle.allowInput = true;
+      }
+    };
+    t.start();
+
   }
 
   /**
@@ -107,20 +172,59 @@ public class Battle {
    * Throws a pokeball, attempting to catch the pokeman. This uses 1 ball from
    * the trainer's stock.
    * 
+   * @param keyboard
+   * 
    * 
    */
-  public void throwBall() {
+  public void throwBall(Keyboard keyboard) {
     player.ballCount--;
     if (enemy.tryToCatch()) {
-      statusText = "You captured a pokemon";
-      Engine.setBattle(null);
+      statusText = "You captured " + enemy.getName();
+      Thread t = new Thread() {
+        public void run() {
+          Battle.allowInput = false;
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e1) {
+            e1.printStackTrace();
+          }
+          while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+            try {
+              Thread.sleep(200);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          }
+          Engine.setBattle(null);
+          Battle.allowInput = true;
+        }
+      };
+      t.start();
     }
     battleLength++;
     if (enemy.tryToRun(battleLength)) {
-      statusText = "The Pokeman Ran Away";
-      Engine.setBattle(null);
+      statusText = "The Pokeman Ran Away...";
+      Thread t = new Thread() {
+        public void run() {
+          Battle.allowInput = false;
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e1) {
+            e1.printStackTrace();
+          }
+          while (!keyboard.isKeyPressed(KeyEvent.VK_A)) {
+            try {
+              Thread.sleep(200);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          }
+          Engine.setBattle(null);
+          Battle.allowInput = true;
+        }
+      };
+      t.start();
     }
-
   }
 
   public void draw(Graphics2D graphics) {
@@ -130,7 +234,8 @@ public class Battle {
     graphics.drawString("lv. " + enemy.getLevel(), 15, 65);
 
     // 240 x 180
-
+    graphics.drawRect(0, 120, 240, 20);
+    graphics.drawString(statusText, 15, 135);
     graphics.drawRect(0, 140, 120, 20);
     graphics.drawString("Throw Bait", 15, 155);
     graphics.drawRect(0, 160, 120, 20);
@@ -161,7 +266,10 @@ public class Battle {
 
   }
 
-  public void update(Keyboard keyboard) {
+  public void update(Keyboard keyboard) throws InterruptedException {
+
+    if (!allowInput)
+      return;
 
     int keyCode = -1;
     if (keyboard.isKeyPressed(KeyEvent.VK_UP)
@@ -184,57 +292,58 @@ public class Battle {
       keyCode = KeyEvent.VK_A;
     }
 
-    System.out.println(keyCode);
-    if (lastAnimationSequence <= System.currentTimeMillis() - 25) {
-      lastAnimationSequence = System.currentTimeMillis();
 
-      // determines what selection we currently are at.
+    // determines what selection we currently are at.
 
-      if (currentlySelected == 0 && keyCode == 40) {
-        currentlySelected = 1;
-      } else if (currentlySelected == 0 && keyCode == 39) {
-        currentlySelected = 2;
-      }
+    if (currentlySelected == 0 && keyCode == 40) {
+      currentlySelected = 1;
+    } else if (currentlySelected == 0 && keyCode == 39) {
+      currentlySelected = 2;
+    }
 
-      else if (currentlySelected == 1 && keyCode == 38) {
-        currentlySelected = 0;
-      }
+    else if (currentlySelected == 1 && keyCode == 38) {
+      currentlySelected = 0;
+    }
 
-      else if (currentlySelected == 1 && keyCode == 39) {
-        currentlySelected = 3;
-      }
+    else if (currentlySelected == 1 && keyCode == 39) {
+      currentlySelected = 3;
+    }
 
-      else if (currentlySelected == 2 && keyCode == 37) {
-        currentlySelected = 0;
-      }
+    else if (currentlySelected == 2 && keyCode == 37) {
+      currentlySelected = 0;
+    }
 
-      else if (currentlySelected == 2 && keyCode == 40) {
-        currentlySelected = 3;
-      }
+    else if (currentlySelected == 2 && keyCode == 40) {
+      currentlySelected = 3;
+    }
 
-      else if (currentlySelected == 3 && keyCode == 38) {
-        currentlySelected = 2;
-      }
+    else if (currentlySelected == 3 && keyCode == 38) {
+      currentlySelected = 2;
+    }
 
-      else if (currentlySelected == 3 && keyCode == 37) {
-        currentlySelected = 1;
-      }
+    else if (currentlySelected == 3 && keyCode == 37) {
+      currentlySelected = 1;
+    }
 
-      else if (keyCode == 65) {
-        switch (currentlySelected) {
-        case 0:
-          this.throwBait();
-          break;
-        case 1:
-          this.throwRock();
-          break;
-        case 2:
-          this.throwBall();
-          break;
-        case 3:
-          this.runAway();
-          break;
-        }
+    else if (keyCode == 65) {
+      switch (currentlySelected) {
+      case 0:
+        this.throwBait(keyboard);
+        Thread.sleep(500);
+        break;
+      case 1:
+        this.throwRock(keyboard);
+        Thread.sleep(500);
+        break;
+      case 2:
+        this.throwBall(keyboard);
+        Thread.sleep(500);
+        break;
+      case 3:
+        this.runAway(keyboard);
+        Thread.sleep(500);
+
+        break;
       }
     }
   }

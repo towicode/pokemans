@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
-import view.BattlePanel;
 import view.GameWindow;
 import model.pokemons.Pikachu;
 import controller.Engine;
