@@ -1,6 +1,8 @@
 package model;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
@@ -31,7 +33,9 @@ public class Battle {
   public int eating = 0;
   public int currentlySelected = 0; // 0 or 1 or 2 or 3
   private String statusText = "";
+  private int animation = 0;
   public static boolean allowInput = true;
+  public int animationColor = 0; // 0 = bait, 1 = rock, 2 = pokeball
 
   /**
    * Battle(Pokeman enemy, Trainer player)
@@ -62,22 +66,33 @@ public class Battle {
    * 
    */
   public void throwRock(Keyboard keyboard) {
+    animationColor = 1;
     eating = 0;
     angry += ((int) Math.random() * 5);
     statusText = "You throw a rock at the pokemon.";
     battleLength++;
-    if (enemy.tryToRun(battleLength)) {
-      statusText = "The Pokeman Ran Away";
-      Thread t = new Thread() {
-        public void run() {
-          Battle.allowInput = false;
+
+    Thread t = new Thread() {
+      public void run() {
+
+        for (int i = 0; i < 6; i++) {
           try {
-            Thread.sleep(1000);
-          } catch (InterruptedException e1) {
-            e1.printStackTrace();
+            animation++;
+            Thread.sleep(200);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
           }
+        }
+
+        animation = 0;
+
+        if (enemy.tryToRun(battleLength)) {
+          currentlySelected = 5;
+          Battle.allowInput = false;
+
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
+              statusText = "The Pokeman Ran Away";
               Thread.sleep(200);
             } catch (InterruptedException e) {
               e.printStackTrace();
@@ -85,10 +100,13 @@ public class Battle {
           }
           Engine.setBattle(null);
           Battle.allowInput = true;
+        } else {
+          statusText = "The pokeman looks angry...";
+          Battle.allowInput = true;
         }
-      };
-      t.start();
-    }
+      }
+    };
+    t.start();
   }
 
   /**
@@ -102,22 +120,32 @@ public class Battle {
    * 
    */
   public void throwBait(Keyboard keyboard) {
+    animationColor = 0;
     angry = 0;
     eating += ((int) Math.random() * 5);
     statusText = "You throw some food at the pokemon.";
     battleLength++;
-    if (enemy.tryToRun(battleLength)) {
-      statusText = "The Pokeman Ran Away";
-      Thread t = new Thread() {
-        public void run() {
-          Battle.allowInput = false;
+    Thread t = new Thread() {
+      public void run() {
+
+        for (int i = 0; i < 6; i++) {
           try {
-            Thread.sleep(1000);
-          } catch (InterruptedException e1) {
-            e1.printStackTrace();
+            animation++;
+            Thread.sleep(200);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
           }
+        }
+
+        animation = 0;
+
+        if (enemy.tryToRun(battleLength)) {
+          currentlySelected = 5;
+          Battle.allowInput = false;
+
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
+              statusText = "The Pokeman Ran Away";
               Thread.sleep(200);
             } catch (InterruptedException e) {
               e.printStackTrace();
@@ -125,11 +153,13 @@ public class Battle {
           }
           Engine.setBattle(null);
           Battle.allowInput = true;
+        } else {
+          statusText = "The pokeman chows down on the food...";
+          Battle.allowInput = true;
         }
-      };
-      t.start();
-    }
-
+      }
+    };
+    t.start();
   }
 
   /**
@@ -144,6 +174,7 @@ public class Battle {
    */
   public void runAway(Keyboard keyboard) {
     statusText = "You ran away!...";
+    currentlySelected = 5; // to deselect
     Thread t = new Thread() {
       public void run() {
         Battle.allowInput = false;
@@ -178,57 +209,60 @@ public class Battle {
    * 
    */
   public void throwBall(Keyboard keyboard) {
+    animationColor = 2;
     player.ballCount--;
-    if (enemy.tryToCatch()) {
-      statusText = "You captured " + enemy.getName();
-      Thread t = new Thread() {
-        public void run() {
-          Battle.allowInput = false;
+    statusText = "You Throw a ball at the pokeman.";
+
+    Thread t = new Thread() {
+      public void run() {
+        Battle.allowInput = false;
+
+        for (int i = 0; i < 6; i++) {
           try {
-            Thread.sleep(1000);
-          } catch (InterruptedException e1) {
-            e1.printStackTrace();
+            animation++;
+            Thread.sleep(200);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
           }
+        }
+
+        animation = 0;
+
+        if (enemy.tryToCatch()) {
+          currentlySelected = 5; // to deselect
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
-              Thread.sleep(200);
+              statusText = "You captured " + enemy.getName();
+              Thread.sleep(50);
             } catch (InterruptedException e) {
               e.printStackTrace();
             }
           }
           Engine.setBattle(null);
           Battle.allowInput = true;
-        }
-      };
-      t.start();
-    } else {
-      battleLength++;
-      if (enemy.tryToRun(battleLength)) {
-        statusText = "The Pokeman Ran Away...";
-        Thread t = new Thread() {
-          public void run() {
-            Battle.allowInput = false;
+        } else if (enemy.tryToRun(battleLength)) {
+          statusText = "The Pokeman Ran Away...";
+          currentlySelected = 5; // to deselect
+          while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
-              Thread.sleep(1000);
-            } catch (InterruptedException e1) {
-              e1.printStackTrace();
+              Thread.sleep(50);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
             }
-            while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
-              try {
-                Thread.sleep(200);
-              } catch (InterruptedException e) {
-                e.printStackTrace();
-              }
-            }
-            Engine.setBattle(null);
-            Battle.allowInput = true;
           }
-        };
-        t.start();
-      } else {
-        statusText = "Aww man. It didn't catch!";
+          Engine.setBattle(null);
+          Battle.allowInput = true;
+        } else {
+          statusText = "Aww man it didn't catch";
+          Battle.allowInput = true;
+        }
       }
-    }
+    };
+
+    t.start();
+
+    // statusText = "Aww man. It didn't catch!";
+
   }
 
   public void draw(Graphics2D graphics) {
@@ -265,6 +299,43 @@ public class Battle {
     case 3:
       graphics.drawRect(120, 160, 120, 20);
       break;
+    default:
+      break;
+    }
+
+    System.out.println(this.animation);
+    if (this.animation > 0 && this.animation < 6) {
+
+      // store the composite
+      Composite c = graphics.getComposite();
+      // store the color
+      Color d = graphics.getColor();
+
+      switch (animationColor) {
+      case 0:
+        graphics.setColor(Color.WHITE);
+        break;
+      case 1:
+        graphics.setColor(Color.red);
+        break;
+      case 2:
+        graphics.setColor(Color.yellow);
+        break;
+      }
+
+      float alpha = animation * 0.1f;
+      AlphaComposite alcom = AlphaComposite.getInstance(
+          AlphaComposite.SRC_OVER, alpha);
+      graphics.setComposite(alcom);
+
+      graphics.fillRect(0, 0, 240, 180);
+
+      // reset the composite
+      graphics.setComposite(c);
+
+      // reset the color
+      graphics.setColor(d);
+
     }
 
     // TODO Auto-generated method stub
