@@ -26,6 +26,7 @@ import controller.Engine;
 
 public class Battle {
 
+  private static final int NONE_SELECTED = 5;
   private static final int RUN = 3;
   private static final int THROW_BALL = 2;
   private static final int THROW_ROCK = 1;
@@ -73,7 +74,7 @@ public class Battle {
   public void throwRock(Keyboard keyboard) {
     animationColor = 1;
     eating = 0;
-    angry += ((int) Math.random() * 5);
+    angry += ((int) Math.random() * NONE_SELECTED);
     statusText = "You throw a rock at the pokemon.";
     battleLength++;
 
@@ -92,7 +93,7 @@ public class Battle {
         animation = 0;
 
         if (enemy.tryToRun(battleLength)) {
-          currentlySelected = 5;
+          currentlySelected = NONE_SELECTED;
           Battle.allowInput = false;
 
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
@@ -127,7 +128,7 @@ public class Battle {
   public void throwBait(Keyboard keyboard) {
     animationColor = 0;
     angry = 0;
-    eating += ((int) Math.random() * 5);
+    eating += ((int) Math.random() * NONE_SELECTED);
     statusText = "You throw some food at the pokemon.";
     battleLength++;
     Thread t = new Thread() {
@@ -145,7 +146,7 @@ public class Battle {
         animation = 0;
 
         if (enemy.tryToRun(battleLength)) {
-          currentlySelected = 5;
+          currentlySelected = NONE_SELECTED;
           Battle.allowInput = false;
 
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
@@ -179,7 +180,7 @@ public class Battle {
    */
   public void runAway(Keyboard keyboard) {
     statusText = "You ran away!...";
-    currentlySelected = 5; // to deselect
+    currentlySelected = NONE_SELECTED; // to deselect
     Thread t = new Thread() {
       public void run() {
         Battle.allowInput = false;
@@ -216,7 +217,7 @@ public class Battle {
   public void throwBall(Keyboard keyboard) {
     animationColor = 2;
     // get amount of balls
-    int poke_amt = player.getItems().get(0).getQuantity();
+    int poke_amt = player.getItems().get(POKEBALL_INDEX).getQuantity();
 
     Thread t = new Thread() {
       public void run() {
@@ -235,6 +236,7 @@ public class Battle {
         if (poke_amt == 0) {
 
           statusText = "You're out of pokeballs!";
+          currentlySelected = NONE_SELECTED;
 
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
@@ -253,7 +255,7 @@ public class Battle {
 
         statusText = "You Throw a ball at the pokeman.";
         if (enemy.tryToCatch()) {
-          currentlySelected = 5; // to deselect
+          currentlySelected = NONE_SELECTED; // to deselect
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
               statusText = "You captured " + enemy.getName();
@@ -266,7 +268,7 @@ public class Battle {
           Battle.allowInput = true;
         } else if (enemy.tryToRun(battleLength)) {
           statusText = "The Pokeman Ran Away...";
-          currentlySelected = 5; // to deselect
+          currentlySelected = NONE_SELECTED; // to deselect
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
               Thread.sleep(50);
@@ -313,16 +315,16 @@ public class Battle {
 
     graphics.setColor(Color.red);
     switch (currentlySelected) {
-    case 0:
+    case THROW_BAIT:
       graphics.drawRect(0, 140, 120, 20);
       break;
-    case 1:
+    case THROW_ROCK:
       graphics.drawRect(0, 160, 120, 20);
       break;
-    case 2:
+    case THROW_BALL:
       graphics.drawRect(120, 140, 120, 20);
       break;
-    case 3:
+    case RUN:
       graphics.drawRect(120, 160, 120, 20);
       break;
     default:
@@ -338,13 +340,13 @@ public class Battle {
       Color d = graphics.getColor();
 
       switch (animationColor) {
-      case 0:
+      case THROW_BAIT:
         graphics.setColor(Color.WHITE);
         break;
-      case 1:
+      case THROW_ROCK:
         graphics.setColor(Color.red);
         break;
-      case 2:
+      case THROW_BALL:
         graphics.setColor(Color.yellow);
         break;
       }
