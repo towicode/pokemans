@@ -56,7 +56,7 @@ public class Engine extends Canvas implements Runnable {
   }
 
   public Engine() {
-
+	
     this.sprites = new SpriteLoader();
     Engine.trainer = new Trainer(sprites);
     Engine.map = new Map(sprites);
