@@ -16,7 +16,6 @@ public class StartMenu extends GameMenu {
 
 	@Override
 	public void draw(Graphics2D graphics) {
-		// TODO Auto-generated method stub
 		graphics.setColor(Color.WHITE);
 		graphics.drawRect(0, 0, StartMenu.BOX_WIDTH, BOX_HEIGHT);
 		graphics.drawRect(0, BOX_HEIGHT, StartMenu.BOX_WIDTH, BOX_HEIGHT);

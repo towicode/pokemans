@@ -1,6 +1,7 @@
 package model;
 
 import item.items.Bicycle;
+import item.items.Braclet;
 import item.items.Pokeball;
 
 import java.awt.Graphics;
@@ -37,8 +38,8 @@ import controller.Engine;
 
 public class Trainer {
 
-  private static final int MOVEMENT_SPEED_LIMITER = 120; // default 120
-  private static final int BIKE_MOVEMENT_LIMTIER = 80;
+  private static final int MOVEMENT_SPEED_LIMITER = 20; // default 120
+  private static final int BIKE_MOVEMENT_LIMTIER = 80; //default 80
   private static final int MAP_3_MAX_LEVEL = 70;
   private static final int MAP_2_MAX_LEVEL = 50;
   private static final int MAP_1_MAX_LEVEL = 40;
@@ -82,8 +83,10 @@ public class Trainer {
 
     Item pokeballs = new Pokeball("PokeBall", "For catching wild pokeman.", 30);
     Item bike = new Bicycle("Bicycle", "Press B to ride fast!.", 1);
+    Item braclet = new Braclet("Braclet", "Increases capture rate.!", 1);
     this.items.add(pokeballs);
     this.items.add(bike);
+    this.items.add(braclet);
 
     this.loader = loader;
     this.tileX = 7;
