@@ -37,11 +37,11 @@ public class Battle {
   public Trainer player;
   public int angry = 0;
   public int eating = 0;
-  public int currentlySelected = 0; // 0 or 1 or 2 or 3
+  public int currentlySelected = THROW_BAIT; // 0 or 1 or 2 or 3
   private String statusText = "";
   private int animation = 0;
   public static boolean allowInput = true;
-  public int animationColor = 0; // 0 = bait, 1 = rock, 2 = pokeball
+  public int animationColor = THROW_BAIT; // 0 = bait, 1 = rock, 2 = pokeball
 
   /**
    * Battle(Pokeman enemy, Trainer player)
@@ -331,7 +331,6 @@ public class Battle {
       break;
     }
 
-    System.out.println(this.animation);
     if (this.animation > 0 && this.animation < 6) {
 
       // store the composite

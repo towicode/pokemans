@@ -53,7 +53,7 @@ public abstract class Pokeman {
     int rand = r.nextInt(High - Low) + Low;
 
     if (rand < toCatch) {
-      Engine.getTrainer().addPokemon(this);
+      //Engine.getTrainer().addPokemon(this); gets taken care of in battle
       return true;
     }
 

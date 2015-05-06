@@ -22,7 +22,6 @@ public class Tile {
     this.x = x;
     this.y = y;
     this.texture = i;
-    this.walkable = walkable;
   }
 
   public int x;

@@ -7,6 +7,8 @@ import javax.imageio.ImageIO;
 
 public class SpriteLoader {
 
+  private static final int TILE_SIZE = 16;
+
   private boolean loaded = false;
 
   // tiles
@@ -117,77 +119,75 @@ public class SpriteLoader {
       setGroundSprite(ImageIO.read(new File(
           "./resources/OtherSprites/groundSprite.png ")));
 
-      this.ramp_E_1 = sheet.getSubimage(0, 0, 16, 16);
-      this.ramp_E_2 = sheet.getSubimage(0, 16, 16, 16);
-      this.ramp_W_1 = sheet.getSubimage(16, 0, 16, 16);
-      this.ramp_W_2 = sheet.getSubimage(16, 16, 16, 16);
-      this.ramp_N_1 = sheet.getSubimage(0, 32, 16, 16);
-      this.ramp_N_2 = sheet.getSubimage(16, 32, 16, 16);
-      this.shrub = sheet.getSubimage(32, 0, 16, 16);
-      this.pokeGrass = sheet.getSubimage(32, 16, 16, 16);
-      this.rock = sheet.getSubimage(32, 32, 16, 16);
-      this.stump = sheet.getSubimage(48, 32, 16, 16);
-      this.pokeball = sheet.getSubimage(48, 16, 16, 16);
-      this.dirt = sheet.getSubimage(80, 16, 16, 16);
-      this.dirtNE = sheet.getSubimage(96, 0, 16, 16);
-      this.dirtNW = sheet.getSubimage(64, 0, 16, 16);
-      this.dirtSW = sheet.getSubimage(64, 32, 16, 16);
-      this.dirtSE = sheet.getSubimage(96, 32, 16, 16);
-      this.dirtN = sheet.getSubimage(80, 0, 16, 16);
-      this.dirtS = sheet.getSubimage(80, 32, 16, 16);
-      this.dirtW = sheet.getSubimage(64, 16, 16, 16);
-      this.dirtE = sheet.getSubimage(96, 16, 16, 16);
+      this.ramp_E_1 = sheet.getSubimage(0, 0, TILE_SIZE, TILE_SIZE);
+      this.ramp_E_2 = sheet.getSubimage(0, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.ramp_W_1 = sheet.getSubimage(TILE_SIZE, 0, TILE_SIZE, TILE_SIZE);
+      this.ramp_W_2 = sheet.getSubimage(TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.ramp_N_1 = sheet.getSubimage(0, 32, TILE_SIZE, TILE_SIZE);
+      this.ramp_N_2 = sheet.getSubimage(TILE_SIZE, 32, TILE_SIZE, TILE_SIZE);
+      this.shrub = sheet.getSubimage(32, 0, TILE_SIZE, TILE_SIZE);
+      this.pokeGrass = sheet.getSubimage(32, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.rock = sheet.getSubimage(32, 32, TILE_SIZE, TILE_SIZE);
+      this.stump = sheet.getSubimage(48, 32, TILE_SIZE, TILE_SIZE);
+      this.pokeball = sheet.getSubimage(48, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.dirt = sheet.getSubimage(80, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.dirtNE = sheet.getSubimage(96, 0, TILE_SIZE, TILE_SIZE);
+      this.dirtNW = sheet.getSubimage(64, 0, TILE_SIZE, TILE_SIZE);
+      this.dirtSW = sheet.getSubimage(64, 32, TILE_SIZE, TILE_SIZE);
+      this.dirtSE = sheet.getSubimage(96, 32, TILE_SIZE, TILE_SIZE);
+      this.dirtN = sheet.getSubimage(80, 0, TILE_SIZE, TILE_SIZE);
+      this.dirtS = sheet.getSubimage(80, 32, TILE_SIZE, TILE_SIZE);
+      this.dirtW = sheet.getSubimage(64, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.dirtE = sheet.getSubimage(96, TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
-      // To be done, can't be fucked to do all this right now.
+      this.grass = sheet.getSubimage(128, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.mountainNE = sheet.getSubimage(144, 0, TILE_SIZE, TILE_SIZE);
+      this.mountainNW = sheet.getSubimage(112, 0, TILE_SIZE, TILE_SIZE);
+      this.mountainSW = sheet.getSubimage(112, 32, TILE_SIZE, TILE_SIZE);
+      this.mountainSE = sheet.getSubimage(144, 32, TILE_SIZE, TILE_SIZE);
+      this.mountainN = sheet.getSubimage(128, 0, TILE_SIZE, TILE_SIZE);
+      this.mountainS = sheet.getSubimage(128, 32, TILE_SIZE, TILE_SIZE);
+      this.mountainW = sheet.getSubimage(112, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.mountainE = sheet.getSubimage(144, TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
-      this.grass = sheet.getSubimage(128, 16, 16, 16);
-      this.mountainNE = sheet.getSubimage(144, 0, 16, 16);
-      this.mountainNW = sheet.getSubimage(112, 0, 16, 16);
-      this.mountainSW = sheet.getSubimage(112, 32, 16, 16);
-      this.mountainSE = sheet.getSubimage(144, 32, 16, 16);
-      this.mountainN = sheet.getSubimage(128, 0, 16, 16);
-      this.mountainS = sheet.getSubimage(128, 32, 16, 16);
-      this.mountainW = sheet.getSubimage(112, 16, 16, 16);
-      this.mountainE = sheet.getSubimage(144, 16, 16, 16);
+      this.water = sheet.getSubimage(176, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.waterNE = sheet.getSubimage(192, 0, TILE_SIZE, TILE_SIZE);
+      this.waterNW = sheet.getSubimage(160, 0, TILE_SIZE, TILE_SIZE);
+      this.waterSW = sheet.getSubimage(160, 32, TILE_SIZE, TILE_SIZE);
+      this.waterSE = sheet.getSubimage(192, 32, TILE_SIZE, TILE_SIZE);
+      this.waterN = sheet.getSubimage(176, 0, TILE_SIZE, TILE_SIZE);
+      this.waterS = sheet.getSubimage(176, 32, TILE_SIZE, TILE_SIZE);
+      this.waterW = sheet.getSubimage(160, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.waterE = sheet.getSubimage(192, TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
-      this.water = sheet.getSubimage(176, 16, 16, 16);
-      this.waterNE = sheet.getSubimage(192, 0, 16, 16);
-      this.waterNW = sheet.getSubimage(160, 0, 16, 16);
-      this.waterSW = sheet.getSubimage(160, 32, 16, 16);
-      this.waterSE = sheet.getSubimage(192, 32, 16, 16);
-      this.waterN = sheet.getSubimage(176, 0, 16, 16);
-      this.waterS = sheet.getSubimage(176, 32, 16, 16);
-      this.waterW = sheet.getSubimage(160, 16, 16, 16);
-      this.waterE = sheet.getSubimage(192, 16, 16, 16);
-
-      this.nothing = sheet.getSubimage(224, 16, 16, 16);
-      this.fenceNE = sheet.getSubimage(240, 0, 16, 16);
-      this.fenceNW = sheet.getSubimage(208, 0, 16, 16);
-      this.fenceSW = sheet.getSubimage(208, 32, 16, 16);
-      this.fenceSE = sheet.getSubimage(240, 32, 16, 16);
-      this.fenceN = sheet.getSubimage(224, 0, 16, 16);
-      this.fenceS = sheet.getSubimage(224, 32, 16, 16);
-      this.fenceW = sheet.getSubimage(208, 16, 16, 16);
-      this.fenceE = sheet.getSubimage(240, 16, 16, 16);
+      this.nothing = sheet.getSubimage(224, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.fenceNE = sheet.getSubimage(240, 0, TILE_SIZE, TILE_SIZE);
+      this.fenceNW = sheet.getSubimage(208, 0, TILE_SIZE, TILE_SIZE);
+      this.fenceSW = sheet.getSubimage(208, 32, TILE_SIZE, TILE_SIZE);
+      this.fenceSE = sheet.getSubimage(240, 32, TILE_SIZE, TILE_SIZE);
+      this.fenceN = sheet.getSubimage(224, 0, TILE_SIZE, TILE_SIZE);
+      this.fenceS = sheet.getSubimage(224, 32, TILE_SIZE, TILE_SIZE);
+      this.fenceW = sheet.getSubimage(208, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.fenceE = sheet.getSubimage(240, TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
       BufferedImage Psheet = ImageIO.read(new File(
           "./resources/trainerSheet.png"));
 
-      trainerN[0] = Psheet.getSubimage(0, 0, 16, 16);
-      trainerN[1] = Psheet.getSubimage(16, 0, 16, 16);
-      trainerN[2] = Psheet.getSubimage(32, 0, 16, 16);
+      trainerN[0] = Psheet.getSubimage(0, 0, TILE_SIZE, TILE_SIZE);
+      trainerN[1] = Psheet.getSubimage(TILE_SIZE, 0, TILE_SIZE, TILE_SIZE);
+      trainerN[2] = Psheet.getSubimage(32, 0, TILE_SIZE, TILE_SIZE);
 
-      trainerE[0] = Psheet.getSubimage(0, 16, 16, 16);
-      trainerE[1] = Psheet.getSubimage(16, 16, 16, 16);
-      trainerE[2] = Psheet.getSubimage(32, 16, 16, 16);
+      trainerE[0] = Psheet.getSubimage(0, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      trainerE[1] = Psheet.getSubimage(TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      trainerE[2] = Psheet.getSubimage(32, TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
-      trainerS[0] = Psheet.getSubimage(0, 32, 16, 16);
-      trainerS[1] = Psheet.getSubimage(16, 32, 16, 16);
-      trainerS[2] = Psheet.getSubimage(32, 32, 16, 16);
+      trainerS[0] = Psheet.getSubimage(0, 32, TILE_SIZE, TILE_SIZE);
+      trainerS[1] = Psheet.getSubimage(TILE_SIZE, 32, TILE_SIZE, TILE_SIZE);
+      trainerS[2] = Psheet.getSubimage(32, 32, TILE_SIZE, TILE_SIZE);
 
-      trainerW[0] = Psheet.getSubimage(0, 48, 16, 16);
-      trainerW[1] = Psheet.getSubimage(16, 48, 16, 16);
-      trainerW[2] = Psheet.getSubimage(32, 48, 16, 16);
+      trainerW[0] = Psheet.getSubimage(0, 48, TILE_SIZE, TILE_SIZE);
+      trainerW[1] = Psheet.getSubimage(TILE_SIZE, 48, TILE_SIZE, TILE_SIZE);
+      trainerW[2] = Psheet.getSubimage(32, 48, TILE_SIZE, TILE_SIZE);
 
       this.loaded = true;
     } catch (Exception e) {
