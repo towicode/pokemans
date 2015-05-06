@@ -16,11 +16,11 @@ import controller.Engine;
 public abstract class Pokeman {
   
   public final SpriteLoader loader = new SpriteLoader();;
-  private final Double A4 = 0.000001826265179475945;
-  private final Double A3 = -0.0003948867186873706;
-  private final Double A2 = 0.030013899160742596;
-  private final Double A1 = -1.3674011425582648;
-  private final double A0 = 51.00964742917333;
+  //private final Double A4 = 0.000001826265179475945;
+  //private final Double A3 = -0.0003948867186873706;
+  //private final Double A2 = 0.030013899160742596;
+  //private final Double A1 = -1.3674011425582648;
+  //private final double A0 = 51.00964742917333;
 
   
   private String name;
@@ -36,21 +36,23 @@ public abstract class Pokeman {
     // http://i.imgur.com/loj05N9.png
 
     // 4 part calculation c1-> c4
-    double c1 = A4 * Math.pow(level, 4);
-    double c2 = A3 * Math.pow(level, 3);
-    double c3 = A2 * Math.pow(level, 2);
-    double c4 = A1 * level;
-    this.toCatch = (int) (c1 + c2 + c3 + c4 + A0);
+    // double c1 = A4 * Math.pow(level, 4);
+    // double c2 = A3 * Math.pow(level, 3);
+    // double c3 = A2 * Math.pow(level, 2);
+    // double c4 = A1 * level;
+    // this.toCatch = (int) (c1 + c2 + c3 + c4 + A0);
 
-    this.toRun = 100 - toCatch * 2;
+    // this.toRun = 100 - toCatch * 2;
 
   }
 
-  public boolean tryToCatch() {
+  public boolean tryToCatch(int angry, int eating) {
     Random r = new Random();
     int Low = 0;
     int High = 100;
     int rand = r.nextInt(High - Low) + Low;
+    this.toCatch = 50+eating*5-angry*3;
+    
 
     if (rand < toCatch) {
       //Engine.getTrainer().addPokemon(this); gets taken care of in battle
@@ -94,7 +96,8 @@ public abstract class Pokeman {
 	  return loader.GetPokeman(this.getName());
   }
 
-  public boolean tryToRun(int battleLength) {
+  public boolean tryToRun(int battleLength, int angry, int eating) {
+	  this.toRun = 50-eating*10+angry*4+battleLength;
     return checkRun() || battleLength > 10;
   }
 }

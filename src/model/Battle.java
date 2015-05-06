@@ -92,7 +92,7 @@ public class Battle {
 
         animation = 0;
 
-        if (enemy.tryToRun(battleLength)) {
+        if (enemy.tryToRun(battleLength, angry, eating)) {
           currentlySelected = NONE_SELECTED;
           Battle.allowInput = false;
 
@@ -145,7 +145,7 @@ public class Battle {
 
         animation = 0;
 
-        if (enemy.tryToRun(battleLength)) {
+        if (enemy.tryToRun(battleLength, angry, eating)) {
           currentlySelected = NONE_SELECTED;
           Battle.allowInput = false;
 
@@ -254,7 +254,7 @@ public class Battle {
         player.getItems().get(0).setQuantity(poke_amt - 1);
 
         statusText = "You Throw a ball at the pokeman.";
-        if (enemy.tryToCatch()) {
+        if (enemy.tryToCatch(angry, eating)) {
           currentlySelected = NONE_SELECTED; // to deselect
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
             try {
@@ -267,7 +267,7 @@ public class Battle {
           player.addPokemon(enemy);
           Engine.setBattle(null);
           Battle.allowInput = true;
-        } else if (enemy.tryToRun(battleLength)) {
+        } else if (enemy.tryToRun(battleLength, angry, eating)) {
           statusText = "The Pokeman Ran Away...";
           currentlySelected = NONE_SELECTED; // to deselect
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {

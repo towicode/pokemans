@@ -4,7 +4,11 @@ import java.awt.Graphics2D;
 
 import model.Keyboard;
 import abstracts.GameMenu;
-
+/**
+ * 
+ * End menu of the game should display the stats of the game: remaining balls, steps taken, and pokemon captured.
+ *
+ */
 public class endMenu extends GameMenu {
 
   @Override

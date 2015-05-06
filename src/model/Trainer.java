@@ -142,17 +142,21 @@ public class Trainer {
       break;
     }
     step_counter++;
+    
+    if (step_counter >= 500) {
+    	//TODO: Game over screen
+    }
 
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;
       if (r < ENCOUNTER_RATE) { // TODO
-        r = (int) (Math.random() * (MAP_1_MAX_LEVEL - 0)) + 0; // level
+        r = (int) (Math.random() * (MAP_1_MAX_LEVEL - 1)) + 1; // level
         int poke_roll = (int) (Math.random() * (100 - 0)) + 0;
         Pokeman x = new Pikachu("Pikachu", r);
 
         if (map.getId() == 1) {
 
-          r = (int) (Math.random() * (MAP_1_MAX_LEVEL - 0)) + 0; // map 1 level
+          r = (int) (Math.random() * (MAP_1_MAX_LEVEL - 1)) + 1; // map 1 level
                                                                  // 40
 
           if (poke_roll < 70)
@@ -171,7 +175,7 @@ public class Trainer {
 
         } else if (map.getId() == 2) {
 
-          r = (int) (Math.random() * (MAP_2_MAX_LEVEL - 0)) + 0; // map 2 level
+          r = (int) (Math.random() * (MAP_2_MAX_LEVEL - 1)) + 1; // map 2 level
                                                                  // 50
 
           x = new Bulbasaur("Bulbasaur", r);
@@ -191,7 +195,7 @@ public class Trainer {
 
         } else {
 
-          r = (int) (Math.random() * (MAP_3_MAX_LEVEL - 0)) + 0; // map 3 level
+          r = (int) (Math.random() * (MAP_3_MAX_LEVEL - 1)) + 1; // map 3 level
                                                                  // 70
 
           x = new Eevee("Eevee", r);
