@@ -264,6 +264,7 @@ public class Battle {
               e.printStackTrace();
             }
           }
+          player.addPokemon(enemy);
           Engine.setBattle(null);
           Battle.allowInput = true;
         } else if (enemy.tryToRun(battleLength)) {
