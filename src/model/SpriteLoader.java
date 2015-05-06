@@ -91,6 +91,11 @@ public class SpriteLoader {
   private BufferedImage trainerE[] = new BufferedImage[3];
   private BufferedImage trainerW[] = new BufferedImage[3];
 
+  private BufferedImage trainerBN[] = new BufferedImage[3];
+  private BufferedImage trainerBS[] = new BufferedImage[3];
+  private BufferedImage trainerBE[] = new BufferedImage[3];
+  private BufferedImage trainerBW[] = new BufferedImage[3];
+
   public SpriteLoader() {
     try {
       BufferedImage sheet = ImageIO.read(new File("./resources/tilesheet.png"));
@@ -122,7 +127,8 @@ public class SpriteLoader {
       this.ramp_E_1 = sheet.getSubimage(0, 0, TILE_SIZE, TILE_SIZE);
       this.ramp_E_2 = sheet.getSubimage(0, TILE_SIZE, TILE_SIZE, TILE_SIZE);
       this.ramp_W_1 = sheet.getSubimage(TILE_SIZE, 0, TILE_SIZE, TILE_SIZE);
-      this.ramp_W_2 = sheet.getSubimage(TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      this.ramp_W_2 = sheet.getSubimage(TILE_SIZE, TILE_SIZE, TILE_SIZE,
+          TILE_SIZE);
       this.ramp_N_1 = sheet.getSubimage(0, 32, TILE_SIZE, TILE_SIZE);
       this.ramp_N_2 = sheet.getSubimage(TILE_SIZE, 32, TILE_SIZE, TILE_SIZE);
       this.shrub = sheet.getSubimage(32, 0, TILE_SIZE, TILE_SIZE);
@@ -178,7 +184,8 @@ public class SpriteLoader {
       trainerN[2] = Psheet.getSubimage(32, 0, TILE_SIZE, TILE_SIZE);
 
       trainerE[0] = Psheet.getSubimage(0, TILE_SIZE, TILE_SIZE, TILE_SIZE);
-      trainerE[1] = Psheet.getSubimage(TILE_SIZE, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      trainerE[1] = Psheet.getSubimage(TILE_SIZE, TILE_SIZE, TILE_SIZE,
+          TILE_SIZE);
       trainerE[2] = Psheet.getSubimage(32, TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
       trainerS[0] = Psheet.getSubimage(0, 32, TILE_SIZE, TILE_SIZE);
@@ -189,7 +196,29 @@ public class SpriteLoader {
       trainerW[1] = Psheet.getSubimage(TILE_SIZE, 48, TILE_SIZE, TILE_SIZE);
       trainerW[2] = Psheet.getSubimage(32, 48, TILE_SIZE, TILE_SIZE);
 
-      this.loaded = true;
+      BufferedImage PBikesheet = ImageIO.read(new File(
+          "./resources/TrainerBicycleSheet.png"));
+
+      trainerBN[0] = PBikesheet.getSubimage(0, 0, TILE_SIZE, TILE_SIZE);
+      trainerBN[1] = PBikesheet.getSubimage(TILE_SIZE, 0, TILE_SIZE, TILE_SIZE);
+      trainerBN[2] = PBikesheet.getSubimage(32, 0, TILE_SIZE, TILE_SIZE);
+
+      trainerBE[0] = PBikesheet.getSubimage(0, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+      trainerBE[1] = PBikesheet.getSubimage(TILE_SIZE, TILE_SIZE, TILE_SIZE,
+          TILE_SIZE);
+      trainerBE[2] = PBikesheet
+          .getSubimage(32, TILE_SIZE, TILE_SIZE, TILE_SIZE);
+
+      trainerBS[0] = PBikesheet.getSubimage(0, 32, TILE_SIZE, TILE_SIZE);
+      trainerBS[1] = PBikesheet
+          .getSubimage(TILE_SIZE, 32, TILE_SIZE, TILE_SIZE);
+      trainerBS[2] = PBikesheet.getSubimage(32, 32, TILE_SIZE, TILE_SIZE);
+
+      trainerBW[0] = PBikesheet.getSubimage(0, 48, TILE_SIZE, TILE_SIZE);
+      trainerBW[1] = PBikesheet
+          .getSubimage(TILE_SIZE, 48, TILE_SIZE, TILE_SIZE);
+      trainerBW[2] = PBikesheet.getSubimage(32, 48, TILE_SIZE, TILE_SIZE);
+
     } catch (Exception e) {
       System.err
           .println("Pokemans could not load it's sprites " + e.toString());
@@ -304,34 +333,70 @@ public class SpriteLoader {
   }
 
   public BufferedImage getPlayer(int animationSequence, boolean ridingBicycle) {
-    switch (animationSequence) {
-    case 0:
-      return trainerS[0];
-    case 1:
-      return trainerS[1];
-    case 2:
-      return trainerS[2];
-    case 3:
-      return trainerW[0];
-    case 4:
-      return trainerW[1];
-    case 5:
-      return trainerW[2];
-    case 6:
-      return trainerN[0];
-    case 7:
-      return trainerN[1];
-    case 8:
-      return trainerN[2];
-    case 9:
-      return trainerE[0];
-    case 10:
-      return trainerE[1];
-    case 11:
-      return trainerE[2];
-    default:
-      return trainerS[1];
+
+    if (!ridingBicycle) {
+      switch (animationSequence) {
+      case 0:
+        return trainerS[0];
+      case 1:
+        return trainerS[1];
+      case 2:
+        return trainerS[2];
+      case 3:
+        return trainerW[0];
+      case 4:
+        return trainerW[1];
+      case 5:
+        return trainerW[2];
+      case 6:
+        return trainerN[0];
+      case 7:
+        return trainerN[1];
+      case 8:
+        return trainerN[2];
+      case 9:
+        return trainerE[0];
+      case 10:
+        return trainerE[1];
+      case 11:
+        return trainerE[2];
+      default:
+        return trainerS[1];
+      }
+
+    } else {
+
+      switch (animationSequence) {
+      case 0:
+        return trainerBS[0];
+      case 1:
+        return trainerBS[1];
+      case 2:
+        return trainerBS[2];
+      case 3:
+        return trainerBW[0];
+      case 4:
+        return trainerBW[1];
+      case 5:
+        return trainerBW[2];
+      case 6:
+        return trainerBN[0];
+      case 7:
+        return trainerBN[1];
+      case 8:
+        return trainerBN[2];
+      case 9:
+        return trainerBE[0];
+      case 10:
+        return trainerBE[1];
+      case 11:
+        return trainerBE[2];
+      default:
+        return trainerBS[1];
+      }
+
     }
+
   }
 
   public BufferedImage GetPokeman(String name) {

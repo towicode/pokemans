@@ -1,5 +1,6 @@
 package model;
 
+import item.items.Bicycle;
 import item.items.Pokeball;
 
 import java.awt.Graphics;
@@ -36,7 +37,8 @@ import controller.Engine;
 
 public class Trainer {
 
-  private static final int MOVEMENT_SPEED_LIMITER = 30; // default 120
+  private static final int MOVEMENT_SPEED_LIMITER = 120; // default 120
+  private static final int BIKE_MOVEMENT_LIMTIER = 80;
   private static final int MAP_3_MAX_LEVEL = 70;
   private static final int MAP_2_MAX_LEVEL = 50;
   private static final int MAP_1_MAX_LEVEL = 40;
@@ -79,7 +81,9 @@ public class Trainer {
     this.pokeman = new ArrayList<Pokeman>();
 
     Item pokeballs = new Pokeball("PokeBall", "For catching wild pokeman.", 30);
+    Item bike = new Bicycle("Bicycle", "Press B to ride fast!.", 1);
     this.items.add(pokeballs);
+    this.items.add(bike);
 
     this.loader = loader;
     this.tileX = 7;
@@ -304,7 +308,7 @@ public class Trainer {
    */
   public void draw(Graphics graphics) {
     if (mySprite == null) {
-      updateAppearance(); // let's try to fix it first.. just incase..
+      updateAppearance(); // attempt to update the apperance
     }
     if (mySprite != null) {
 
@@ -423,6 +427,14 @@ public class Trainer {
     if (tileX == destX && tileY == destY)
       return step_ensure; // We're at our destination.
 
+    // First we'll slow down the game depending on if you're riding a bike or
+    // not
+    // settings the correct animation frame 0-3
+    if (ridingBicycle) {
+
+      lastAnimationSequence -= MOVEMENT_SPEED_LIMITER - BIKE_MOVEMENT_LIMTIER;
+
+    }
     if (lastAnimationSequence <= System.currentTimeMillis()
         - MOVEMENT_SPEED_LIMITER) {
       lastAnimationSequence = System.currentTimeMillis();
@@ -431,6 +443,8 @@ public class Trainer {
         animationFrame = 0;
         appearanceUpdateFlag = true;
       }
+
+      // then we'll adjust the map, not the person based on the movement.
       switch (direction) {
       case NORTH:
         map.adjustDown();

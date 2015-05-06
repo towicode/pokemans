@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import abstracts.GameMenu;
+import abstracts.Item;
 import menus.Menu;
 import model.Battle;
 import model.Keyboard;
@@ -182,7 +183,15 @@ public class Engine extends Canvas implements Runnable {
         GameMenu menu = new Menu();
         Engine.setMenu(menu);
         Engine.setInMenu(true);
+      } else if (e.getKeyCode() == KeyEvent.VK_B) {
 
+        // for riding the bike
+
+        for (Item x : trainer.getItems()) {
+          if (x.getName().contains("Bicycle")) {
+            trainer.toggleBicycle();
+          }
+        }
       }
   }
 
