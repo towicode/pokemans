@@ -36,7 +36,7 @@ import controller.Engine;
 
 public class Trainer {
 
-  private static final int MOVEMENT_SPEED_LIMITER = 30; //default 120
+  private static final int MOVEMENT_SPEED_LIMITER = 30; // default 120
   private static final int MAP_3_MAX_LEVEL = 70;
   private static final int MAP_2_MAX_LEVEL = 50;
   private static final int MAP_1_MAX_LEVEL = 40;
@@ -530,8 +530,7 @@ public class Trainer {
   }
 
   public void addPokemon(Pokeman pokeman) {
-	if(!this.pokeman.contains(pokeman))
-		this.pokeman.add(pokeman);
+    this.pokeman.add(pokeman);
 
   }
 
