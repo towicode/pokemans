@@ -530,7 +530,8 @@ public class Trainer {
   }
 
   public void addPokemon(Pokeman pokeman) {
-    this.pokeman.add(pokeman);
+	if(!this.pokeman.contains(pokeman))
+		this.pokeman.add(pokeman);
 
   }
 
