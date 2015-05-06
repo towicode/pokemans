@@ -83,6 +83,8 @@ public class SpriteLoader {
   private BufferedImage sandslashSprite;
 
   private static BufferedImage groundSprite;
+  
+  private static BufferedImage logo;
 
   // main-guy sheet
 
@@ -100,6 +102,8 @@ public class SpriteLoader {
     try {
       BufferedImage sheet = ImageIO.read(new File("./resources/tilesheet.png"));
 
+      logo = ImageIO.read(new File(
+          "./resources/Logo.png"));
       arbokSprite = ImageIO.read(new File(
           "./resources/PokemonSprites/arbok80x80.png "));
       pikachuSprite = ImageIO.read(new File(
@@ -432,5 +436,9 @@ public class SpriteLoader {
 
   public void setGroundSprite(BufferedImage groundSprite) {
     this.groundSprite = groundSprite;
+  }
+
+  public static BufferedImage getLogo() {
+    return logo;
   }
 }

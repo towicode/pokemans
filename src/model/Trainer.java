@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import abstracts.Item;
 import abstracts.Pokeman;
+import menus.EndMenu;
 import model.pokemons.Arbok;
 import model.pokemons.Bulbasaur;
 import model.pokemons.Butterfree;
@@ -38,8 +39,10 @@ import controller.Engine;
 
 public class Trainer {
 
-  private static final int MOVEMENT_SPEED_LIMITER = 20; // default 120
-  private static final int BIKE_MOVEMENT_LIMTIER = 80; //default 80
+  private static final int POKEBALL_INDEX = 0;
+  private static final int MAX_STEPS = 325;
+  private static final int MOVEMENT_SPEED_LIMITER = 10; // default 120
+  private static final int BIKE_MOVEMENT_LIMTIER = 80; // default 80
   private static final int MAP_3_MAX_LEVEL = 70;
   private static final int MAP_2_MAX_LEVEL = 50;
   private static final int MAP_1_MAX_LEVEL = 40;
@@ -82,17 +85,47 @@ public class Trainer {
     this.pokeman = new ArrayList<Pokeman>();
 
     Item pokeballs = new Pokeball("PokeBall", "For catching wild pokeman.", 30);
-    Item bike = new Bicycle("Bicycle", "Press B to ride fast!.", 1);
-    Item braclet = new Braclet("Braclet", "Increases capture rate.!", 1);
+    /*
+     * Item bike = new Bicycle("Bicycle", "Press B to ride fast!.", 1); Item
+     * braclet = new Braclet("Braclet", "Increases capture rate.!", 1);
+     */
     this.items.add(pokeballs);
-    this.items.add(bike);
-    this.items.add(braclet);
+    /*
+     * this.items.add(bike); this.items.add(braclet);
+     */
 
     this.loader = loader;
     this.tileX = 7;
     this.tileY = 7;
     this.destX = 7;
     this.destY = 7;
+  }
+
+  // used for the end game screen
+  public void Reset() {
+
+    this.items = new ArrayList<Item>();
+    this.pokeman = new ArrayList<Pokeman>();
+
+    Item pokeballs = new Pokeball("PokeBall", "For catching wild pokeman.", 30);
+    /*
+     * Item bike = new Bicycle("Bicycle", "Press B to ride fast!.", 1); Item
+     * braclet = new Braclet("Braclet", "Increases capture rate.!", 1);
+     */
+    this.items.add(pokeballs);
+    this.tileX = 7;
+    this.tileY = 7;
+    this.destX = 7;
+    this.destY = 7;
+
+    ridingBicycle = false;
+    direction = Direction.SOUTH;
+    appearanceUpdateFlag = false;
+    animationFrame = -1;
+    lastAnimationSequence = 0L;
+    step_ensure = 0;
+    step_counter = 0;
+
   }
 
   /**
@@ -127,7 +160,6 @@ public class Trainer {
 
     if (step_ensure <= 3) {
       return;
-
     }
 
     switch (direction) {
@@ -145,11 +177,32 @@ public class Trainer {
       break;
     }
     step_counter++;
-    
-    if (step_counter >= 500) {
-    	//TODO: Game over screen
+
+    // check if over step
+    if (step_counter >= MAX_STEPS) {
+      Engine.setMenu(new EndMenu());
+      Engine.setGameOver(true);
     }
 
+    // check if out of balls
+    if (this.items.get(POKEBALL_INDEX).getQuantity() <= 0) {
+      Engine.setMenu(new EndMenu());
+      Engine.setGameOver(true);
+    }
+
+    // check pokemon
+    checkPokemonEncounter(map);
+
+    // check teleportation
+    checkTeleportation(map);
+
+    System.out.println("Location is " + getTileX() + " " + getTileY()
+        + "  Steps Taken: " + step_counter);
+    step_ensure = 0;
+
+  }
+
+  private void checkPokemonEncounter(Map map) {
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;
       if (r < ENCOUNTER_RATE) { // TODO
@@ -218,7 +271,7 @@ public class Trainer {
 
         }
         Battle encounter = new Battle(x, this);
-        Engine.setEncounterFlag = true;
+        Engine.setSetEncounterFlag(true);
         Engine.setBattle(encounter);
 
         // Notify engine.
@@ -227,6 +280,9 @@ public class Trainer {
       }
     }
 
+  }
+
+  private void checkTeleportation(Map map) {
     // HERE IS TELEPORTATION LOGIC.
 
     if (map.getId() == 1)
@@ -272,10 +328,6 @@ public class Trainer {
         this.destY = 23;
       }
 
-    System.out.println("Location is " + getTileX() + " " + getTileY()
-        + "  Steps Taken: " + step_counter);
-    step_ensure = 0;
-
   }
 
   /**
@@ -301,6 +353,10 @@ public class Trainer {
     }
 
     return false;
+
+  }
+
+  public void CheckTeleportation() {
 
   }
 

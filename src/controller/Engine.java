@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import abstracts.GameMenu;
 import abstracts.Item;
 import menus.Menu;
+import menus.StartMenu;
 import model.Battle;
 import model.Keyboard;
 import model.Map;
@@ -40,9 +41,9 @@ public class Engine extends Canvas implements Runnable {
   private final ScheduledExecutorService executor = Executors
       .newScheduledThreadPool(1);
   private Graphics2D graphics;
-  private final Runtime runtime = Runtime.getRuntime();
   private final Keyboard keyboard;
   private final SpriteLoader sprites;
+
   private static Trainer trainer;
   private static Map map;
   private static Battle battle;
@@ -50,20 +51,23 @@ public class Engine extends Canvas implements Runnable {
 
   private static boolean isInBattle;
   private static boolean isInMenu;
-  public static boolean setEncounterFlag = false;
+  private static boolean setEncounterFlag = false;
+  private static boolean isGameOver = false;
+  private static boolean isGameStarted = false;
 
   public static void main(String args[]) {
     new Engine();
   }
 
   public Engine() {
-	
+
     this.sprites = new SpriteLoader();
     Engine.trainer = new Trainer(sprites);
     Engine.map = new Map(sprites);
-    Engine.menu = new Menu();
+    Engine.menu = new StartMenu();
     map.loadStartingMap(2, 0, 0, 0);
 
+    // Jframe settings
     parentframe = new GameWindow();
     frame = parentframe.gamePanel;
     frame.add(this);
@@ -92,58 +96,88 @@ public class Engine extends Canvas implements Runnable {
 
   @Override
   public void run() {
+
+    // first we'll set the general background color to black
     graphics.setColor(Color.BLACK);
 
+    // fill the background with a color to reduce tearing.
     graphics.fillRect(0, 0, frame.getWidth(), frame.getHeight());
 
-    if (setEncounterFlag) {
+    if (!isGameStarted) {
+      graphics.setColor(Color.WHITE);
+      menu.draw(graphics);
+      menu.update(keyboard);
+      return;
+    }
 
-      for (int i = 0; i < 5; i++) {
+    // if the game is over, only draw the end game menu
+    if (isGameOver) {
+      graphics.setColor(Color.WHITE);
+      menu.draw(graphics);
+      menu.update(keyboard);
+    } else {
 
-        if (i % 2 == 0) {
-          graphics.setColor(Color.cyan);
-          graphics.fillRect(0, 0, 240, 180);
-        } else {
-          graphics.setColor(Color.blue);
-          graphics.fillRect(0, 0, 240, 180);
+      // Lets check and see if we need to draw the encounter animation
+      if (isSetEncounterFlag()) {
+
+        // this for loop draws the encounter animation
+        for (int i = 0; i < 5; i++) {
+
+          if (i % 2 == 0) {
+            graphics.setColor(Color.cyan);
+            graphics.fillRect(0, 0, 240, 180);
+          } else {
+            graphics.setColor(Color.blue);
+            graphics.fillRect(0, 0, 240, 180);
+          }
+          try {
+            Thread.sleep(200);
+          } catch (InterruptedException e) {
+            e.printStackTrace();
+          }
         }
+        setSetEncounterFlag(false);
+
+      }
+
+      // reset the color;
+      graphics.setColor(Color.BLACK);
+
+      // basic battle logic.
+      if (battle != null)
+        isInBattle = true;
+      else
+        isInBattle = false;
+
+      // if we're in battle we need to draw the battle scene and stop drawing
+      // the
+      // world
+      if (isInBattle) {
+        battle.draw(graphics);
         try {
-          Thread.sleep(200);
+          battle.update(keyboard);
         } catch (InterruptedException e) {
           e.printStackTrace();
         }
-      }
-      setEncounterFlag = false;
 
-    }
-
-    graphics.setColor(Color.BLACK);
-
-    if (battle != null)
-      isInBattle = true;
-    else
-      isInBattle = false;
-    if (isInBattle) {
-      battle.draw(graphics);
-      try {
-        battle.update(keyboard);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
       }
 
-    }
-    if (!isInBattle) {
+      // draw the world.
+      if (!isInBattle) {
 
-      if (isInMenu) {
-        graphics.setColor(Color.white);
-        menu.draw(graphics);
-        menu.update(keyboard);
-        graphics.setColor(Color.BLACK);
+        // draw the menu.
+        if (isInMenu) {
+          graphics.setColor(Color.white);
+          menu.draw(graphics);
+          menu.update(keyboard);
+          graphics.setColor(Color.BLACK);
 
-      } else {
-        map.draw(graphics);
-        trainer.draw(graphics);
-        trainer.update(keyboard, map);
+        } else {
+          // draw the world
+          map.draw(graphics);
+          trainer.draw(graphics);
+          trainer.update(keyboard, map);
+        }
       }
     }
     // sync the framerate to reduce stutter
@@ -176,17 +210,26 @@ public class Engine extends Canvas implements Runnable {
 
   public void handleKeyboardInput(KeyEvent e) {
 
-    // For spawning the menu
+    // For spawning the menu // also for spawning bike.
 
-    if (!isInBattle())
-      if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+    if (!isInBattle() || isGameOver || !isGameStarted)
+      if (e.getKeyCode() == KeyEvent.VK_ENTER
+          || e.getKeyCode() == KeyEvent.VK_X) {
+
+        // This logic handles exiting the menu, but only the main one.
+        if (e.getKeyCode() == KeyEvent.VK_X) {
+          if (menu instanceof Menu) {
+            Engine.setInMenu(false);
+            return;
+          }
+        }
+
         GameMenu menu = new Menu();
         Engine.setMenu(menu);
         Engine.setInMenu(true);
+
       } else if (e.getKeyCode() == KeyEvent.VK_B) {
-
         // for riding the bike
-
         for (Item x : trainer.getItems()) {
           if (x.getName().contains("Bicycle")) {
             trainer.toggleBicycle();
@@ -227,4 +270,27 @@ public class Engine extends Canvas implements Runnable {
     Engine.trainer = trainer;
   }
 
+  public static boolean isGameOver() {
+    return isGameOver;
+  }
+
+  public static void setGameOver(boolean isGameOver) {
+    Engine.isGameOver = isGameOver;
+  }
+
+  public static boolean isGameStarted() {
+    return isGameStarted;
+  }
+
+  public static void setGameStarted(boolean isGameStarted) {
+    Engine.isGameStarted = isGameStarted;
+  }
+
+  public static boolean isSetEncounterFlag() {
+    return setEncounterFlag;
+  }
+
+  public static void setSetEncounterFlag(boolean setEncounterFlag) {
+    Engine.setEncounterFlag = setEncounterFlag;
+  }
 }
