@@ -6,6 +6,7 @@ import java.awt.Composite;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import abstracts.Item;
 import abstracts.Pokeman;
 import controller.Engine;
 
@@ -25,6 +26,11 @@ import controller.Engine;
 
 public class Battle {
 
+  private static final int RUN = 3;
+  private static final int THROW_BALL = 2;
+  private static final int THROW_ROCK = 1;
+  private static final int THROW_BAIT = 0;
+  private static final int POKEBALL_INDEX = 0;
   public Pokeman enemy;
   public int battleLength;
   public Trainer player;
@@ -209,8 +215,8 @@ public class Battle {
    */
   public void throwBall(Keyboard keyboard) {
     animationColor = 2;
-    player.ballCount--;
-    statusText = "You Throw a ball at the pokeman.";
+    // get amount of balls
+    int poke_amt = player.getItems().get(0).getQuantity();
 
     Thread t = new Thread() {
       public void run() {
@@ -224,9 +230,28 @@ public class Battle {
             e.printStackTrace();
           }
         }
-
         animation = 0;
 
+        if (poke_amt == 0) {
+
+          statusText = "You're out of pokeballs!";
+
+          while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
+            try {
+              Thread.sleep(50);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          }
+          Engine.setBattle(null);
+          Battle.allowInput = true;
+          return;
+
+        }
+        // set minus 1
+        player.getItems().get(0).setQuantity(poke_amt - 1);
+
+        statusText = "You Throw a ball at the pokeman.";
         if (enemy.tryToCatch()) {
           currentlySelected = 5; // to deselect
           while (!keyboard.isKeyPressed(KeyEvent.VK_C)) {
@@ -265,6 +290,8 @@ public class Battle {
   }
 
   public void draw(Graphics2D graphics) {
+    Trainer trainer = Engine.getTrainer();
+    Item pokeballs = trainer.getItems().get(POKEBALL_INDEX);
     graphics.drawImage(SpriteLoader.getGroundSprite(), 100, 45, null);
     graphics.drawImage(enemy.getSprite(), 130, 0, null);
     graphics.setColor(Color.WHITE);
@@ -279,7 +306,7 @@ public class Battle {
     graphics.drawRect(0, 160, 120, 20);
     graphics.drawString("Throw Rock", 15, 175);
     graphics.drawRect(120, 140, 120, 20);
-    graphics.drawString("Balls: " + 30, 135, 120);
+    graphics.drawString("Balls: " + pokeballs.getQuantity(), 135, 115);
     graphics.drawString("Throw Ball", 135, 155);
     graphics.drawRect(120, 160, 120, 20);
     graphics.drawString("Run", 135, 175);
@@ -327,11 +354,10 @@ public class Battle {
           AlphaComposite.SRC_OVER, alpha);
       graphics.setComposite(alcom);
 
-      graphics.fillRect(0, 0, 240, 180);
+      graphics.fillRect(0, 0, Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
 
       // reset the composite
       graphics.setComposite(c);
-
       // reset the color
       graphics.setColor(d);
 
@@ -369,34 +395,34 @@ public class Battle {
 
     // determines what selection we currently are at.
 
-    if (currentlySelected == 0 && keyCode == 40) {
-      currentlySelected = 1;
-    } else if (currentlySelected == 0 && keyCode == 39) {
-      currentlySelected = 2;
+    if (currentlySelected == THROW_BAIT && keyCode == 40) {
+      currentlySelected = THROW_ROCK;
+    } else if (currentlySelected == THROW_BAIT && keyCode == 39) {
+      currentlySelected = THROW_BALL;
     }
 
-    else if (currentlySelected == 1 && keyCode == 38) {
-      currentlySelected = 0;
+    else if (currentlySelected == THROW_ROCK && keyCode == 38) {
+      currentlySelected = THROW_BAIT;
     }
 
-    else if (currentlySelected == 1 && keyCode == 39) {
-      currentlySelected = 3;
+    else if (currentlySelected == THROW_ROCK && keyCode == 39) {
+      currentlySelected = RUN;
     }
 
-    else if (currentlySelected == 2 && keyCode == 37) {
-      currentlySelected = 0;
+    else if (currentlySelected == THROW_BALL && keyCode == 37) {
+      currentlySelected = THROW_BAIT;
     }
 
-    else if (currentlySelected == 2 && keyCode == 40) {
-      currentlySelected = 3;
+    else if (currentlySelected == THROW_BALL && keyCode == 40) {
+      currentlySelected = RUN;
     }
 
-    else if (currentlySelected == 3 && keyCode == 38) {
-      currentlySelected = 2;
+    else if (currentlySelected == RUN && keyCode == 38) {
+      currentlySelected = THROW_BALL;
     }
 
-    else if (currentlySelected == 3 && keyCode == 37) {
-      currentlySelected = 1;
+    else if (currentlySelected == RUN && keyCode == 37) {
+      currentlySelected = THROW_ROCK;
     }
 
     else if (keyCode == KeyEvent.VK_C) {

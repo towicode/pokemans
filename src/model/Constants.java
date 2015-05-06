@@ -11,6 +11,10 @@ package model;
  *
  */
 public class Constants {
+  
+  public static final int FRAME_WIDTH = 240;
+  public static final int FRAME_HEIGHT = 180;
+
 
   public static final int NOT_WALKABLE_TEXTURES[] = { 35, 15, 36, 3, 8, 9, 10,
       11, 12, 13, 14, 15, 16, 24, 26, 27, 28, 29, 30, 32, 40, 41, 42, 43, 44,

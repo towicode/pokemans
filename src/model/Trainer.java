@@ -60,7 +60,6 @@ public class Trainer {
   private int animationFrame = -1;
   private long lastAnimationSequence = 0L;
   private int step_ensure = 0;
-  public int ballCount = 30;
 
   // inventory stuff
   private ArrayList<Item> items;
@@ -143,8 +142,8 @@ public class Trainer {
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;
       if (r < ENCOUNTER_RATE) { // TODO
-        r = (int) (Math.random() * (100 - 0)) + 0; // level
-        int poke_roll = (int) (Math.random() * (MAP_1_MAX_LEVEL - 0)) + 0;
+        r = (int) (Math.random() * (MAP_1_MAX_LEVEL - 0)) + 0; // level
+        int poke_roll = (int) (Math.random() * (100 - 0)) + 0;
         Pokeman x = new Pikachu("Pikachu", r);
 
         if (map.getId() == 1) {
@@ -566,13 +565,4 @@ public class Trainer {
   public void setDirection(Direction direction) {
     this.direction = direction;
   }
-
-  public int getBallCount() {
-    return ballCount;
-  }
-
-  public void setBallCount(int ballCount) {
-    this.ballCount = ballCount;
-  }
-
 }

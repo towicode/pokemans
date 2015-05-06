@@ -15,11 +15,17 @@ import java.awt.Graphics2D;
  */
 public class Map {
 
+  private static final int TILE_SIZE = 16;
+
+  private static final int MAP_WIDTH = 50;
+
+  private static final int MAP_HEIGHT = 30;
+
   private final SpriteLoader sprites;
 
-  private Tile backGroundTiles[][] = new Tile[50][30];
-  private Tile tiles[][] = new Tile[50][30];
-  private Tile grassTiles[][] = new Tile[50][30];
+  private Tile backGroundTiles[][] = new Tile[MAP_WIDTH][MAP_HEIGHT];
+  private Tile tiles[][] = new Tile[MAP_WIDTH][MAP_HEIGHT];
+  private Tile grassTiles[][] = new Tile[MAP_WIDTH][MAP_HEIGHT];
   private int grassTileRaw[]; // used for IsInGrass
   private int id;
 
@@ -32,12 +38,12 @@ public class Map {
   public void LoadThirdMap(int up_offset, int down_offset, int left_offset,
       int right_offset) {
     int counter = 0;
-    for (int y = 0; y < 30; y++) {
-      for (int x = 0; x < 50; x++) {
-        tiles[x][y] = new Tile(x * 16, y * 16, Constants.flatMap[counter], true);
-        backGroundTiles[x][y] = new Tile(x * 16, y * 16,
+    for (int y = 0; y < MAP_HEIGHT; y++) {
+      for (int x = 0; x < MAP_WIDTH; x++) {
+        tiles[x][y] = new Tile(x * TILE_SIZE, y * TILE_SIZE, Constants.flatMap[counter], true);
+        backGroundTiles[x][y] = new Tile(x * TILE_SIZE, y * TILE_SIZE,
             Constants.flatMap_base[counter], true);
-        grassTiles[x][y] = new Tile(x * 16, y * 16,
+        grassTiles[x][y] = new Tile(x * TILE_SIZE, y * TILE_SIZE,
             Constants.flatMap_grass[counter], true);
         counter++;
       }
@@ -71,13 +77,13 @@ public class Map {
   public void LoadSecondMap(int up_offset, int down_offset, int left_offset,
       int right_offset) {
     int counter = 0;
-    for (int y = 0; y < 30; y++) {
-      for (int x = 0; x < 50; x++) {
-        tiles[x][y] = new Tile(x * 16, y * 16, Constants.waterMap[counter],
+    for (int y = 0; y < MAP_HEIGHT; y++) {
+      for (int x = 0; x < MAP_WIDTH; x++) {
+        tiles[x][y] = new Tile(x * TILE_SIZE, y * TILE_SIZE, Constants.waterMap[counter],
             true);
-        backGroundTiles[x][y] = new Tile(x * 16, y * 16,
+        backGroundTiles[x][y] = new Tile(x * TILE_SIZE, y * TILE_SIZE,
             Constants.waterMap_base[counter], true);
-        grassTiles[x][y] = new Tile(x * 16, y * 16,
+        grassTiles[x][y] = new Tile(x * TILE_SIZE, y * TILE_SIZE,
             Constants.waterMap_grass[counter], true);
         counter++;
       }
@@ -112,12 +118,12 @@ public class Map {
   public void loadStartingMap(int up_offset, int down_offset, int left_offset,
       int right_offset) {
     int counter = 0;
-    for (int y = 0; y < 30; y++) {
-      for (int x = 0; x < 50; x++) {
-        tiles[x][y] = new Tile(x * 16, y * 16, Constants.testMap[counter], true);
-        backGroundTiles[x][y] = new Tile(x * 16, y * 16,
+    for (int y = 0; y < MAP_HEIGHT; y++) {
+      for (int x = 0; x < MAP_WIDTH; x++) {
+        tiles[x][y] = new Tile(x * TILE_SIZE, y * TILE_SIZE, Constants.testMap[counter], true);
+        backGroundTiles[x][y] = new Tile(x * TILE_SIZE, y * TILE_SIZE,
             Constants.testMap_base[counter], true);
-        grassTiles[x][y] = new Tile(x * 16, y * 16,
+        grassTiles[x][y] = new Tile(x * TILE_SIZE, y * TILE_SIZE,
             Constants.testMap_grass[counter], true);
         counter++;
       }
@@ -150,8 +156,8 @@ public class Map {
 
   public void adjustRight() {
 
-    for (int y = 0; y < 30; y++)
-      for (int x = 0; x < 50; x++) {
+    for (int y = 0; y < MAP_HEIGHT; y++)
+      for (int x = 0; x < MAP_WIDTH; x++) {
         tiles[x][y].x = tiles[x][y].x + 4;
         backGroundTiles[x][y].x = backGroundTiles[x][y].x + 4;
         grassTiles[x][y].x = grassTiles[x][y].x + 4;
@@ -161,8 +167,8 @@ public class Map {
 
   public void adjustLeft() {
 
-    for (int y = 0; y < 30; y++)
-      for (int x = 0; x < 50; x++) {
+    for (int y = 0; y < MAP_HEIGHT; y++)
+      for (int x = 0; x < MAP_WIDTH; x++) {
         tiles[x][y].x = tiles[x][y].x - 4;
         backGroundTiles[x][y].x = backGroundTiles[x][y].x - 4;
         grassTiles[x][y].x = grassTiles[x][y].x - 4;
@@ -171,8 +177,8 @@ public class Map {
 
   public void adjustUp() {
 
-    for (int y = 0; y < 30; y++)
-      for (int x = 0; x < 50; x++) {
+    for (int y = 0; y < MAP_HEIGHT; y++)
+      for (int x = 0; x < MAP_WIDTH; x++) {
         tiles[x][y].y = tiles[x][y].y - 4;
         backGroundTiles[x][y].y = backGroundTiles[x][y].y - 4;
         grassTiles[x][y].y = grassTiles[x][y].y - 4;
@@ -181,8 +187,8 @@ public class Map {
 
   public void adjustDown() {
 
-    for (int y = 0; y < 30; y++)
-      for (int x = 0; x < 50; x++) {
+    for (int y = 0; y < MAP_HEIGHT; y++)
+      for (int x = 0; x < MAP_WIDTH; x++) {
         tiles[x][y].y = tiles[x][y].y + 4;
         backGroundTiles[x][y].y = backGroundTiles[x][y].y + 4;
         grassTiles[x][y].y = grassTiles[x][y].y + 4;
@@ -191,13 +197,13 @@ public class Map {
 
   public void draw(Graphics2D graphics) {
 
-    for (int y = 0; y < 30; y++)
-      for (int x = 0; x < 50; x++) {
+    for (int y = 0; y < MAP_HEIGHT; y++)
+      for (int x = 0; x < MAP_WIDTH; x++) {
         Tile temp = tiles[x][y];
         Tile bgtemp = backGroundTiles[x][y];
         Tile grasstemp = grassTiles[x][y];
-        if ((temp.x >= -16 && temp.x <= 270)
-            && (temp.y >= -16 && temp.y <= 180)) {
+        if ((temp.x >= -TILE_SIZE && temp.x <= Constants.FRAME_WIDTH + TILE_SIZE)
+            && (temp.y >= -TILE_SIZE && temp.y <= Constants.FRAME_HEIGHT + TILE_SIZE)) {
 
           if (bgtemp.texture != 0) {
             graphics.drawImage(sprites.getTile(bgtemp.texture), bgtemp.x,
