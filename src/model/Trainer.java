@@ -40,7 +40,7 @@ import controller.Engine;
 public class Trainer {
 
   private static final int POKEBALL_INDEX = 0;
-  private static final int MAX_STEPS = 325;
+  private static final int MAX_STEPS = 500;
   private static final int MOVEMENT_SPEED_LIMITER = 120; // default 120
   private static final int BIKE_MOVEMENT_LIMTIER = 80; // default 80
   private static final int MAP_3_MAX_LEVEL = 70;

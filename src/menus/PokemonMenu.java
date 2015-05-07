@@ -16,29 +16,30 @@ public class PokemonMenu extends GameMenu {
 
   int index = 0;
   private long lastAnimationSequence;
-/**
- * draw
- * Draws the pokemon on the screen.
- * @param graphics The 2D graphics package that draws the game
- */
+
+  /**
+   * draw Draws the pokemon on the screen.
+   * 
+   * @param graphics
+   *          The 2D graphics package that draws the game
+   */
   public void draw(Graphics2D graphics) {
     Trainer trainer = Engine.getTrainer();
-    
-    
+
     if (trainer.getPokeman() == null || trainer.getPokeman().size() == 0) {
-      graphics.drawString("You don't have any...yet", 15, 15);
+      try {
+        throw new NoPokemansCaughtException(graphics);
+      } catch (NoPokemansCaughtException e) {
+      }
 
     }
 
     else {
-    	
+
       ArrayList<Pokeman> x = trainer.getPokeman();
-   
-    		
-    	  
-      
+
       Pokeman i = x.get(index);
-      
+
       graphics.drawString("Name: " + i.getName(), 15, 15);
       graphics.drawString("Level: " + i.getLevel(), 15, 45);
       graphics.drawImage(i.getSprite(), 80, 100, null);
@@ -62,10 +63,10 @@ public class PokemonMenu extends GameMenu {
 
     }
   }
-/**
- * update
- * Updates the pokemon on screen when the left or right key is pressed
- */
+
+  /**
+   * update Updates the pokemon on screen when the left or right key is pressed
+   */
   public void update(Keyboard keyboard) {
     Trainer trainer = Engine.getTrainer();
     ArrayList<Pokeman> x = trainer.getPokeman();
