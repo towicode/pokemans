@@ -1,4 +1,4 @@
-Deisgn Patterns Used
+Design Patterns Used
 MVC Pattern
 We used the model view controller pattern as the basis for our game. The controller contains the engine class, the model contain all of the classes
 used to run the game, and the view contains the GameWindow class, which draws the game on the screen.
@@ -16,7 +16,5 @@ The engine class is a builder pattern. It generates the trainer, map, battle, sp
 Iterator- Trainer + AchievementMenu
 Iterators check whether the trainer has a specific Pokeman or a specific item when determining if an achievment has been unlocked
 
-Proxy pattern- Sprite loader
-Composite Pattern
-Template- 
 Visitor- GameMenu
+The various menus change the functionality and algorithms of the GameMenu class

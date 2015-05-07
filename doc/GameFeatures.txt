@@ -1,0 +1,6 @@
+Game Features
+Hey Greg, here are some things that we implemented in our game that we feel might be work some extra credit. ;)
+-Rideable Bicycle with animations that increases player speed
+-Varying pokemon rarities by map
+-Item that increases catch chance
+-Achievements menu that gives the game replay value. 
