@@ -14,7 +14,7 @@ import abstracts.Item;
 import abstracts.Pokeman;
 
 /**
- * 
+ * EndMenu
  * End menu of the game should display the stats of the game: remaining balls,
  * steps taken, and pokemon captured.
  *
@@ -23,11 +23,12 @@ public class EndMenu extends GameMenu {
 
   private static final int LEFT_X = 15;
 
-  /**
-   * draw Draws the endgame screen
-   * 
-   * @param graphics
-   */
+  
+/**
+ * draw
+ * Draws the endgame screen
+ * @param graphics The 2D graphics package that draws the game
+ */
   public void draw(Graphics2D graphics) {
     Trainer x = Engine.getTrainer();
     Item pokeballs = x.getItems().get(0);
@@ -41,11 +42,11 @@ public class EndMenu extends GameMenu {
 
   }
 
-  /**
-   * update Restarts the game when the R key is pressed
-   * 
-   * @param keyboard
-   */
+/**
+ * update
+ * Restarts the game when the R key is pressed 
+ * @param keyboard  The keyboard object detecting the player's input
+ */
   @Override
   public void update(Keyboard keyboard) {
     // First we'll hand the actual achievement logic.

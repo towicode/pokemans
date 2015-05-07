@@ -29,13 +29,17 @@ public class GameWindow extends JFrame {
    */
   public GameWindow () {
     setLayout(null);
-    setPreferredSize(new Dimension(250, 250));
+    setPreferredSize(new Dimension(250, 300));
     setMinimumSize(new Dimension(250, 250));
-
+    JPanel Instructions = new JPanel();
+    JLabel InstructionsLabel = new JLabel("<html><body>Instructions: <br>Move with WASD or arrow keys <br>Open game menu with ENTER<br> Close menus with X <br>Ride bicycle with B</body></html>");
+    Instructions.add(InstructionsLabel);
+    
     this.gamePanel = new JPanel();
     this.gamePanel.setBounds(0, 0, 240, 180);
+    Instructions.setBounds(0, 180, 240, 300);
     add(gamePanel);
-    
+    add(Instructions);
     //TODO add instructions on how to play
   }
 

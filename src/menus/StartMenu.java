@@ -7,14 +7,22 @@ import controller.Engine;
 import model.Keyboard;
 import model.SpriteLoader;
 import abstracts.GameMenu;
-
+/**
+ * StartMenu
+ * Defines the start menu
+ * 
+ * @author Andrew Rickus
+ * @author Todd Wickizer
+ * @author Sean Gemberling
+ *
+ */
 public class StartMenu extends GameMenu {
 
   private static final int LEFT_X = 15;
 /**
  * draw
  * Displays the programmer names and the Controls for the game.
- * @param graphics
+ * @param graphics The 2D graphics package that draws the game
  */
   public void draw(Graphics2D graphics) {
     graphics.drawImage(SpriteLoader.getLogo(), 3, 5, null);
@@ -23,14 +31,11 @@ public class StartMenu extends GameMenu {
     graphics.drawString("Sean Gemberling", 15, 110);
 
     graphics.drawString("Press 'T' to play ", LEFT_X, 165);
-    graphics.drawString("Controls: WASD or arrow keysto move", LEFT_X, 125);
-    graphics.drawString("ENTER for menu, c to select", LEFT_X, 140);
-
   }
 /**
  * update
  * Starts the game when T is pressed
- * @param keyboard
+ * @param keyboard  The keyboard object detecting the player's input
  */
   @Override
   public void update(Keyboard keyboard) {

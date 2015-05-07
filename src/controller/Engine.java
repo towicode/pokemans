@@ -25,7 +25,7 @@ import model.Trainer;
 import view.GameWindow;
 
 /**
- * Defines the game engine.
+ * Engine Defines the game engine.
  * 
  * @author Andrew Rickus
  * @author Todd Wickizer
@@ -56,10 +56,9 @@ public class Engine extends Canvas implements Runnable {
   private static boolean isGameStarted = false;
 
   /**
-   * main Main for the program. Creates a new engine, which causes the rest of
-   * the game to start.
    * 
    * @param args
+   *          Command line arguments given for the program. Not used.
    */
 
   public static void main(String args[]) {
@@ -198,7 +197,7 @@ public class Engine extends Canvas implements Runnable {
   /**
    * getMenu Returns the GameMenu
    * 
-   * @return
+   * @return Returns the menu
    */
   public static GameMenu getMenu() {
     return menu;
@@ -208,6 +207,7 @@ public class Engine extends Canvas implements Runnable {
    * setMenu Sets the GameMenu
    * 
    * @param menu
+   *          The menu to be set.
    */
   public static void setMenu(GameMenu menu) {
     Engine.menu = menu;
@@ -226,6 +226,7 @@ public class Engine extends Canvas implements Runnable {
    * setInMenu Sets if the engine is in a menu
    * 
    * @param isInMenu
+   *          True if the Engine is in a menu, false if it is not
    */
   public static void setInMenu(boolean isInMenu) {
     Engine.isInMenu = isInMenu;
@@ -237,6 +238,7 @@ public class Engine extends Canvas implements Runnable {
    * Spawns the menu or the bike if a certain key is detected.
    * 
    * @param e
+   *          The keyEvent to be handled
    * 
    * 
    */
@@ -313,7 +315,7 @@ public class Engine extends Canvas implements Runnable {
   /**
    * getBattle Returns the current battle
    * 
-   * @return
+   * @return The current battle
    */
   public static Battle getBattle() {
     return battle;
@@ -342,6 +344,7 @@ public class Engine extends Canvas implements Runnable {
    * setTrainer Sets the engine's trainer
    * 
    * @param trainer
+   *          The trainer to set the engine to
    */
   public static void setTrainer(Trainer trainer) {
     Engine.trainer = trainer;
@@ -350,7 +353,7 @@ public class Engine extends Canvas implements Runnable {
   /**
    * isGameOver Checks if the game is over
    * 
-   * @return
+   * @return True if the game is over, false if it is not
    */
   public static boolean isGameOver() {
     return isGameOver;
@@ -360,6 +363,7 @@ public class Engine extends Canvas implements Runnable {
    * setGameOver Sets if the game is over(player has reached the step limit)
    * 
    * @param isGameOver
+   *          True if the game is over, false if it is not
    */
   public static void setGameOver(boolean isGameOver) {
     Engine.isGameOver = isGameOver;
@@ -368,7 +372,7 @@ public class Engine extends Canvas implements Runnable {
   /**
    * isgameStarted Return if a game has been started
    * 
-   * @return
+   * @return True if a game has been started, false if it has not.
    */
   public static boolean isGameStarted() {
     return isGameStarted;
@@ -378,24 +382,27 @@ public class Engine extends Canvas implements Runnable {
    * setGameStarted Sets that a game has been started
    * 
    * @param isGameStarted
+   *          boolean
    */
   public static void setGameStarted(boolean isGameStarted) {
     Engine.isGameStarted = isGameStarted;
   }
 
   /**
-   * isSetEncounterFlag
+   * isSetEncounterFlag Checks if a pokemon has been encountered.
    * 
-   * @return
+   * @return True if a pokemon is encounterd, false if not
    */
   public static boolean isSetEncounterFlag() {
     return setEncounterFlag;
   }
 
   /**
-   * setSetEncounterFlag
+   * setSetEncounterFlag Sets if a pokemon has been encountered. Makes the
+   * animations play to start the battle.
    * 
    * @param setEncounterFlag
+   *          true if a pokeman has been encountered, false if not
    */
   public static void setSetEncounterFlag(boolean setEncounterFlag) {
     Engine.setEncounterFlag = setEncounterFlag;

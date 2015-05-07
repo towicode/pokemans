@@ -16,7 +16,7 @@ public class StatusMenu extends GameMenu {
 /**
  * draw 
  * Displays the Trainer's stats on the screen
- * @param graphics
+ * @param graphics The 2D graphics package that draws the game
  */
   public void draw(Graphics2D graphics) {
     Trainer x = Engine.getTrainer();
@@ -31,7 +31,7 @@ public class StatusMenu extends GameMenu {
 /**
  * update
  * Unused by StatusMenu, nothing to update
- * @param keyboard
+ * @param keyboard  The keyboard object detecting the player's input
  */
   public void update(Keyboard keyboard) {
 

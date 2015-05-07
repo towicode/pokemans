@@ -220,15 +220,15 @@ public class Trainer {
         map.deleteMap1Item();
       }
     }
-    
-    if (map.getId() == 3){
-      if (this.getTileX() == 24 && this.getTileY() == 7){
+
+    if (map.getId() == 3) {
+      if (this.getTileX() == 24 && this.getTileY() == 7) {
         if (this.hasBike())
           return;
-        
-        Item Bike = new Braclet("Bicycle", "Press B to ride fast!", 1 );
+
+        Item Bike = new Braclet("Bicycle", "Press B to ride fast!", 1);
         this.items.add(Bike);
-        
+
         map.deleteMap3Item();
       }
     }
@@ -512,8 +512,9 @@ public class Trainer {
         direction = Direction.SOUTH;
         Tile xS = map.getTiles()[getTileX()][getTileY() + 1];
         for (int bad_text : Constants.NOT_WALKABLE_TEXTURES) {
-          if (xS.texture == bad_text){}
-            //return false;
+          if (xS.texture == bad_text) {
+          }
+          // return false;
         }
         destX = tileX;
         destY = tileY + 1;
@@ -690,7 +691,7 @@ public class Trainer {
   /**
    * getItems Returns the array list of the trainer's held items
    * 
-   * @returnarrayList<Item>
+   * @return ArrayList<Item>
    */
   public ArrayList<Item> getItems() {
     return items;
@@ -708,7 +709,7 @@ public class Trainer {
   /**
    * getPokeman Returns the list of pokemans that the trainer has
    * 
-   * @returnArrayList<Pokeman>
+   * @return ArrayList<Pokeman>
    */
   public ArrayList<Pokeman> getPokeman() {
     return pokeman;
