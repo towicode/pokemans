@@ -25,6 +25,7 @@ import model.Trainer;
 import view.GameWindow;
 
 /**
+ * Engine
  * Defines the game engine.
  * 
  * @author Andrew Rickus

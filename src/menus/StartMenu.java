@@ -7,7 +7,15 @@ import controller.Engine;
 import model.Keyboard;
 import model.SpriteLoader;
 import abstracts.GameMenu;
-
+/**
+ * StartMenu
+ * Defines the start menu
+ * 
+ * @author Andrew Rickus
+ * @author Todd Wickizer
+ * @author Sean Gemberling
+ *
+ */
 public class StartMenu extends GameMenu {
 
   private static final int LEFT_X = 15;

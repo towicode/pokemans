@@ -12,7 +12,7 @@ import abstracts.GameMenu;
 import abstracts.Item;
 
 /**
- * 
+ * EndMenu
  * End menu of the game should display the stats of the game: remaining balls,
  * steps taken, and pokemon captured.
  *
@@ -20,6 +20,7 @@ import abstracts.Item;
 public class EndMenu extends GameMenu {
 
   private static final int LEFT_X = 15;
+  
 /**
  * draw
  * Draws the endgame screen
