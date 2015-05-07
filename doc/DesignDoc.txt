@@ -31,3 +31,4 @@ The various menus change the functionality and algorithms of the GameMenu class
 Deficiencies: The game crashes if you get outside the map and touch the black border. This should be impossible to do in the current implementation.
 				We also could have made the Pokemon classes into an ENUM, instead of implementing them as separate classes. We were originally going
 				to have each Pokemon have their own run and catch chances, but decided to unify the chances for simplicity.
+				This was only tested on Windows. We didn't have a Mac to try it on.
