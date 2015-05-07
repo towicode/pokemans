@@ -202,6 +202,14 @@ public class Trainer {
 
   }
 
+  public boolean hasBracelet() {
+    for (Item x : this.getItems())
+      if (x.getName() == "Bracelet")
+        return true;
+
+    return false;
+  }
+
   private void checkPokemonEncounter(Map map) {
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;

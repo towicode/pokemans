@@ -212,7 +212,7 @@ public class Engine extends Canvas implements Runnable {
 
     // For spawning the menu // also for spawning bike.
 
-    if (!isInBattle() || isGameOver || !isGameStarted)
+    if (!isInBattle() && !isGameOver && isGameStarted) {
       if (e.getKeyCode() == KeyEvent.VK_ENTER
           || e.getKeyCode() == KeyEvent.VK_X) {
 
@@ -236,6 +236,7 @@ public class Engine extends Canvas implements Runnable {
           }
         }
       }
+    }
   }
 
   public static Map getMap() {

@@ -5,8 +5,10 @@ import java.util.Random;
 
 import model.SpriteLoader;
 import controller.Engine;
+
 /**
- * Defines a pokeman. The pokeman has a name, level, catch rate, and run rate. 
+ * Defines a pokeman. The pokeman has a name, level, catch rate, and run rate.
+ * 
  * @author Andrew Rickus
  * @author Todd Wickizer
  * @author Sean Gemberling
@@ -14,15 +16,14 @@ import controller.Engine;
  *
  */
 public abstract class Pokeman {
-  
-  public final SpriteLoader loader = new SpriteLoader();;
-  //private final Double A4 = 0.000001826265179475945;
-  //private final Double A3 = -0.0003948867186873706;
-  //private final Double A2 = 0.030013899160742596;
-  //private final Double A1 = -1.3674011425582648;
-  //private final double A0 = 51.00964742917333;
 
-  
+  public final SpriteLoader loader = new SpriteLoader();;
+  // private final Double A4 = 0.000001826265179475945;
+  // private final Double A3 = -0.0003948867186873706;
+  // private final Double A2 = 0.030013899160742596;
+  // private final Double A1 = -1.3674011425582648;
+  // private final double A0 = 51.00964742917333;
+
   private String name;
   private int level;
   public int toRun;
@@ -51,11 +52,15 @@ public abstract class Pokeman {
     int Low = 0;
     int High = 100;
     int rand = r.nextInt(High - Low) + Low;
-    this.toCatch = 50+eating*5-angry*3;
-    
+    this.toCatch = 50 + eating * 5 - angry * 3;
+
+    // bracelet increases catch chance by 10%, or something like that.
+    if (Engine.getTrainer().hasBracelet()) {
+      System.out.println("we're using the braclet");
+      this.toCatch = 60 + eating * 5 - angry * 3;
+    }
 
     if (rand < toCatch) {
-      //Engine.getTrainer().addPokemon(this); gets taken care of in battle
       return true;
     }
 
@@ -92,12 +97,13 @@ public abstract class Pokeman {
   public void setLevel(int level) {
     this.level = level;
   }
+
   public BufferedImage getSprite() {
-	  return loader.GetPokeman(this.getName());
+    return loader.GetPokeman(this.getName());
   }
 
   public boolean tryToRun(int battleLength, int angry, int eating) {
-	  this.toRun = 50-eating*10+angry*4+battleLength;
+    this.toRun = 50 - eating * 10 + angry * 4 + battleLength;
     return checkRun() || battleLength > 10;
   }
 }
