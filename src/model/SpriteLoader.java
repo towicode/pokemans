@@ -4,7 +4,16 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 import javax.imageio.ImageIO;
-
+/**
+ * SpriteLoader
+ * Defines a SpriteLoader. This class takes images from the resources file for use by other classes.
+ * 
+ * @author Andrew Rickus
+ * @author Todd Wickizer
+ * @author Sean Gemberling
+ * 
+ *
+ */
 public class SpriteLoader {
 
   private static final int TILE_SIZE = 16;
@@ -97,7 +106,10 @@ public class SpriteLoader {
   private BufferedImage trainerBS[] = new BufferedImage[3];
   private BufferedImage trainerBE[] = new BufferedImage[3];
   private BufferedImage trainerBW[] = new BufferedImage[3];
-
+/**
+ * SpriteLoader
+ * Constructor for SpriteLoader. Pulls all of the sprites and sprite sheets from the resource file.
+ */
   public SpriteLoader() {
     try {
       BufferedImage sheet = ImageIO.read(new File("./resources/tilesheet.png"));
@@ -229,7 +241,12 @@ public class SpriteLoader {
       System.exit(0);
     }
   }
-
+/**
+ * getTile
+ * Gets the image for the given tile id.
+ * @param type
+ * @return BufferedImage
+ */
   public BufferedImage getTile(int type) {
     switch (type - 1) { // -1 because I screwed up the alignment.
     case -1:
@@ -335,7 +352,14 @@ public class SpriteLoader {
     }
     return null;
   }
-
+/**
+ * getPlayer
+ * Returns the sprite for the player using the current animation sequence value and 
+ * bicycle boolean.
+ * @param animationSequence
+ * @param ridingBicycle 
+ * @return BufferedImage
+ */
   public BufferedImage getPlayer(int animationSequence, boolean ridingBicycle) {
 
     if (!ridingBicycle) {
@@ -402,7 +426,12 @@ public class SpriteLoader {
     }
 
   }
-
+/**
+ * GetPokeman
+ * Returns the sprite for the pokeman based on their name.
+ * @param name
+ * @return BufferedImage The sprite for the pokeman
+ */
   public BufferedImage GetPokeman(String name) {
     switch (name) {
     case "Pikachu":
@@ -429,15 +458,26 @@ public class SpriteLoader {
       return pikachuSprite;
     }
   }
-
+/**
+ * getGroundSprite
+ * Returns the sprite of the ground the pokeman stands on in battle
+ * @return BufferedImage
+ */
   public static BufferedImage getGroundSprite() {
     return groundSprite;
   }
-
+/**
+ * setGroundSprite
+ * Sets the groundSprite variable as the correct sprite.
+ */
   public void setGroundSprite(BufferedImage groundSprite) {
     this.groundSprite = groundSprite;
   }
-
+/**
+ * getLogo
+ * Returns the logo for the game for the title screen.
+ * @return BufferedImage
+ */
   public static BufferedImage getLogo() {
     return logo;
   }

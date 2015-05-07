@@ -28,13 +28,24 @@ public class Map {
   private Tile grassTiles[][] = new Tile[MAP_WIDTH][MAP_HEIGHT];
   private int grassTileRaw[]; // used for IsInGrass
   private int id;
-
+/**
+ * Map
+ * Constructor for Map. 
+ * @param sprites The sprite sheet for the map.
+ */
   public Map(SpriteLoader sprites) {
 
     this.sprites = sprites;
 
   }
-
+/**
+ * LoadThirdMap
+ * Loads map 3
+ * @param up_offset
+ * @param down_offset
+ * @param left_offset
+ * @param right_offset
+ */
   public void LoadThirdMap(int up_offset, int down_offset, int left_offset,
       int right_offset) {
     int counter = 0;
@@ -73,7 +84,14 @@ public class Map {
     this.id = 3;
 
   }
-
+/**
+ * LoadSecondMap
+ * Loads map 2
+ * @param up_offset
+ * @param down_offset
+ * @param left_offset
+ * @param right_offset
+ */
   public void LoadSecondMap(int up_offset, int down_offset, int left_offset,
       int right_offset) {
     int counter = 0;
@@ -114,7 +132,14 @@ public class Map {
     this.id = 2;
 
   }
-
+/**
+ * loadStartingMap
+ * Loads the first map
+ * @param up_offset
+ * @param down_offset
+ * @param left_offset
+ * @param right_offset
+ */
   public void loadStartingMap(int up_offset, int down_offset, int left_offset,
       int right_offset) {
     int counter = 0;
@@ -153,7 +178,10 @@ public class Map {
     this.setGrassTileRaw(Constants.testMap_grass); // used for IsInGrass
     this.id = 1;
   }
-
+/**
+ * adjustRight
+ * Adjusts the map right by an offset
+ */
   public void adjustRight() {
 
     for (int y = 0; y < MAP_HEIGHT; y++)
@@ -164,7 +192,10 @@ public class Map {
       }
 
   }
-
+  /**
+   * adjustLeft
+   * Adjusts the map left by an offset
+   */
   public void adjustLeft() {
 
     for (int y = 0; y < MAP_HEIGHT; y++)
@@ -174,7 +205,10 @@ public class Map {
         grassTiles[x][y].x = grassTiles[x][y].x - 4;
       }
   }
-
+  /**
+   * adjustUp
+   * Adjusts the map up by an offset
+   */
   public void adjustUp() {
 
     for (int y = 0; y < MAP_HEIGHT; y++)
@@ -184,7 +218,10 @@ public class Map {
         grassTiles[x][y].y = grassTiles[x][y].y - 4;
       }
   }
-
+  /**
+   * adjustDown
+   * Adjusts the map down by an offset
+   */
   public void adjustDown() {
 
     for (int y = 0; y < MAP_HEIGHT; y++)
@@ -194,7 +231,11 @@ public class Map {
         grassTiles[x][y].y = grassTiles[x][y].y + 4;
       }
   }
-
+/**
+ * draw
+ * Draws the map on the screen
+ * @param graphics
+ */
   public void draw(Graphics2D graphics) {
 
     for (int y = 0; y < MAP_HEIGHT; y++)
@@ -220,23 +261,43 @@ public class Map {
         }
       }
   }
-
+/**
+ * getTiles
+ * return the array of tiles representing the map
+ * @return Tile[][]
+ */
   public Tile[][] getTiles() {
     return tiles;
   }
-
+/**
+ * setTIles
+ * sets the tiles for the map to a given tile array
+ * @param tiles
+ */
   public void setTiles(Tile[][] tiles) {
     this.tiles = tiles;
   }
-
+/**
+ * getGrassTileRaw
+ * returns the grass tiles for the map as an int array
+ * @return int
+ */
   public int[] getGrassTileRaw() {
     return grassTileRaw;
   }
-
+/**
+ * setGrassTileRaw
+ * Sets this maps grassTileRaw array to a given array
+ * @param grassTileRaw[]
+ */
   public void setGrassTileRaw(int grassTileRaw[]) {
     this.grassTileRaw = grassTileRaw;
   }
-
+/**
+ * getId
+ * Return the id of the map
+ * @return int
+ */
   public int getId() {
     return id;
   }
