@@ -16,7 +16,11 @@ public enum Direction {
   private Direction(int id) {
     this.id = id;
   }
-
+/**
+ * getId
+ * Returns the id of the direction.
+ * @return
+ */
   public int getId() {
     return id;
   }

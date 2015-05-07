@@ -29,6 +29,14 @@ public abstract class Pokeman {
   public int toRun;
   public int toCatch;
 
+  /**
+   * Pokeman Constructor for the Pokeman abstract class
+   * 
+   * @param name
+   *          The name of the pokeman
+   * @param level
+   *          The level of the pokeman
+   */
   public Pokeman(String name, int level) {
     this.name = name;
     this.level = level;
@@ -47,6 +55,17 @@ public abstract class Pokeman {
 
   }
 
+  /**
+   * tryToCatch Checks a randomly generated number against an equation using the
+   * angry and eating stats. If the random number is lower than the calculated
+   * number, the pokeman is caught.
+   * 
+   * @param angry
+   *          The angry stat of the pokeman, modified by throwing rocks.
+   * @param eating
+   *          The eating stat of the pokemon, modified by throwing bait.
+   * @return
+   */
   public boolean tryToCatch(int angry, int eating) {
     Random r = new Random();
     int Low = 0;
@@ -67,6 +86,12 @@ public abstract class Pokeman {
     return false;
   }
 
+  /**
+   * Generates a random number and checks if the pokemon can run by comparing it
+   * to the toRun stat.
+   * 
+   * @return boolean True if the pokemon can run, false otherwise.
+   */
   public boolean checkRun() {
 
     Random r = new Random();
@@ -82,26 +107,68 @@ public abstract class Pokeman {
 
   }
 
+  /**
+   * getName Gets the name of the Pokeman
+   * 
+   * @return String The name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Sets the name of the Pokeman
+   * 
+   * @param name
+   *          The name of the Pokeman
+   */
   public void setName(String name) {
     this.name = name;
   }
 
+  /**
+   * getLevel Returns the level of the Pokeman
+   * 
+   * @return int The level of the Pokeman
+   */
   public int getLevel() {
     return level;
   }
 
+  /**
+   * setLevel Sets the level of the Pokeman
+   * 
+   * @param level
+   *          The level of the Pokeman
+   */
   public void setLevel(int level) {
     this.level = level;
   }
+
+  /**
+   * getSprite Returns the sprite for the Pokeman
+   * 
+   * @return BufferedImage The sprite for the Pokeman
+   */
 
   public BufferedImage getSprite() {
     return loader.GetPokeman(this.getName());
   }
 
+  /**
+   * Calculates the run chance of the Pokeman, using the battlelength, eating,
+   * and angry stats. If the battle length is greater than 10, or if the toRun
+   * stat is greater than the random value generated in checkRun, the Pokemon
+   * runs.
+   * 
+   * @param battleLength
+   *          The length of the current battle
+   * @param angry
+   *          The angry stat of the Pokeman
+   * @param eating
+   *          The eating stat of the Pokeman
+   * @return boolean True if the Pokeman runs ,false if it does not.
+   */
   public boolean tryToRun(int battleLength, int angry, int eating) {
     this.toRun = 50 - eating * 10 + angry * 4 + battleLength;
     return checkRun() || battleLength > 10;

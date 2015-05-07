@@ -102,7 +102,7 @@ public class Trainer {
   }
 
   // used for the end game screen
-  public void Reset() {
+  public void reset() {
 
     this.items = new ArrayList<Item>();
     this.pokeman = new ArrayList<Pokeman>();
@@ -364,7 +364,7 @@ public class Trainer {
 
   }
 
-  public void CheckTeleportation() {
+  public void checkTeleportation() {
 
   }
 

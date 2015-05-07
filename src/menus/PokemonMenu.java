@@ -15,7 +15,11 @@ public class PokemonMenu extends GameMenu {
 
   int index = 0;
   private long lastAnimationSequence;
-
+/**
+ * draw
+ * Draws the pokemon on the screen.
+ * @param graphics
+ */
   public void draw(Graphics2D graphics) {
     Trainer trainer = Engine.getTrainer();
 
@@ -53,7 +57,10 @@ public class PokemonMenu extends GameMenu {
 
     }
   }
-
+/**
+ * update
+ * Updates the pokemon on screen when the left or right key is pressed
+ */
   public void update(Keyboard keyboard) {
     Trainer trainer = Engine.getTrainer();
     ArrayList<Pokeman> x = trainer.getPokeman();

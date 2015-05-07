@@ -14,7 +14,11 @@ public class Menu extends GameMenu {
   private static final int BOX_WIDTH = 240;
   private int currentlySelected = 0;
   private long lastAnimationSequence = 0;
-
+/**
+ * draw
+ * Draws the game menu on the screen
+ * @param graphics
+ */
   public void draw(Graphics2D graphics) {
 
     // 240 x 180
@@ -51,7 +55,10 @@ public class Menu extends GameMenu {
 
     }
   }
-
+/**
+ * update
+ * Updates the screen when up and down keys are pressed, or if the selection key is pressed
+ */
   public void update(Keyboard keyboard) {
     int keyCode = -1;
     if (keyboard.isKeyPressed(KeyEvent.VK_UP)
