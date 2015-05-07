@@ -1,0 +1,30 @@
+
+Design Patterns Used
+MVC Pattern
+We used the model view controller pattern as the basis for our game. The controller contains the engine class, the model contain all of the classes
+used to run the game, and the view contains the GameWindow class, which draws the game on the screen.
+Classes Used In:
+*Engine.Java
+*GameWindow.Java
+*All Classes in the model folder.
+Some Fudges were made to allow for easy static variable acess, but the design pricniple stuck.
+
+Factory- Pokeman
+The Trainer class is a factory for the Pokeman abstract class. When the Trainer encounters a pokemon, 
+the Trainer calls for a Pokeman to be created, based on which map the Trainer is on and what random number is generated.
+Classes Used in:
+*Pokeman.java
+*Trainer.java
+
+State- Trainer
+The Trainer class implements a state pattern. The trainer checks which map it is on and changes its pokemon spawn chances based on the map number.
+
+Builder Pattern- Engine 
+The engine class is a builder pattern. It generates the trainer, map, battle, sprite loader, and menus, and puts them all together into what is displayed on the gameview.
+
+Iterator- Trainer + AchievementMenu
+Iterators check whether the trainer has a specific Pokeman or a specific item when determining if an achievment has been unlocked
+The menu's have to iterate through the entire item list, instead of using specific key values.
+
+Visitor- GameMenu
+The various menus change the functionality and algorithms of the GameMenu class
