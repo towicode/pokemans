@@ -32,7 +32,7 @@ public class GameWindow extends JFrame {
     setMinimumSize(new Dimension(250, 250));
     JPanel Instructions = new JPanel();
     JLabel InstructionsLabel = new JLabel(
-        "<html><body>Instructions: <br>Move with WASD or arrow keys <br>Open game menu with ENTER<br> Close menus with X <br>Ride bicycle with B (if you have it)</body></html>");
+        "<html><body>Instructions: <br>Move with WASD or arrow keys <br>Open game menu with ENTER<br> Close menus with X and select with C<br>Ride bicycle with B (if you have it)</body></html>");
     Instructions.add(InstructionsLabel);
 
     this.gamePanel = new JPanel();
