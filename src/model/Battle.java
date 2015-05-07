@@ -291,7 +291,11 @@ public class Battle {
     // statusText = "Aww man. It didn't catch!";
 
   }
-
+/**
+ * draw 
+ * Draws the battlefield and stats onto the screen
+ * @param graphics
+ */
   public void draw(Graphics2D graphics) {
     Trainer trainer = Engine.getTrainer();
     Item pokeballs = trainer.getItems().get(POKEBALL_INDEX);
@@ -368,7 +372,11 @@ public class Battle {
     // TODO Auto-generated method stub
 
   }
-
+/**
+ * Updates the battle screen whenever a key is pressed and the screen changes.
+ * @param keyboard
+ * @throws InterruptedException
+ */
   public void update(Keyboard keyboard) throws InterruptedException {
 
     if (!allowInput)

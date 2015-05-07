@@ -24,7 +24,8 @@ public class GameWindow extends JFrame {
   public JPanel gamePanel;
 
   /**
-   * GameWindow() Constructor for GameWindow class. Create the panel.
+   * GameWindow() 
+   * Constructor for GameWindow class. Create the panel.
    */
   public GameWindow () {
     setLayout(null);
