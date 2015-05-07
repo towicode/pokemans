@@ -14,7 +14,11 @@ Builder Pattern- Engine
 The engine class is a builder pattern. It generates the trainer, map, battle, sprite loader, and menus, and puts them all together into what is displayed on the gameview.
 
 Iterator- Trainer + AchievementMenu
-Iterators check whether the trainer has a specific Pokeman or a specific item when determining if an achievment has been unlocked
+Iterators check whether the trainer has a specific Pokeman or a specific item when determining if an achievement has been unlocked
 
 Visitor- GameMenu
 The various menus change the functionality and algorithms of the GameMenu class
+
+Deficiencies: The game crashes if you get outside the map and touch the black border. This should be impossible to do in the current implementation.
+				We also could have made the Pokemon classes into an ENUM, instead of implementing them as separate classes. We were originally going
+				to have each Pokemon have their own run and catch chances, but decided to unify the chances for simplicity.
