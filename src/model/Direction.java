@@ -19,7 +19,7 @@ public enum Direction {
 /**
  * getId
  * Returns the id of the direction.
- * @return
+ * @return int The direction ID
  */
   public int getId() {
     return id;

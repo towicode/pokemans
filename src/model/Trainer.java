@@ -644,7 +644,7 @@ public class Trainer {
 /**
  * getItems
  * Returns the array list of the trainer's held items
- * @returnarrayList<Item>
+ * @return ArrayList<Item>
  */
   public ArrayList<Item> getItems() {
     return items;
@@ -660,7 +660,7 @@ public class Trainer {
 /**
  *getPokeman
  *Returns the list of pokemans that the trainer has
- * @returnArrayList<Pokeman>
+ * @return ArrayList<Pokeman>
  */
   public ArrayList<Pokeman> getPokeman() {
     return pokeman;

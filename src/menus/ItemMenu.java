@@ -16,7 +16,7 @@ public class ItemMenu extends GameMenu {
   private long lastAnimationSequence;
 /**draw
  * Draws the item menu on the screen.
- * @param graphics
+ * @param graphics The 2D graphics package that draws the game
  */
   
   public void draw(Graphics2D graphics) {
@@ -51,7 +51,7 @@ public class ItemMenu extends GameMenu {
 /**
  * update
  * Updates the menu when left or right keys are pressed, to show the new item.
- * @param keyboard
+ * @param keyboard  The keyboard object detecting the player's input
  */
   public void update(Keyboard keyboard) {
 

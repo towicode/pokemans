@@ -14,7 +14,7 @@ public class StartMenu extends GameMenu {
 /**
  * draw
  * Displays the programmer names and the Controls for the game.
- * @param graphics
+ * @param graphics The 2D graphics package that draws the game
  */
   public void draw(Graphics2D graphics) {
     graphics.drawImage(SpriteLoader.getLogo(), 3, 5, null);
@@ -27,7 +27,7 @@ public class StartMenu extends GameMenu {
 /**
  * update
  * Starts the game when T is pressed
- * @param keyboard
+ * @param keyboard  The keyboard object detecting the player's input
  */
   @Override
   public void update(Keyboard keyboard) {

@@ -67,7 +67,7 @@ public class Battle {
    * Throws a rock, resetting the enemy's eat counter, and adding to their angry
    * counter.
    * 
-   * @param keyboard
+   * @param keyboard  The keyboard object detecting the player's input
    * 
    * 
    */
@@ -121,7 +121,7 @@ public class Battle {
    * Throws a piece of bait, resetting the enemy's angry counter, and adding to
    * their eat counter.
    * 
-   * @param keyboard
+   * @param keyboard  The keyboard object detecting the player's input
    * 
    * 
    */
@@ -174,7 +174,7 @@ public class Battle {
    * The pokeman runs away, ending the battle. This occurs based on the
    * pokeman's settings, and the angry counter of the current battle.
    * 
-   * @param keyboard
+   * @param keyboard  The keyboard object detecting the player's input
    * 
    * 
    */
@@ -210,7 +210,7 @@ public class Battle {
    * Throws a pokeball, attempting to catch the pokeman. This uses 1 ball from
    * the trainer's stock.
    * 
-   * @param keyboard
+   * @param keyboard  The keyboard object detecting the player's input
    * 
    * 
    */
@@ -374,7 +374,7 @@ public class Battle {
   }
 /**
  * Updates the battle screen whenever a key is pressed and the screen changes.
- * @param keyboard
+ * @param keyboard  The keyboard object detecting the player's input
  * @throws InterruptedException
  */
   public void update(Keyboard keyboard) throws InterruptedException {

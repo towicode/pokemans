@@ -17,7 +17,7 @@ public class Menu extends GameMenu {
 /**
  * draw
  * Draws the game menu on the screen
- * @param graphics
+ * @param graphics The 2D graphics package that draws the game
  */
   public void draw(Graphics2D graphics) {
 

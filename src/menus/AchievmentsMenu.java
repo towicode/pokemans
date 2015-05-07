@@ -37,7 +37,7 @@ public class AchievmentsMenu extends GameMenu {
 /**
  * draw
  * Draws the achievements on the screen
- * @param graphics
+ * @param graphics The 2D graphics package that draws the game
  */
   public void draw(Graphics2D graphics) {
     // TODO Auto-generated method stub
@@ -131,7 +131,7 @@ public class AchievmentsMenu extends GameMenu {
  * update
  * Handles keyboard and achievement logic
  * 
- * @param keyboard
+ * @param keyboard The keyboard object detecting the player's input
  */
   public void update(Keyboard keyboard) {
 

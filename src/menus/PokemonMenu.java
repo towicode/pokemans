@@ -18,7 +18,7 @@ public class PokemonMenu extends GameMenu {
 /**
  * draw
  * Draws the pokemon on the screen.
- * @param graphics
+ * @param graphics The 2D graphics package that draws the game
  */
   public void draw(Graphics2D graphics) {
     Trainer trainer = Engine.getTrainer();

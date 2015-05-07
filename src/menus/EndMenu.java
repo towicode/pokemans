@@ -23,7 +23,7 @@ public class EndMenu extends GameMenu {
 /**
  * draw
  * Draws the endgame screen
- * @param graphics
+ * @param graphics The 2D graphics package that draws the game
  */
   public void draw(Graphics2D graphics) {
     Trainer x = Engine.getTrainer();
@@ -40,7 +40,7 @@ public class EndMenu extends GameMenu {
 /**
  * update
  * Restarts the game when the R key is pressed 
- * @param keyboard
+ * @param keyboard  The keyboard object detecting the player's input
  */
   @Override
   public void update(Keyboard keyboard) {
