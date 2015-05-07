@@ -204,15 +204,11 @@ public class Trainer {
     step_ensure = 0;
 
   }
-<<<<<<< HEAD
 /**
- * checkPokemonEncounter
- * Checks if the Trainer is in a grass tile for the map. If they are, generate a chance to battle
- * a wild pokeman. If a battle is going to be generated, generate a pokemon based on the current map and a number rolled.
- * Some pokemon are rarer than others in certain areas. Mew can only be found in one area at a rare chance.
- * @param map The map the Trainer is on
+ * hasBracelet
+ * Checks if the trainer has the Bracelet item
+ * @return boolean
  */
-=======
 
   public boolean hasBracelet() {
     for (Item x : this.getItems())
@@ -222,7 +218,14 @@ public class Trainer {
     return false;
   }
 
->>>>>>> branch 'master' of https://github.com/towicode/pokemans.git
+
+	/**
+	 * checkPokemonEncounter
+	 * Checks if the Trainer is in a grass tile for the map. If they are, generate a chance to battle
+	 * a wild pokeman. If a battle is going to be generated, generate a pokemon based on the current map and a number rolled.
+	 * Some pokemon are rarer than others in certain areas. Mew can only be found in one area at a rare chance.
+	 * @param map The map the Trainer is on
+	 */
   private void checkPokemonEncounter(Map map) {
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;
