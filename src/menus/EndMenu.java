@@ -37,6 +37,8 @@ public class EndMenu extends GameMenu {
     graphics.drawString("Steps Taken: " + x.getStep_counter(), LEFT_X, 95);
     graphics.drawString("Pokemon Captured: " + x.getPokeman().size(), LEFT_X,
         110);
+    graphics.drawString("Items Found: " + (x.getItems().size() - 1), LEFT_X,
+        125);
 
     graphics.drawString("Press 'R' to play again", LEFT_X, 165);
 

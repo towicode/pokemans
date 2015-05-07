@@ -30,8 +30,6 @@ public class StatusMenu extends GameMenu {
     graphics.drawString("Steps Taken: " + x.getStep_counter(), LEFT_X, RIGHT_Y);
     graphics.drawString("Direction Facing: " + x.getDirection(), LEFT_X,
         LOWER_Y);
-    graphics.drawString("Items Found: " + (x.getItems().size() - 1), LEFT_X,
-        LOWEST_Y);
 
   }
 

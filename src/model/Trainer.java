@@ -41,7 +41,7 @@ public class Trainer {
 
   private static final int POKEBALL_INDEX = 0;
   private static final int MAX_STEPS = 325;
-  private static final int MOVEMENT_SPEED_LIMITER = 10; // default 120
+  private static final int MOVEMENT_SPEED_LIMITER = 120; // default 120
   private static final int BIKE_MOVEMENT_LIMTIER = 80; // default 80
   private static final int MAP_3_MAX_LEVEL = 70;
   private static final int MAP_2_MAX_LEVEL = 50;
@@ -513,8 +513,8 @@ public class Trainer {
         Tile xS = map.getTiles()[getTileX()][getTileY() + 1];
         for (int bad_text : Constants.NOT_WALKABLE_TEXTURES) {
           if (xS.texture == bad_text) {
+            return false;
           }
-          // return false;
         }
         destX = tileX;
         destY = tileY + 1;
