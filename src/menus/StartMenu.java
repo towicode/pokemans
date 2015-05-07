@@ -23,9 +23,6 @@ public class StartMenu extends GameMenu {
     graphics.drawString("Sean Gemberling", 15, 110);
 
     graphics.drawString("Press 'T' to play ", LEFT_X, 165);
-    graphics.drawString("Controls: WASD or arrow keysto move", LEFT_X, 125);
-    graphics.drawString("ENTER for menu, c to select", LEFT_X, 140);
-
   }
 /**
  * update
