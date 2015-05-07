@@ -8,6 +8,7 @@ import abstracts.GameMenu;
 import abstracts.Item;
 import abstracts.Pokeman;
 import controller.Engine;
+import exceptions.NoPokemansCaughtException;
 import model.Keyboard;
 import model.Trainer;
 
@@ -22,18 +23,22 @@ public class PokemonMenu extends GameMenu {
  */
   public void draw(Graphics2D graphics) {
     Trainer trainer = Engine.getTrainer();
-
+    
+    
     if (trainer.getPokeman() == null || trainer.getPokeman().size() == 0) {
       graphics.drawString("You don't have any...yet", 15, 15);
 
     }
 
     else {
-
+    	
       ArrayList<Pokeman> x = trainer.getPokeman();
-
+   
+    		
+    	  
+      
       Pokeman i = x.get(index);
-
+      
       graphics.drawString("Name: " + i.getName(), 15, 15);
       graphics.drawString("Level: " + i.getLevel(), 15, 45);
       graphics.drawImage(i.getSprite(), 80, 100, null);
