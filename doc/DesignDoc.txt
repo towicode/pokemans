@@ -32,3 +32,4 @@ Deficiencies: The game crashes if you get outside the map and touch the black bo
 				We also could have made the Pokemon classes into an ENUM, instead of implementing them as separate classes. We were originally going
 				to have each Pokemon have their own run and catch chances, but decided to unify the chances for simplicity.
 				This was only tested on Windows. We didn't have a Mac to try it on.
+				We removed the game boy button layout. They were evil and we couldn't figure out how to amke them work without crashing the game.
