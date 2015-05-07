@@ -13,7 +13,11 @@ public class StatusMenu extends GameMenu {
   private static final int LOWER_Y = 75;
   private static final int RIGHT_Y = 45;
   private static final int LEFT_X = 15;
-
+/**
+ * draw 
+ * Displays the Trainer's stats on the screen
+ * @param graphics
+ */
   public void draw(Graphics2D graphics) {
     Trainer x = Engine.getTrainer();
     Item pokeballs = x.getItems().get(0);
@@ -24,7 +28,11 @@ public class StatusMenu extends GameMenu {
         LOWER_Y);
 
   }
-
+/**
+ * update
+ * Unused by StatusMenu, nothing to update
+ * @param keyboard
+ */
   public void update(Keyboard keyboard) {
 
   }

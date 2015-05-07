@@ -20,7 +20,11 @@ import abstracts.Item;
 public class EndMenu extends GameMenu {
 
   private static final int LEFT_X = 15;
-
+/**
+ * draw
+ * Draws the endgame screen
+ * @param graphics
+ */
   public void draw(Graphics2D graphics) {
     Trainer x = Engine.getTrainer();
     Item pokeballs = x.getItems().get(0);
@@ -33,7 +37,11 @@ public class EndMenu extends GameMenu {
     graphics.drawString("Press 'R' to play again", LEFT_X, 165);
 
   }
-
+/**
+ * update
+ * Restarts the game when the R key is pressed 
+ * @param keyboard
+ */
   @Override
   public void update(Keyboard keyboard) {
     if (keyboard.isKeyPressed(KeyEvent.VK_R)) {

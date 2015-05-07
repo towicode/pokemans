@@ -11,7 +11,11 @@ import abstracts.GameMenu;
 public class StartMenu extends GameMenu {
 
   private static final int LEFT_X = 15;
-
+/**
+ * draw
+ * Displays the programmer names and the Controls for the game.
+ * @param graphics
+ */
   public void draw(Graphics2D graphics) {
     graphics.drawImage(SpriteLoader.getLogo(), 3, 5, null);
     graphics.drawString("By Todd Wickizer", 15, 80);
@@ -23,7 +27,11 @@ public class StartMenu extends GameMenu {
     graphics.drawString("ENTER for menu, c to select", LEFT_X, 140);
 
   }
-
+/**
+ * update
+ * Starts the game when T is pressed
+ * @param keyboard
+ */
   @Override
   public void update(Keyboard keyboard) {
     if (keyboard.isKeyPressed(KeyEvent.VK_T)) {

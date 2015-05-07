@@ -12,7 +12,12 @@ import abstracts.Pokeman;
 import model.Constants;
 import model.Keyboard;
 import model.Trainer;
-
+/**
+ * AchievementsMenu
+ * Stores the achievements for the game, and draws them in the menu
+ * 
+ *
+ */
 public class AchievmentsMenu extends GameMenu {
 
   private static final int TEXT_HEIGHT = 22;
@@ -29,7 +34,11 @@ public class AchievmentsMenu extends GameMenu {
   private static final String ITEMS_ACHIEVEMENT = "xcx3";
   private static final String SIXTY_PLUS_ACHIEVEMENT = "xcx4";
   private static final String TWENTY_ONE_ACHIEVEMENT = "xcx5";
-
+/**
+ * draw
+ * Draws the achievements on the screen
+ * @param graphics
+ */
   public void draw(Graphics2D graphics) {
     // TODO Auto-generated method stub
 
@@ -118,7 +127,12 @@ public class AchievmentsMenu extends GameMenu {
     // reset color
 
   }
-
+/**
+ * update
+ * Handles keyboard and achievement logic
+ * 
+ * @param keyboard
+ */
   public void update(Keyboard keyboard) {
 
     // First we'll hand the actual achievement logic.
@@ -204,27 +218,45 @@ public class AchievmentsMenu extends GameMenu {
 
     // now we'll do keyboard logic.
   }
-
+/**
+ * SetMewAchievement
+ * Sets the Mew achievement if the Trainer has captured Mew.
+ */
   public static void SetMewAchievement() {
     prefs.putBoolean(MEW_ACHIEVEMENT, true);
   }
-
+/**
+ * setAllPokemonAchievement
+ * Sets the all pokemon acheievement if the trainer has captured the 9 non-mew pokemon.
+ */
   public static void setAllPokemonAchievement() {
     prefs.putBoolean(ALL_POKEMON_ACHIEVEMENT, true);
   }
-
+/**
+ * setItemsAchievement
+ * Sets the Items achievement if the trainer finds all items.
+ */
   public static void setItemsAchievement() {
     prefs.putBoolean(ITEMS_ACHIEVEMENT, true);
   }
-
+/**
+ * setSixtyPlusAchievement
+ * Sets the achievement if the trainer has captured a pokemon of at least level 60.
+ */
   public static void setSixtyPlusAchievement() {
     prefs.putBoolean(SIXTY_PLUS_ACHIEVEMENT, true);
   }
-
+/**
+ * setTwentyOnePlusAchievement
+ * Sets the achievement if the trainer captures 21 pokemon.
+ */
   public static void setTwentyOnePlusAchievement() {
     prefs.putBoolean(TWENTY_ONE_ACHIEVEMENT, true);
   }
-
+/**
+ * deleteAllStoredData
+ * Deletes all stored achievements.
+ */
   public static void deleteAllStoredData() {
     prefs.remove(MEW_ACHIEVEMENT);
     prefs.remove(ALL_POKEMON_ACHIEVEMENT);
