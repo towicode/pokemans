@@ -38,7 +38,7 @@ public class EndMenu extends GameMenu {
   public void update(Keyboard keyboard) {
     if (keyboard.isKeyPressed(KeyEvent.VK_R)) {
 
-      Engine.getTrainer().Reset();
+      Engine.getTrainer().reset();
       Engine.getMap().loadStartingMap(2, 0, 0, 0);
       Engine.setMenu(new Menu());
       Engine.setGameOver(false);

@@ -52,9 +52,9 @@ public class AchievmentsMenu extends GameMenu {
     graphics.drawRect(0, BOX_HEIGHT * 4, Constants.FRAME_WIDTH, BOX_HEIGHT);
 
     graphics.drawString("Caught Mew", TEXT_OFFSET, TEXT_HEIGHT);
-    graphics.drawString("Caught the other 9 at once", TEXT_OFFSET, TEXT_HEIGHT
+    graphics.drawString("Caught all other 9 Pokemon", TEXT_OFFSET, TEXT_HEIGHT
         + BOX_HEIGHT);
-    graphics.drawString("Found All Items", TEXT_OFFSET, TEXT_HEIGHT
+    graphics.drawString("Found all items", TEXT_OFFSET, TEXT_HEIGHT
         + BOX_HEIGHT * 2);
     graphics.drawString("Caught 21+ pokemon at once", TEXT_OFFSET, TEXT_HEIGHT
         + BOX_HEIGHT * 3);
