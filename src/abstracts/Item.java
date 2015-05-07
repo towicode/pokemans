@@ -86,7 +86,7 @@ public abstract class Item {
   }
   
   public BufferedImage getSprite() {
-    return loader.GetPokeman(this.getName());
+    return loader.GetItem(this.getName());
   }
 
 }

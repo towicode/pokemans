@@ -141,13 +141,13 @@ public class SpriteLoader {
           "./resources/PokemonSprites/sandslash80x80.png "));
       
       pokeball_item = ImageIO.read(new File(
-          "./resources/OtherSprites/bike.png"));
+          "./resources/OtherSprites/pokeball.png"));
       
       bike = ImageIO.read(new File(
-          "./resources/OtherSprites/bracelet.png"));
+          "./resources/OtherSprites/bike.png"));
       
       bracelet = ImageIO.read(new File(
-          "./resources/PokemonSprites/pokeball.png"));
+          "./resources/OtherSprites/bracelet.png"));
 
       setGroundSprite(ImageIO.read(new File(
           "./resources/OtherSprites/groundSprite.png ")));
