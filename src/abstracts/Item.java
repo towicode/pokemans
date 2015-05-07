@@ -1,5 +1,9 @@
 package abstracts;
 
+import java.awt.image.BufferedImage;
+
+import model.SpriteLoader;
+
 /**
  * Defines an item. Most items can be used. Items are stored in
  * a Trainer.
@@ -19,6 +23,9 @@ public abstract class Item {
  * @param description A description for the item
  * @param quantity The number of the item the trainer has.
  */
+  
+  public final SpriteLoader loader = new SpriteLoader();
+
   public Item(String name, String description, int quantity) {
     super();
     this.name = name;
@@ -76,6 +83,10 @@ public abstract class Item {
  */
   public void setName(String name) {
     this.name = name;
+  }
+  
+  public BufferedImage getSprite() {
+    return loader.GetPokeman(this.getName());
   }
 
 }

@@ -56,18 +56,20 @@ public class Engine extends Canvas implements Runnable {
   private static boolean isGameStarted = false;
 
   /**
-   * main
-   * Main for the program. Creates a new engine, which causes the rest of the game to start.
+   * main Main for the program. Creates a new engine, which causes the rest of
+   * the game to start.
+   * 
    * @param args
    */
-  
+
   public static void main(String args[]) {
     new Engine();
   }
-/**
- * Engine
- * Constructor for Engine. Creates a trainer, map, and menu objects, along with a GameWindow.
- */
+
+  /**
+   * Engine Constructor for Engine. Creates a trainer, map, and menu objects,
+   * along with a GameWindow.
+   */
   public Engine() {
 
     this.sprites = new SpriteLoader();
@@ -192,35 +194,39 @@ public class Engine extends Canvas implements Runnable {
     // sync the framerate to reduce stutter
     Toolkit.getDefaultToolkit().sync();
   }
-/**
- * getMenu
- * Returns the GameMenu
- * @return
- */
+
+  /**
+   * getMenu Returns the GameMenu
+   * 
+   * @return
+   */
   public static GameMenu getMenu() {
     return menu;
   }
-/**
- * setMenu
- * Sets the GameMenu
- * @param menu
- */
+
+  /**
+   * setMenu Sets the GameMenu
+   * 
+   * @param menu
+   */
   public static void setMenu(GameMenu menu) {
     Engine.menu = menu;
   }
-/**
- * isInMenu
- * Checks if the Engine is in a menu
- * @return isInMenu True if in a menu, false if not.
- */
+
+  /**
+   * isInMenu Checks if the Engine is in a menu
+   * 
+   * @return isInMenu True if in a menu, false if not.
+   */
   public static boolean isInMenu() {
     return isInMenu;
   }
-/**
- * setInMenu
- * Sets if the engine is in a menu
- * @param isInMenu
- */
+
+  /**
+   * setInMenu Sets if the engine is in a menu
+   * 
+   * @param isInMenu
+   */
   public static void setInMenu(boolean isInMenu) {
     Engine.isInMenu = isInMenu;
   }
@@ -265,115 +271,132 @@ public class Engine extends Canvas implements Runnable {
       }
     }
   }
-/**
- * getMap
- * returns the current map for the Engine.
- * @return map THe current map
- */
+
+  /**
+   * getMap returns the current map for the Engine.
+   * 
+   * @return map THe current map
+   */
   public static Map getMap() {
     return map;
   }
-/**
- * setMap
- * Sets the current map in the Engine
- * @param map The map to be set to
- */
+
+  /**
+   * setMap Sets the current map in the Engine
+   * 
+   * @param map
+   *          The map to be set to
+   */
   public static void setMap(Map map) {
     Engine.map = map;
   }
-/**
- * isInBattle
- * Returns if the Engine is in a battle or not.
- * @return boolean
- */
+
+  /**
+   * isInBattle Returns if the Engine is in a battle or not.
+   * 
+   * @return boolean
+   */
   public static boolean isInBattle() {
     return isInBattle;
   }
-/**
- * setInBattle
- * Sets if the Engine is in a battle
- * @param isInBattle True for in a battle, false for not
- */
+
+  /**
+   * setInBattle Sets if the Engine is in a battle
+   * 
+   * @param isInBattle
+   *          True for in a battle, false for not
+   */
   public static void setInBattle(boolean isInBattle) {
     Engine.isInBattle = isInBattle;
   }
-/**
- * getBattle
- * Returns the current battle
- * @return
- */
+
+  /**
+   * getBattle Returns the current battle
+   * 
+   * @return
+   */
   public static Battle getBattle() {
     return battle;
   }
-/**
- * setBattle
- * Sets the Engine's battle to a given battle.
- * @param battle The battle to be set to
- */
+
+  /**
+   * setBattle Sets the Engine's battle to a given battle.
+   * 
+   * @param battle
+   *          The battle to be set to
+   */
   public static void setBattle(Battle battle) {
     Engine.battle = battle;
   }
-/**
- * getTrainer
- * Returns the player's trainer object
- * @return Trainer The player
- */
+
+  /**
+   * getTrainer Returns the player's trainer object
+   * 
+   * @return Trainer The player
+   */
   public static Trainer getTrainer() {
     return trainer;
   }
-/**
- * setTrainer
- * Sets the engine's trainer
- * @param trainer
- */
+
+  /**
+   * setTrainer Sets the engine's trainer
+   * 
+   * @param trainer
+   */
   public static void setTrainer(Trainer trainer) {
     Engine.trainer = trainer;
   }
-/**
- * isGameOver
- * Checks if the game is over
- * @return
- */
+
+  /**
+   * isGameOver Checks if the game is over
+   * 
+   * @return
+   */
   public static boolean isGameOver() {
     return isGameOver;
   }
-/**
- * setGameOver
- * Sets if the game is over(player has reached the step limit)
- * @param isGameOver
- */
+
+  /**
+   * setGameOver Sets if the game is over(player has reached the step limit)
+   * 
+   * @param isGameOver
+   */
   public static void setGameOver(boolean isGameOver) {
     Engine.isGameOver = isGameOver;
   }
-/**
- * isgameStarted
- * Return if a game has been started
- * @return
- */
+
+  /**
+   * isgameStarted Return if a game has been started
+   * 
+   * @return
+   */
   public static boolean isGameStarted() {
     return isGameStarted;
   }
-/**
- * setGameStarted
- * Sets that a game has been started
- * @param isGameStarted
- */
+
+  /**
+   * setGameStarted Sets that a game has been started
+   * 
+   * @param isGameStarted
+   */
   public static void setGameStarted(boolean isGameStarted) {
     Engine.isGameStarted = isGameStarted;
   }
-/**
- * isSetEncounterFlag
- * 
- * @return
- */
+
+  /**
+   * isSetEncounterFlag
+   * 
+   * @return
+   */
   public static boolean isSetEncounterFlag() {
     return setEncounterFlag;
   }
-/**
- * setSetEncounterFlag
- * 
- * @param setEncounterFlag
- */
+
+  /**
+   * setSetEncounterFlag
+   * 
+   * @param setEncounterFlag
+   */
   public static void setSetEncounterFlag(boolean setEncounterFlag) {
     Engine.setEncounterFlag = setEncounterFlag;
   }

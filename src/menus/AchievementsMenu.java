@@ -18,7 +18,7 @@ import model.Trainer;
  * 
  *
  */
-public class AchievmentsMenu extends GameMenu {
+public class AchievementsMenu extends GameMenu {
 
   private static final int TEXT_HEIGHT = 22;
 

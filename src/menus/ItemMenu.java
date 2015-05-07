@@ -14,11 +14,13 @@ public class ItemMenu extends GameMenu {
 
   int index = 0;
   private long lastAnimationSequence;
-/**draw
- * Draws the item menu on the screen.
- * @param graphics
- */
-  
+
+  /**
+   * draw Draws the item menu on the screen.
+   * 
+   * @param graphics
+   */
+
   public void draw(Graphics2D graphics) {
 
     Trainer trainer = Engine.getTrainer();
@@ -28,6 +30,7 @@ public class ItemMenu extends GameMenu {
     graphics.drawString("Name: " + i.getName(), 15, 15);
     graphics.drawString("Quantity: " + i.getQuantity(), 15, 45);
     graphics.drawString("Description: " + i.getDescription(), 15, 75);
+    graphics.drawImage(i.getSprite(), 80, 100, null);
 
     if (index != 0) {
       graphics.fillPolygon(new int[] { 15, 30, 30 },
@@ -48,11 +51,13 @@ public class ItemMenu extends GameMenu {
 
     // draw image
   }
-/**
- * update
- * Updates the menu when left or right keys are pressed, to show the new item.
- * @param keyboard
- */
+
+  /**
+   * update Updates the menu when left or right keys are pressed, to show the
+   * new item.
+   * 
+   * @param keyboard
+   */
   public void update(Keyboard keyboard) {
 
     Trainer trainer = Engine.getTrainer();

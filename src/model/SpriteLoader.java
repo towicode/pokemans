@@ -92,6 +92,9 @@ public class SpriteLoader {
   private BufferedImage sandslashSprite;
 
   private static BufferedImage groundSprite;
+  private static BufferedImage pokeball_item;
+  private static BufferedImage bike;
+  private static BufferedImage bracelet;
   
   private static BufferedImage logo;
 
@@ -136,6 +139,15 @@ public class SpriteLoader {
           "./resources/PokemonSprites/nidorino80x80.png "));
       sandslashSprite = ImageIO.read(new File(
           "./resources/PokemonSprites/sandslash80x80.png "));
+      
+      pokeball_item = ImageIO.read(new File(
+          "./resources/OtherSprites/bike.png"));
+      
+      bike = ImageIO.read(new File(
+          "./resources/OtherSprites/bracelet.png"));
+      
+      bracelet = ImageIO.read(new File(
+          "./resources/PokemonSprites/pokeball.png"));
 
       setGroundSprite(ImageIO.read(new File(
           "./resources/OtherSprites/groundSprite.png ")));
@@ -458,6 +470,21 @@ public class SpriteLoader {
       return pikachuSprite;
     }
   }
+  
+  
+  public BufferedImage GetItem(String name) {
+    switch (name) {
+    case "Bicycle":
+      return bike;
+    case "Bracelet":
+      return bracelet;
+    case "Pokeball":
+      return pokeball_item;
+    }
+    return pokeball_item;
+  }
+  
+  
 /**
  * getGroundSprite
  * Returns the sprite of the ground the pokeman stands on in battle

@@ -103,7 +103,7 @@ public class Menu extends GameMenu {
           Engine.setMenu(status);
           break;
         case 3:
-          GameMenu achievements = new AchievmentsMenu();
+          GameMenu achievements = new AchievementsMenu();
           Engine.setMenu(achievements);
           break;
         case 4:

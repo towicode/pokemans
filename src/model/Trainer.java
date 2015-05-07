@@ -100,10 +100,10 @@ public class Trainer {
     this.destX = 7;
     this.destY = 7;
   }
-/**
- * reset
- * Resets the trainer when the game is over
- */
+
+  /**
+   * reset Resets the trainer when the game is over
+   */
   // used for the end game screen
   public void reset() {
 
@@ -199,16 +199,59 @@ public class Trainer {
     // check teleportation
     checkTeleportation(map);
 
+    // check add item
+    checkAddItem(map);
+
     System.out.println("Location is " + getTileX() + " " + getTileY()
         + "  Steps Taken: " + step_counter);
     step_ensure = 0;
 
   }
-/**
- * hasBracelet
- * Checks if the trainer has the Bracelet item
- * @return boolean
- */
+
+  private void checkAddItem(Map map) {
+    if (map.getId() == 1) {
+      if (this.getTileX() == 11 && this.getTileY() == 10) {
+        if (this.hasBracelet())
+          return;
+
+        Item bracelet = new Braclet("Bracelet", "Increases catch chance!", 1);
+        this.items.add(bracelet);
+
+        map.deleteMap1Item();
+      }
+    }
+    
+    if (map.getId() == 3){
+      if (this.getTileX() == 24 && this.getTileY() == 7){
+        if (this.hasBike())
+          return;
+        
+        Item Bike = new Braclet("Bicycle", "Press B to ride fast!", 1 );
+        this.items.add(Bike);
+        
+        map.deleteMap3Item();
+      }
+    }
+  }
+
+  /**
+   * hasBike Checks if the trainer has the Bike item
+   * 
+   * @return boolean
+   */
+  private boolean hasBike() {
+    for (Item x : this.getItems())
+      if (x.getName() == "Bicycle")
+        return true;
+
+    return false;
+  }
+
+  /**
+   * hasBracelet Checks if the trainer has the Bracelet item
+   * 
+   * @return boolean
+   */
 
   public boolean hasBracelet() {
     for (Item x : this.getItems())
@@ -218,14 +261,16 @@ public class Trainer {
     return false;
   }
 
-
-	/**
-	 * checkPokemonEncounter
-	 * Checks if the Trainer is in a grass tile for the map. If they are, generate a chance to battle
-	 * a wild pokeman. If a battle is going to be generated, generate a pokemon based on the current map and a number rolled.
-	 * Some pokemon are rarer than others in certain areas. Mew can only be found in one area at a rare chance.
-	 * @param map The map the Trainer is on
-	 */
+  /**
+   * checkPokemonEncounter Checks if the Trainer is in a grass tile for the map.
+   * If they are, generate a chance to battle a wild pokeman. If a battle is
+   * going to be generated, generate a pokemon based on the current map and a
+   * number rolled. Some pokemon are rarer than others in certain areas. Mew can
+   * only be found in one area at a rare chance.
+   * 
+   * @param map
+   *          The map the Trainer is on
+   */
   private void checkPokemonEncounter(Map map) {
     if (isInPokeGrass(this)) {
       int r = (int) (Math.random() * (100 - 0)) + 0;
@@ -305,12 +350,13 @@ public class Trainer {
     }
 
   }
-/**
- * checkTeleportation
- * Checks if the Trainer is standing on a map transition tile. If they are, teleport to
- * the corresponding area in another map.
- * @param map
- */
+
+  /**
+   * checkTeleportation Checks if the Trainer is standing on a map transition
+   * tile. If they are, teleport to the corresponding area in another map.
+   * 
+   * @param map
+   */
   private void checkTeleportation(Map map) {
     // HERE IS TELEPORTATION LOGIC.
 
@@ -384,7 +430,6 @@ public class Trainer {
     return false;
 
   }
-
 
   /**
    * draw(Graphics graphics)
@@ -467,8 +512,8 @@ public class Trainer {
         direction = Direction.SOUTH;
         Tile xS = map.getTiles()[getTileX()][getTileY() + 1];
         for (int bad_text : Constants.NOT_WALKABLE_TEXTURES) {
-          if (xS.texture == bad_text)
-            return false;
+          if (xS.texture == bad_text){}
+            //return false;
         }
         destX = tileX;
         destY = tileY + 1;
@@ -631,77 +676,87 @@ public class Trainer {
   public void setTileY(int tileY) {
     this.tileY = tileY;
   }
-/**
- * addPokeman
- * Adds a pokeman to the Trainers pokeman inventory
- * 
- * @param pokeman
- */
+
+  /**
+   * addPokeman Adds a pokeman to the Trainers pokeman inventory
+   * 
+   * @param pokeman
+   */
   public void addPokemon(Pokeman pokeman) {
     this.pokeman.add(pokeman);
 
   }
-/**
- * getItems
- * Returns the array list of the trainer's held items
- * @returnarrayList<Item>
- */
+
+  /**
+   * getItems Returns the array list of the trainer's held items
+   * 
+   * @returnarrayList<Item>
+   */
   public ArrayList<Item> getItems() {
     return items;
   }
-/**
- * setItems
- * Sets the Trainer's inventory to a given inventory
- * @param items
- */
+
+  /**
+   * setItems Sets the Trainer's inventory to a given inventory
+   * 
+   * @param items
+   */
   public void setItems(ArrayList<Item> items) {
     this.items = items;
   }
-/**
- *getPokeman
- *Returns the list of pokemans that the trainer has
- * @returnArrayList<Pokeman>
- */
+
+  /**
+   * getPokeman Returns the list of pokemans that the trainer has
+   * 
+   * @returnArrayList<Pokeman>
+   */
   public ArrayList<Pokeman> getPokeman() {
     return pokeman;
   }
-/**
- * setPokeman
- * sets the Trainers list of Pokeman 
- * @param pokeman
- */
+
+  /**
+   * setPokeman sets the Trainers list of Pokeman
+   * 
+   * @param pokeman
+   */
   public void setPokeman(ArrayList<Pokeman> pokeman) {
     this.pokeman = pokeman;
   }
-/**
- * getStep_counter
- * Returns the step counter for the trainer.
- * @return int The step counter
- */
+
+  /**
+   * getStep_counter Returns the step counter for the trainer.
+   * 
+   * @return int The step counter
+   */
   public int getStep_counter() {
     return step_counter;
   }
-/**
- * setStep_counter
- * Set the step counter to the given value.
- * @param step_counter
- */
+
+  /**
+   * setStep_counter Set the step counter to the given value.
+   * 
+   * @param step_counter
+   */
   public void setStep_counter(int step_counter) {
     this.step_counter = step_counter;
   }
-/**
- * getDirection
- * Return the direction the palyer is currently facing.
- * @return Direction
- */
+
+  /**
+   * getDirection Return the direction the palyer is currently facing.
+   * 
+   * @return Direction
+   */
   public Direction getDirection() {
     return direction;
   }
-/**
- * setDirection
- * Sets the direction the trainer is facing to the given Direction
- * @param direction The new direction for the trainer to face.
- */
+
+  /**
+   * setDirection Sets the direction the trainer is facing to the given
+   * Direction
+   * 
+   * @param direction
+   *          The new direction for the trainer to face.
+   */
   public void setDirection(Direction direction) {
     this.direction = direction;
   }
